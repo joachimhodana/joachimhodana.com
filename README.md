@@ -1,24 +1,49 @@
-# joachimhodana.com
+# Minimalist Portfolio Website
 
-This is the source code for my personal website. It is built using [Vite](https://vitejs.dev/) and [React](https://reactjs.org/).
+A clean, modern portfolio website built with Next.js and Tailwind CSS, featuring smooth animations and dark/light theme support.
 
-Keep in mind that i'm not a web developer, so the code might not be the best, but it works 😅.
-Thanks to [Blueedge](https://github.com/blueedgetechno/win11React) for the inspiration and open source code of his windows 11 simulator, which i used as a base (basically copied most of styles, but i'm not a designer, so i don't care 😁).
+## ✨ Features
 
-## Development
+- **Minimalist Design** - Clean typography with Geist font and strategic use of whitespace
+- **Responsive Layout** - Mobile-first design that works on all devices
+- **Theme Toggle** - Seamless dark/light mode switching
+- **Smooth Animations** - Subtle scroll-triggered animations and hover effects
+- **Modern Stack** - Built with Next.js 15, TypeScript, and Tailwind CSS
 
-To run the project locally, you need to have [Node.js](https://nodejs.org/en/) installed.
+## 🚀 Built With
 
-1. Clone the repository
-2. Run `pnpm install` to install dependencies
-3. Run `pnpm run dev` to start the development server
+- [Next.js](https://nextjs.org/) - React framework
+- [TypeScript](https://www.typescriptlang.org/) - Type safety
+- [Tailwind CSS](https://tailwindcss.com/) - Styling
+- [v0.dev](https://v0.dev/) - AI-powered development
 
-## Scrape repositories data
+## 📦 Getting Started
 
-To scrape repositories data, you need to have [Node.js](https://nodejs.org/en/) installed.
+\`\`\`bash
+# Clone the repository
+git clone https://github.com/felixmacaspac/v0-minimalist-portfolio.git
 
-1. Change PAT in `scrapeRepos.ts` to your own
-2. Change `repositoriesToScrape` in `scrapeRepos.ts` to your own 
-3. Run `pnpm run scrapeRepos` to scrape repositories data
-4. Change `workspaces` in `src/containers/applications/apps/visualstudiocode.tsx` to workspaces you want to use
+# Install dependencies
+npm install
 
+# Run development server
+npm run dev
+\`\`\`
+
+Open [http://localhost:3000](http://localhost:3000) to view the portfolio.
+
+## 🎨 Customization
+
+The portfolio is designed to be easily customizable:
+
+- Update personal information in `app/page.tsx`
+- Modify colors and styling in `app/globals.css`
+- Add or remove sections as needed
+
+## 📄 License
+
+Open source and available under the [MIT License](LICENSE).
+
+---
+
+**Built with ❤️ using [v0.dev](https://v0.dev) by Felix Macaspac**
