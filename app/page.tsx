@@ -3,7 +3,7 @@
 import { MapPin, Download } from "lucide-react"
 import Link from "next/link"
 import { usePathname, useRouter, useSearchParams } from "next/navigation"
-import { useEffect, useRef, useState } from "react"
+import { useEffect, useRef, useState, Suspense } from "react"
 
 type CareerPath = "software" | "data"
 
@@ -117,7 +117,7 @@ const careerData = {
   },
 }
 
-export default function Home() {
+function HomeContent() {
   const [isDark, setIsDark] = useState(true)
   const [activeSection, setActiveSection] = useState("")
   const [careerPath, setCareerPath] = useState<CareerPath>("data")
@@ -676,5 +676,13 @@ export default function Home() {
 
       <div className="fixed bottom-0 left-0 right-0 h-24 bg-gradient-to-t from-background via-background/80 to-transparent pointer-events-none"></div>
     </div>
+  )
+}
+
+export default function Home() {
+  return (
+    <Suspense fallback={<div>Loading...</div>}>
+      <HomeContent />
+    </Suspense>
   )
 }
