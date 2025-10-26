@@ -2,6 +2,7 @@
 
 import { MapPin, Download } from "lucide-react"
 import Link from "next/link"
+import { usePathname, useRouter, useSearchParams } from "next/navigation"
 import { useEffect, useRef, useState } from "react"
 
 type CareerPath = "software" | "data"
@@ -10,25 +11,32 @@ const careerData = {
   software: {
     title: "Software Engineer",
     description:
-      "Software developer with a passion for programming that started at the age of 14. Specializing in building APIs, web applications, and functional solutions.",
-    currentRole: "Software Developer",
+      "Fullstack developer specializing in building complete web applications, APIs, and SaaS solutions. Working as a freelancer since 2018, delivering projects for clients across Poland, Russia, USA and UK.",
+    currentRole: "Software Engineer",
     currentCompany: "Freelance",
-    skills: ["Python", "JavaScript", "TypeScript", "React", "Node.js", "Docker", "Git"],
+    currentDates: "Aug 2018 — Present",
+    skills: [
+      { name: "Python", icon: "https://cdn.jsdelivr.net/gh/devicons/devicon/icons/python/python-original.svg" },
+      { name: "Go", icon: "https://cdn.jsdelivr.net/gh/devicons/devicon/icons/go/go-original.svg" },
+      { name: "TypeScript", icon: "https://cdn.jsdelivr.net/gh/devicons/devicon/icons/typescript/typescript-original.svg" },
+      { name: "React", icon: "https://cdn.jsdelivr.net/gh/devicons/devicon/icons/react/react-original.svg" },
+      { name: "Next.js", icon: "https://cdn.jsdelivr.net/gh/devicons/devicon/icons/nextjs/nextjs-original.svg" },
+      { name: "Tailwind CSS", icon: "https://cdn.jsdelivr.net/gh/devicons/devicon/icons/tailwindcss/tailwindcss-original.svg" },
+      { name: "PostgreSQL", icon: "https://cdn.jsdelivr.net/gh/devicons/devicon/icons/postgresql/postgresql-original.svg" },
+      { name: "Redis", icon: "https://cdn.jsdelivr.net/gh/devicons/devicon/icons/redis/redis-original.svg" },
+      { name: "Docker", icon: "https://cdn.jsdelivr.net/gh/devicons/devicon/icons/docker/docker-original.svg" },
+      { name: "RabbitMQ", icon: "https://cdn.jsdelivr.net/gh/devicons/devicon/icons/rabbitmq/rabbitmq-original.svg" },
+      { name: "gRPC", icon: "https://grpc.io/img/logos/grpc-icon-color.png" },
+      { name: "AWS", icon: "https://hawatel.com/_next/image/?url=https%3A%2F%2Fhawatel.com%2Fapi%2Fuploads%2FAmazon_Web_Services_Logo_721eb0a90f.png&w=640&q=75" }
+    ],
     work: [
       {
-        year: "2024",
-        role: "Junior Data Engineer",
-        company: "Lortech Solutions",
-        description: "Building data pipelines and infrastructure solutions for enterprise clients.",
-        tech: ["Python", "SQL", "dbt", "Data Engineering"],
-      },
-      {
-        year: "2022",
-        role: "Python Developer",
-        company: "Decision Sciences Company",
-        description: "Developed Python-based solutions for data analysis and automation tasks.",
-        tech: ["Python", "APIs", "Data Science"],
-      },
+        year: "2018",
+        role: "Fullstack Developer",
+        company: "Freelance",
+        description: "Delivered dozens of projects for international clients across various domains including Web3, financial applications and SaaS applications.",
+        tech: ["Python", "Go", "JavaScript", "TypeScript", "React", "Next.js"],
+      }
     ],
     awards: [
       {
@@ -36,109 +44,133 @@ const careerData = {
         title: "1st Place - BKI.Hack",
         organization: "Bydgoski Hackathon",
         description: "Won first place competing against 10+ junior groups in a full-stack development challenge.",
+        icon: "https://encrypted-tbn0.gstatic.com/images?q=tbn:ANd9GcRvDbhyJAJuQB874bOXR4wYgaR_3bnRuTMrFw&s",
       },
     ],
-    articles: [
-      {
-        title: "Building Scalable APIs with Python",
-        excerpt: "Best practices for designing RESTful APIs that scale with your application needs.",
-        date: "Jan 2025",
-        readTime: "7 min",
-        url: "https://medium.com/@joachimhodana",
-      },
-      {
-        title: "From REST to gRPC",
-        excerpt: "Exploring the benefits of gRPC for microservices communication and when to make the switch.",
-        date: "Dec 2024",
-        readTime: "8 min",
-        url: "https://medium.com/@joachimhodana",
-      },
-      {
-        title: "Winning My First Hackathon",
-        excerpt: "Lessons learned from competing and winning 1st place at BKI.Hack in Bydgoszcz.",
-        date: "Nov 2024",
-        readTime: "5 min",
-        url: "https://medium.com/@joachimhodana",
-      },
-      {
-        title: "Modern Web Development with React",
-        excerpt: "A comprehensive guide to building modern web applications with React and TypeScript.",
-        date: "Oct 2024",
-        readTime: "6 min",
-        url: "https://medium.com/@joachimhodana",
-      },
-    ],
+    // articles: [
+    //   {
+    //     title: "How I Managed to Efficiently Store Google Places in My Database Without Blowing the Budget",
+    //     excerpt: "A practical guide to optimizing Google Places API usage and database storage for cost-effective location data management.",
+    //     date: "Jan 2025",
+    //     readTime: "6 min",
+    //     url: "https://medium.com/@joachimhodana/how-i-managed-to-efficiently-store-google-places-in-my-database-without-blowing-the-budget-7abca28637a8?source=user_profile_page---------2-------------27db4b2773fb----------------------",
+    //   },
+    //   {
+    //     title: "Building Scalable APIs with Python",
+    //     excerpt: "Best practices for designing RESTful APIs that scale with your application needs.",
+    //     date: "Jan 2025",
+    //     readTime: "7 min",
+    //     url: "https://medium.com/@joachimhodana",
+    //   },
+    //   {
+    //     title: "From REST to gRPC",
+    //     excerpt: "Exploring the benefits of gRPC for microservices communication and when to make the switch.",
+    //     date: "Dec 2024",
+    //     readTime: "8 min",
+    //     url: "https://medium.com/@joachimhodana",
+    //   },
+    //   {
+    //     title: "Winning My First Hackathon",
+    //     excerpt: "Lessons learned from competing and winning 1st place at BKI.Hack in Bydgoszcz.",
+    //     date: "Nov 2024",
+    //     readTime: "5 min",
+    //     url: "https://medium.com/@joachimhodana",
+    //   },
+    //   {
+    //     title: "Modern Web Development with React",
+    //     excerpt: "A comprehensive guide to building modern web applications with React and TypeScript.",
+    //     date: "Oct 2024",
+    //     readTime: "6 min",
+    //     url: "https://medium.com/@joachimhodana",
+    //   },
+    // ],
   },
   data: {
     title: "Data Engineer",
     description:
-      "Data Engineer specializing in Python, building scalable data pipelines, ETL processes, and data infrastructure solutions.",
-    currentRole: "Junior Data Engineer",
+      "Data Engineer specializing in Python, building scalable data pipelines, ETL processes, and data infrastructure solutions from A to Z.",
+    currentRole: "Data Engineer",
     currentCompany: "Lortech Solutions",
-    skills: ["Python", "SQL", "NoSQL", "dbt", "Apache Airflow", "Docker", "ETL"],
-    work: [
-      {
-        year: "2024",
-        role: "Junior Data Engineer",
-        company: "Lortech Solutions",
-        description:
-          "Building and maintaining data pipelines, implementing ETL processes, and optimizing data infrastructure for enterprise clients.",
-        tech: ["Python", "SQL", "dbt", "Data Warehousing"],
-      },
-      {
-        year: "2022",
-        role: "Python Developer",
-        company: "Decision Sciences Company",
-        description: "Developed data processing solutions, APIs, and automation scripts for data analysis workflows.",
-        tech: ["Python", "APIs", "Data Processing", "Web Scraping"],
-      },
+    currentDates: "Aug 2024 — Present",
+    skills: [
+      { name: "dbt", icon: "https://assets.streamlinehq.com/image/private/w_300,h_300,ar_1/f_auto/v1/icons/3/dbt-icon-sefw4nnptjlk5lk13atgvm.png/dbt-icon-2yxlz1fvy25mvn5scgnlw.png?_a=DATAg1AAZAA0" },
+      { name: "AWS", icon: "https://hawatel.com/_next/image/?url=https%3A%2F%2Fhawatel.com%2Fapi%2Fuploads%2FAmazon_Web_Services_Logo_721eb0a90f.png&w=640&q=75" },
+      { name: "Snowflake", icon: "https://registry.npmmirror.com/@lobehub/icons-static-png/latest/files/dark/snowflake-color.png" },
+      { name: "Apache Airflow", icon: "https://www.apache.org/logos/res/airflow/default.png" },
+      { name: "Dagster", icon: "https://docs.dagster.io/images/dagster-primary-mark.svg" },
+      { name: "GCP", icon: "https://cdn.jsdelivr.net/gh/devicons/devicon/icons/googlecloud/googlecloud-original.svg" },
     ],
+      work: [
+        {
+          year: "2024-2025",
+          role: "Data Engineer",
+          company: "Lortech Solutions",
+          description:
+            "Built complete data pipelines from scratch using dbt+Airflow and Dagster+dbt. Enhanced existing pipelines and worked as a consultant for enterprise clients. Started as Junior Data Engineer and progressed to Mid level after 1.5 year.",
+          tech: ["Python", "SQL", "dbt", "Apache Airflow", "Dagster", "Snowflake", "ETL"],
+        },
+        {
+          year: "2022-2023",
+          role: "Python Developer",
+          company: "Decision Sciences Company",
+          description: "Developed scripts and database schemas for AI pricing machine project connecting alternative insurance data for insurance companies.",
+          tech: ["Python", "Database Design", "Pandas", "SQL"],
+        },
+      ],
     certificates: [
       {
         year: "2025",
-        title: "dbt Developer Certification",
+        title: "SnowPro Core Certification",
+        organization: "Snowflake",
+        description: "Certified in Snowflake data warehousing and cloud data platform fundamentals.",
+        issued: "Aug 2025",
+        expires: "Aug 2027",
+        credentialId: "156908869",
+        url: "https://achieve.snowflake.com/31ea4326-9e88-4148-a8b5-20326f786e50#acc.TX18eKmx",
+        icon: "https://registry.npmmirror.com/@lobehub/icons-static-png/latest/files/dark/snowflake-color.png",
+      },
+      {
+        year: "2025",
+        title: "dbt Developer",
         organization: "dbt Labs",
         description: "Certified in building, testing, and deploying data transformation pipelines using dbt.",
         issued: "Feb 2025",
-      },
-      {
-        year: "2024",
-        title: "Snowflake Certification",
-        organization: "Snowflake",
-        description: "Certified in Snowflake data warehousing and cloud data platform fundamentals.",
-        issued: "Dec 2024",
+        expires: "Feb 2027",
+        credentialId: "135541190",
+        url: "https://credentials.getdbt.com/75e67339-1260-4bb4-bb4e-efbb9c0bc774#acc.JAWU8EDu",
+        icon: "https://assets.streamlinehq.com/image/private/w_300,h_300,ar_1/f_auto/v1/icons/3/dbt-icon-sefw4nnptjlk5lk13atgvm.png/dbt-icon-2yxlz1fvy25mvn5scgnlw.png?_a=DATAg1AAZAA0",
       },
     ],
-    articles: [
-      {
-        title: "Building Scalable Data Pipelines",
-        excerpt: "Best practices for designing and implementing robust ETL processes that scale with your data.",
-        date: "Jan 2025",
-        readTime: "7 min",
-        url: "https://medium.com/@joachimhodana",
-      },
-      {
-        title: "Python for Data Engineering",
-        excerpt: "Why Python remains the go-to language for data engineering and how to leverage its ecosystem.",
-        date: "Dec 2024",
-        readTime: "6 min",
-        url: "https://medium.com/@joachimhodana",
-      },
-      {
-        title: "dbt Best Practices",
-        excerpt: "Essential patterns and practices for building maintainable data transformation workflows with dbt.",
-        date: "Nov 2024",
-        readTime: "8 min",
-        url: "https://medium.com/@joachimhodana",
-      },
-      {
-        title: "Snowflake Performance Optimization",
-        excerpt: "Tips and techniques for optimizing query performance and reducing costs in Snowflake.",
-        date: "Oct 2024",
-        readTime: "9 min",
-        url: "https://medium.com/@joachimhodana",
-      },
-    ],
+    // articles: [
+    //   {
+    //     title: "Building Scalable Data Pipelines",
+    //     excerpt: "Best practices for designing and implementing robust ETL processes that scale with your data.",
+    //     date: "Jan 2025",
+    //     readTime: "7 min",
+    //     url: "https://medium.com/@joachimhodana",
+    //   },
+    //   {
+    //     title: "Python for Data Engineering",
+    //     excerpt: "Why Python remains the go-to language for data engineering and how to leverage its ecosystem.",
+    //     date: "Dec 2024",
+    //     readTime: "6 min",
+    //     url: "https://medium.com/@joachimhodana",
+    //   },
+    //   {
+    //     title: "dbt Best Practices",
+    //     excerpt: "Essential patterns and practices for building maintainable data transformation workflows with dbt.",
+    //     date: "Nov 2024",
+    //     readTime: "8 min",
+    //     url: "https://medium.com/@joachimhodana",
+    //   },
+    //   {
+    //     title: "Snowflake Performance Optimization",
+    //     excerpt: "Tips and techniques for optimizing query performance and reducing costs in Snowflake.",
+    //     date: "Oct 2024",
+    //     readTime: "9 min",
+    //     url: "https://medium.com/@joachimhodana",
+    //   },
+    // ],
   },
 }
 
@@ -147,13 +179,41 @@ export default function Home() {
   const [activeSection, setActiveSection] = useState("")
   const [careerPath, setCareerPath] = useState<CareerPath>("data")
   const [isScrolled, setIsScrolled] = useState(false)
+  const [isTransitioning, setIsTransitioning] = useState(false)
   const sectionsRef = useRef<(HTMLElement | null)[]>([])
+  const router = useRouter()
+  const pathname = usePathname()
+  const searchParams = useSearchParams()
 
   const currentCareer = careerData[careerPath]
 
   useEffect(() => {
     document.documentElement.classList.toggle("dark", isDark)
   }, [isDark])
+
+  // Sync career view from query param ?v=de|swe
+  useEffect(() => {
+    const variant = searchParams.get("v")
+    if (variant === "de") {
+      setCareerPath("data")
+    } else if (variant === "swe") {
+      setCareerPath("software")
+    }
+  }, [searchParams])
+
+  const updateCareerPath = (next: CareerPath) => {
+    if (next === careerPath) return
+    
+    setIsTransitioning(true)
+    setTimeout(() => {
+      setCareerPath(next)
+      setTimeout(() => setIsTransitioning(false), 50)
+    }, 200)
+    
+    const params = new URLSearchParams(searchParams.toString())
+    params.set("v", next === "data" ? "de" : "swe")
+    router.replace(`${pathname}?${params.toString()}`, { scroll: false })
+  }
 
   useEffect(() => {
     const handleScroll = () => {
@@ -216,7 +276,7 @@ export default function Home() {
           <div className="text-sm text-muted-foreground font-mono tracking-wider">VIEW MY EXPERIENCE AS</div>
           <div className="flex items-center gap-2 p-1 bg-background/80 backdrop-blur-sm border border-border rounded-full shadow-lg">
             <button
-              onClick={() => setCareerPath("software")}
+              onClick={() => updateCareerPath("software")}
               className={`text-sm font-medium rounded-full px-4 py-2 transition-all duration-300 ${
                 careerPath === "software"
                   ? "bg-foreground text-background"
@@ -226,7 +286,7 @@ export default function Home() {
               Software Engineer
             </button>
             <button
-              onClick={() => setCareerPath("data")}
+              onClick={() => updateCareerPath("data")}
               className={`text-sm font-medium rounded-full px-4 py-2 transition-all duration-300 ${
                 careerPath === "data" ? "bg-foreground text-background" : "text-muted-foreground hover:text-foreground"
               }`}
@@ -248,7 +308,7 @@ export default function Home() {
           <div className="text-xs text-muted-foreground font-mono tracking-wider">VIEW AS</div>
           <div className="flex items-center gap-2 p-1 bg-background/80 backdrop-blur-sm border border-border rounded-full shadow-lg scale-90">
             <button
-              onClick={() => setCareerPath("software")}
+              onClick={() => updateCareerPath("software")}
               className={`text-xs font-medium rounded-full px-3 py-1.5 transition-all duration-300 ${
                 careerPath === "software"
                   ? "bg-foreground text-background"
@@ -258,7 +318,7 @@ export default function Home() {
               SWE
             </button>
             <button
-              onClick={() => setCareerPath("data")}
+              onClick={() => updateCareerPath("data")}
               className={`text-xs font-medium rounded-full px-3 py-1.5 transition-all duration-300 ${
                 careerPath === "data" ? "bg-foreground text-background" : "text-muted-foreground hover:text-foreground"
               }`}
@@ -287,7 +347,9 @@ export default function Home() {
               </div>
 
               <div className="space-y-6 max-w-md">
-                <p className="text-lg sm:text-xl text-muted-foreground leading-relaxed">{currentCareer.description}</p>
+                <p className={`text-lg sm:text-xl text-muted-foreground leading-relaxed transition-opacity duration-200 ${
+                  isTransitioning ? "opacity-0" : "opacity-100"
+                }`}>{currentCareer.description}</p>
 
                 <div className="flex flex-col sm:flex-row sm:items-center gap-3 sm:gap-4 text-sm text-muted-foreground">
                   {/* <div className="flex items-center gap-2">
@@ -314,22 +376,31 @@ export default function Home() {
             <div className="lg:col-span-2 flex flex-col justify-end space-y-6 sm:space-y-8 mt-8 lg:mt-0">
               <div className="space-y-4">
                 <div className="text-sm text-muted-foreground font-mono">CURRENTLY</div>
-                <div className="space-y-2">
+                <div className={`space-y-2 transition-opacity duration-200 ${
+                  isTransitioning ? "opacity-0" : "opacity-100"
+                }`}>
                   <div className="text-foreground">{currentCareer.currentRole}</div>
                   <div className="text-muted-foreground">@ {currentCareer.currentCompany}</div>
-                  <div className="text-xs text-muted-foreground">Aug 2024 — Present</div>
+                  <div className="text-xs text-muted-foreground">{currentCareer.currentDates}</div>
                 </div>
               </div>
 
               <div className="space-y-4">
                 <div className="text-sm text-muted-foreground font-mono">FOCUS</div>
-                <div className="flex flex-wrap gap-2">
+                <div className={`flex flex-wrap gap-2 transition-opacity duration-200 ${
+                  isTransitioning ? "opacity-0" : "opacity-100"
+                }`}>
                   {currentCareer.skills.map((skill) => (
                     <span
-                      key={skill}
-                      className="px-3 py-1 text-xs border border-border rounded-full hover:border-muted-foreground/50 transition-colors duration-300"
+                      key={skill.name}
+                      className="flex items-center gap-2 px-3 py-1 text-xs border border-border rounded-full hover:border-muted-foreground/50 transition-colors duration-300"
                     >
-                      {skill}
+                      <img
+                        src={skill.icon}
+                        alt={`${skill.name} icon`}
+                        className="w-4 h-4 object-contain"
+                      />
+                      {skill.name}
                     </span>
                   ))}
                 </div>
@@ -345,7 +416,7 @@ export default function Home() {
         >
           <div className="space-y-12 sm:space-y-16">
             <div className="flex flex-col sm:flex-row sm:items-end sm:justify-between gap-4">
-              <h2 className="text-3xl sm:text-4xl font-light">Selected Work</h2>
+              <h2 className="text-3xl sm:text-4xl font-light">Work Experience</h2>
               <div className="text-sm text-muted-foreground font-mono">2022 — 2025</div>
             </div>
 
@@ -399,9 +470,16 @@ export default function Home() {
                       </div>
 
                       <div className="lg:col-span-10 space-y-2">
-                        <div>
-                          <h4 className="text-lg font-medium">{award.title}</h4>
-                          <div className="text-muted-foreground">{award.organization}</div>
+                        <div className="flex items-center gap-3">
+                          <img
+                            src={award.icon}
+                            alt={`${award.organization} award icon`}
+                            className="w-6 h-6 object-contain"
+                          />
+                          <div>
+                            <h4 className="text-lg font-medium">{award.title}</h4>
+                            <div className="text-muted-foreground">{award.organization}</div>
+                          </div>
                         </div>
                         <p className="text-muted-foreground leading-relaxed max-w-2xl">{award.description}</p>
                       </div>
@@ -416,9 +494,12 @@ export default function Home() {
                 <h3 className="text-2xl sm:text-3xl font-light">Certifications</h3>
                 <div className="space-y-6 sm:space-y-8">
                   {currentCareer.certificates.map((cert, index) => (
-                    <div
+                    <Link
                       key={index}
-                      className="group grid lg:grid-cols-12 gap-4 sm:gap-8 py-4 sm:py-6 border-b border-border/30 hover:border-border transition-colors duration-500"
+                      href={cert.url}
+                      target="_blank"
+                      rel="noopener noreferrer"
+                      className="group grid lg:grid-cols-12 gap-4 sm:gap-8 py-4 sm:py-6 border-b border-border/30 hover:border-border transition-colors duration-500 cursor-pointer"
                     >
                       <div className="lg:col-span-2">
                         <div className="text-xl sm:text-2xl font-light text-muted-foreground group-hover:text-foreground transition-colors duration-500">
@@ -427,14 +508,26 @@ export default function Home() {
                       </div>
 
                       <div className="lg:col-span-10 space-y-2">
-                        <div>
-                          <h4 className="text-lg font-medium">{cert.title}</h4>
-                          <div className="text-muted-foreground">{cert.organization}</div>
-                          <div className="text-xs text-muted-foreground mt-1">Issued: {cert.issued}</div>
+                        <div className="flex items-center gap-3">
+                          <img
+                            src={cert.icon}
+                            alt={`${cert.organization} icon`}
+                            className="w-6 h-6 object-contain"
+                          />
+                          <div>
+                            <h4 className="text-lg font-medium">{cert.title}</h4>
+                            <div className="text-muted-foreground">{cert.organization}</div>
+                            <div className="text-xs text-muted-foreground mt-1">
+                              Issued: {cert.issued} · Expires: {cert.expires}
+                            </div>
+                            <div className="text-xs text-muted-foreground">
+                              Credential ID: {cert.credentialId}
+                            </div>
+                          </div>
                         </div>
                         <p className="text-muted-foreground leading-relaxed max-w-2xl">{cert.description}</p>
                       </div>
-                    </div>
+                    </Link>
                   ))}
                 </div>
               </div>
@@ -463,47 +556,53 @@ export default function Home() {
               </Link>
             </div>
 
-            <div className="grid gap-6 sm:gap-8 lg:grid-cols-2">
-              {currentCareer.articles.map((post, index) => (
-                <Link
-                  key={index}
-                  href={post.url}
-                  target="_blank"
-                  rel="noopener noreferrer"
-                  className="group p-6 sm:p-8 border border-border rounded-lg hover:border-muted-foreground/50 transition-all duration-500 hover:shadow-lg cursor-pointer"
-                >
-                  <div className="space-y-4">
-                    <div className="flex items-center justify-between text-xs text-muted-foreground font-mono">
-                      <span>{post.date}</span>
-                      <span>{post.readTime}</span>
+            {currentCareer.articles && currentCareer.articles.length > 0 ? (
+              <div className="grid gap-6 sm:gap-8 lg:grid-cols-2">
+                {currentCareer.articles.map((post, index) => (
+                  <Link
+                    key={index}
+                    href={post.url}
+                    target="_blank"
+                    rel="noopener noreferrer"
+                    className="group p-6 sm:p-8 border border-border rounded-lg hover:border-muted-foreground/50 transition-all duration-500 hover:shadow-lg cursor-pointer"
+                  >
+                    <div className="space-y-4">
+                      <div className="flex items-center justify-between text-xs text-muted-foreground font-mono">
+                        <span>{post.date}</span>
+                        <span>{post.readTime}</span>
+                      </div>
+
+                      <h3 className="text-lg sm:text-xl font-medium group-hover:text-muted-foreground transition-colors duration-300">
+                        {post.title}
+                      </h3>
+
+                      <p className="text-muted-foreground leading-relaxed">{post.excerpt}</p>
+
+                      <div className="flex items-center gap-2 text-sm text-muted-foreground group-hover:text-foreground transition-colors duration-300">
+                        <span>Read more</span>
+                        <svg
+                          className="w-4 h-4 transform group-hover:translate-x-1 transition-transform duration-300"
+                          fill="none"
+                          stroke="currentColor"
+                          viewBox="0 0 24 24"
+                        >
+                          <path
+                            strokeLinecap="round"
+                            strokeLinejoin="round"
+                            strokeWidth={2}
+                            d="M17 8l4 4m0 0l-4 4m4-4H3"
+                          />
+                        </svg>
+                      </div>
                     </div>
-
-                    <h3 className="text-lg sm:text-xl font-medium group-hover:text-muted-foreground transition-colors duration-300">
-                      {post.title}
-                    </h3>
-
-                    <p className="text-muted-foreground leading-relaxed">{post.excerpt}</p>
-
-                    <div className="flex items-center gap-2 text-sm text-muted-foreground group-hover:text-foreground transition-colors duration-300">
-                      <span>Read more</span>
-                      <svg
-                        className="w-4 h-4 transform group-hover:translate-x-1 transition-transform duration-300"
-                        fill="none"
-                        stroke="currentColor"
-                        viewBox="0 0 24 24"
-                      >
-                        <path
-                          strokeLinecap="round"
-                          strokeLinejoin="round"
-                          strokeWidth={2}
-                          d="M17 8l4 4m0 0l-4 4m4-4H3"
-                        />
-                      </svg>
-                    </div>
-                  </div>
-                </Link>
-              ))}
-            </div>
+                  </Link>
+                ))}
+              </div>
+            ) : (
+              <div className="text-center py-12">
+                <p className="text-muted-foreground">No articles available yet.</p>
+              </div>
+            )}
           </div>
         </section>
 
