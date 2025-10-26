@@ -40,50 +40,22 @@ const careerData = {
     ],
     awards: [
       {
-        year: "2021",
+        year: "2024",
         title: "1st Place - BKI.Hack",
         organization: "Bydgoski Hackathon",
         description: "Won first place competing against 10+ junior groups in a full-stack development challenge.",
         icon: "https://encrypted-tbn0.gstatic.com/images?q=tbn:ANd9GcRvDbhyJAJuQB874bOXR4wYgaR_3bnRuTMrFw&s",
       },
     ],
-    // articles: [
-    //   {
-    //     title: "How I Managed to Efficiently Store Google Places in My Database Without Blowing the Budget",
-    //     excerpt: "A practical guide to optimizing Google Places API usage and database storage for cost-effective location data management.",
-    //     date: "Jan 2025",
-    //     readTime: "6 min",
-    //     url: "https://medium.com/@joachimhodana/how-i-managed-to-efficiently-store-google-places-in-my-database-without-blowing-the-budget-7abca28637a8?source=user_profile_page---------2-------------27db4b2773fb----------------------",
-    //   },
-    //   {
-    //     title: "Building Scalable APIs with Python",
-    //     excerpt: "Best practices for designing RESTful APIs that scale with your application needs.",
-    //     date: "Jan 2025",
-    //     readTime: "7 min",
-    //     url: "https://medium.com/@joachimhodana",
-    //   },
-    //   {
-    //     title: "From REST to gRPC",
-    //     excerpt: "Exploring the benefits of gRPC for microservices communication and when to make the switch.",
-    //     date: "Dec 2024",
-    //     readTime: "8 min",
-    //     url: "https://medium.com/@joachimhodana",
-    //   },
-    //   {
-    //     title: "Winning My First Hackathon",
-    //     excerpt: "Lessons learned from competing and winning 1st place at BKI.Hack in Bydgoszcz.",
-    //     date: "Nov 2024",
-    //     readTime: "5 min",
-    //     url: "https://medium.com/@joachimhodana",
-    //   },
-    //   {
-    //     title: "Modern Web Development with React",
-    //     excerpt: "A comprehensive guide to building modern web applications with React and TypeScript.",
-    //     date: "Oct 2024",
-    //     readTime: "6 min",
-    //     url: "https://medium.com/@joachimhodana",
-    //   },
-    // ],
+    articles: [
+      {
+        title: "How I Managed to Efficiently Store Google Places in My Database Without Blowing the Budget",
+        excerpt: "A practical guide to optimizing Google Places API usage and database storage for cost-effective location data management.",
+        date: "Jan 2025",
+        readTime: "6 min",
+        url: "https://medium.com/@joachimhodana/how-i-managed-to-efficiently-store-google-places-in-my-database-without-blowing-the-budget-7abca28637a8?source=user_profile_page---------2-------------27db4b2773fb----------------------",
+      },
+    ],
   },
   data: {
     title: "Data Engineer",
@@ -141,36 +113,7 @@ const careerData = {
         icon: "https://assets.streamlinehq.com/image/private/w_300,h_300,ar_1/f_auto/v1/icons/3/dbt-icon-sefw4nnptjlk5lk13atgvm.png/dbt-icon-2yxlz1fvy25mvn5scgnlw.png?_a=DATAg1AAZAA0",
       },
     ],
-    // articles: [
-    //   {
-    //     title: "Building Scalable Data Pipelines",
-    //     excerpt: "Best practices for designing and implementing robust ETL processes that scale with your data.",
-    //     date: "Jan 2025",
-    //     readTime: "7 min",
-    //     url: "https://medium.com/@joachimhodana",
-    //   },
-    //   {
-    //     title: "Python for Data Engineering",
-    //     excerpt: "Why Python remains the go-to language for data engineering and how to leverage its ecosystem.",
-    //     date: "Dec 2024",
-    //     readTime: "6 min",
-    //     url: "https://medium.com/@joachimhodana",
-    //   },
-    //   {
-    //     title: "dbt Best Practices",
-    //     excerpt: "Essential patterns and practices for building maintainable data transformation workflows with dbt.",
-    //     date: "Nov 2024",
-    //     readTime: "8 min",
-    //     url: "https://medium.com/@joachimhodana",
-    //   },
-    //   {
-    //     title: "Snowflake Performance Optimization",
-    //     excerpt: "Tips and techniques for optimizing query performance and reducing costs in Snowflake.",
-    //     date: "Oct 2024",
-    //     readTime: "9 min",
-    //     url: "https://medium.com/@joachimhodana",
-    //   },
-    // ],
+    articles: [],
   },
 }
 
@@ -417,7 +360,6 @@ export default function Home() {
           <div className="space-y-12 sm:space-y-16">
             <div className="flex flex-col sm:flex-row sm:items-end sm:justify-between gap-4">
               <h2 className="text-3xl sm:text-4xl font-light">Work Experience</h2>
-              <div className="text-sm text-muted-foreground font-mono">2022 — 2025</div>
             </div>
 
             <div className="space-y-8 sm:space-y-12">
