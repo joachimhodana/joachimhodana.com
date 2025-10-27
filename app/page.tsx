@@ -51,8 +51,8 @@ const careerData = {
       {
         title: "How I Managed to Efficiently Store Google Places in My Database Without Blowing the Budget",
         excerpt: "A practical guide to optimizing Google Places API usage and database storage for cost-effective location data management.",
-        date: "Jan 2025",
-        readTime: "6 min",
+        date: "Oct 2024",
+        readTime: "4 min",
         url: "https://medium.com/@joachimhodana/how-i-managed-to-efficiently-store-google-places-in-my-database-without-blowing-the-budget-7abca28637a8?source=user_profile_page---------2-------------27db4b2773fb----------------------",
       },
     ],
@@ -113,7 +113,15 @@ const careerData = {
         icon: "https://assets.streamlinehq.com/image/private/w_300,h_300,ar_1/f_auto/v1/icons/3/dbt-icon-sefw4nnptjlk5lk13atgvm.png/dbt-icon-2yxlz1fvy25mvn5scgnlw.png?_a=DATAg1AAZAA0",
       },
     ],
-    articles: [],
+    articles: [
+      {
+        title: "Automating Salesforce dbt Models: Dynamic Metadata-Driven Modeling",
+        excerpt: "Learn how to build automated, metadata-driven dbt models for Salesforce data that scale with your organization's growth.",
+        date: "Oct 2025",
+        readTime: "4 min",
+        url: "https://medium.com/@joachimhodana/automating-salesforce-dbt-models-dynamic-metadata-driven-modeling-df3fe2498da2",
+      },
+    ],
   },
 }
 
