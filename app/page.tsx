@@ -225,10 +225,10 @@ function HomeContent() {
       >
         <div className="flex items-center gap-3 flex-col">
           <div className="text-sm text-muted-foreground font-mono tracking-wider">VIEW MY EXPERIENCE AS</div>
-          <div className="flex items-center gap-2 p-1 bg-background/80 backdrop-blur-sm border border-border rounded-full shadow-lg">
+          <div className="flex items-center p-1 bg-background/80 backdrop-blur-sm border border-border rounded shadow-lg">
             <button
               onClick={() => updateCareerPath("software")}
-              className={`text-sm font-medium rounded-full px-4 py-2 transition-all duration-300 ${
+              className={`text-sm font-medium rounded-l px-4 py-2 transition-all duration-300 ${
                 careerPath === "software"
                   ? "bg-foreground text-background"
                   : "text-muted-foreground hover:text-foreground"
@@ -238,7 +238,7 @@ function HomeContent() {
             </button>
             <button
               onClick={() => updateCareerPath("data")}
-              className={`text-sm font-medium rounded-full px-4 py-2 transition-all duration-300 ${
+              className={`text-sm font-medium rounded-r px-4 py-2 transition-all duration-300 ${
                 careerPath === "data" ? "bg-foreground text-background" : "text-muted-foreground hover:text-foreground"
               }`}
             >
@@ -257,10 +257,10 @@ function HomeContent() {
       >
         <div className="flex items-center gap-3 flex-row">
           <div className="text-xs text-muted-foreground font-mono tracking-wider">VIEW AS</div>
-          <div className="flex items-center gap-2 p-1 bg-background/80 backdrop-blur-sm border border-border rounded-full shadow-lg scale-90">
+          <div className="flex items-center gap-2 p-1 bg-background/80 backdrop-blur-sm border border-border rounded shadow-lg scale-90">
             <button
               onClick={() => updateCareerPath("software")}
-              className={`text-xs font-medium rounded-full px-3 py-1.5 transition-all duration-300 ${
+              className={`text-xs font-medium rounded px-3 py-1.5 transition-all duration-300 ${
                 careerPath === "software"
                   ? "bg-foreground text-background"
                   : "text-muted-foreground hover:text-foreground"
@@ -270,7 +270,7 @@ function HomeContent() {
             </button>
             <button
               onClick={() => updateCareerPath("data")}
-              className={`text-xs font-medium rounded-full px-3 py-1.5 transition-all duration-300 ${
+              className={`text-xs font-medium rounded px-3 py-1.5 transition-all duration-300 ${
                 careerPath === "data" ? "bg-foreground text-background" : "text-muted-foreground hover:text-foreground"
               }`}
             >
@@ -315,7 +315,7 @@ function HomeContent() {
                     href="/Joachim%20Hodana%20CV.pdf"
                     target="_blank"
                     rel="noopener noreferrer"
-                    className="flex items-center gap-2 px-3 py-1.5 border border-border rounded-full text-foreground hover:text-muted-foreground hover:border-muted-foreground/50 transition-colors duration-300"
+                    className="flex items-center gap-2 px-3 py-1.5 border border-border rounded text-foreground hover:text-muted-foreground hover:border-muted-foreground/50 transition-colors duration-300"
                   >
                     <Download className="size-4" />
                     <span>Download CV</span>
@@ -344,7 +344,7 @@ function HomeContent() {
                   {currentCareer.skills.map((skill) => (
                     <span
                       key={skill.name}
-                      className="flex items-center gap-2 px-3 py-1 text-xs border border-border rounded-full hover:border-muted-foreground/50 transition-colors duration-300"
+                      className="flex items-center gap-2 px-3 py-1 text-xs border border-border rounded hover:border-muted-foreground/50 transition-colors duration-300"
                     >
                       <img
                         src={skill.icon}
@@ -458,11 +458,11 @@ function HomeContent() {
                       </div>
 
                       <div className="lg:col-span-10 space-y-2">
-                        <div className="flex items-center gap-3">
+                        <div className="flex items-start gap-3">
                           <img
                             src={cert.icon}
                             alt={`${cert.organization} icon`}
-                            className="w-6 h-6 object-contain"
+                            className="w-6 h-6 object-contain mt-4"
                           />
                           <div>
                             <h4 className="text-lg font-medium">{cert.title}</h4>
