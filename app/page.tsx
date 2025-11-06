@@ -5,7 +5,10 @@ import Link from "next/link"
 import { usePathname, useRouter, useSearchParams } from "next/navigation"
 import { useEffect, useRef, useState, Suspense } from "react"
 
-type CareerPath = "software" | "data"
+type CareerPath = "software" | "data" | "ml"
+
+// Toggle to quickly show/hide the ML tab in the UI
+const SHOW_ML = true
 
 const careerData = {
   software: {
@@ -15,6 +18,7 @@ const careerData = {
     currentRole: "Software Engineer",
     currentCompany: "Freelance",
     currentDates: "Aug 2018 — Present",
+    showDownloadCV: true,
     skills: [
       { name: "Python", icon: "https://cdn.jsdelivr.net/gh/devicons/devicon/icons/python/python-original.svg" },
       { name: "Go", icon: "https://cdn.jsdelivr.net/gh/devicons/devicon/icons/go/go-original.svg" },
@@ -64,6 +68,7 @@ const careerData = {
     currentRole: "Data Engineer",
     currentCompany: "Lortech Solutions",
     currentDates: "Aug 2024 — Present",
+    showDownloadCV: true,
     skills: [
       { name: "dbt", icon: "https://assets.streamlinehq.com/image/private/w_300,h_300,ar_1/f_auto/v1/icons/3/dbt-icon-sefw4nnptjlk5lk13atgvm.png/dbt-icon-2yxlz1fvy25mvn5scgnlw.png?_a=DATAg1AAZAA0" },
       { name: "AWS", icon: "https://hawatel.com/_next/image/?url=https%3A%2F%2Fhawatel.com%2Fapi%2Fuploads%2FAmazon_Web_Services_Logo_721eb0a90f.png&w=640&q=75" },
@@ -121,7 +126,48 @@ const careerData = {
         readTime: "4 min",
         url: "https://medium.com/@joachimhodana/automating-salesforce-dbt-models-dynamic-metadata-driven-modeling-df3fe2498da2",
       },
+      {
+        title: "The Hidden Cost of Wide Tables in Snowflake",
+        excerpt: "Understanding the performance and cost implications of wide tables in Snowflake and how to optimize your data warehouse design.",
+        date: "Jan 2025",
+        readTime: "5 min",
+        url: "https://medium.com/@joachimhodana/the-hidden-cost-of-wide-tables-in-snowflake-ab4757902c57",
+      },
     ],
+  },
+  ml: {
+    title: "Machine Learning",
+    description:
+      "Practical ML focused on model prototyping, training, and deployment, integrated with modern data platforms.",
+    currentRole: "Data Engineer",
+    currentCompany: "Lortech Solutions",
+    currentDates: "Aug 2024 — Present",
+    showDownloadCV: false,
+    skills: [
+      { name: "Python", icon: "https://cdn.jsdelivr.net/gh/devicons/devicon/icons/python/python-original.svg" },
+      { name: "PyTorch", icon: "https://cdn.jsdelivr.net/gh/devicons/devicon/icons/pytorch/pytorch-original.svg" },
+      { name: "AWS", icon: "https://hawatel.com/_next/image/?url=https%3A%2F%2Fhawatel.com%2Fapi%2Fuploads%2FAmazon_Web_Services_Logo_721eb0a90f.png&w=640&q=75" },
+      { name: "Jupyter", icon: "https://cdn.jsdelivr.net/gh/devicons/devicon/icons/jupyter/jupyter-original.svg" },
+      { name: "Pandas", icon: "https://cdn.jsdelivr.net/gh/devicons/devicon/icons/pandas/pandas-original.svg" },
+    ],
+    work: [
+      {
+        year: "2024-2025",
+        role: "Data Engineer",
+        company: "Lortech Solutions",
+        description:
+          "Built complete data pipelines from scratch using dbt+Airflow and Dagster+dbt. Enhanced existing pipelines and worked as a consultant for enterprise clients. Started as Junior Data Engineer and progressed to Mid level after 1.5 year.",
+        tech: ["Python", "SQL", "dbt", "Apache Airflow", "Dagster", "Snowflake", "ETL"],
+      },
+      {
+        year: "2022-2023",
+        role: "Python Developer",
+        company: "Decision Sciences Company",
+        description: "Developed scripts and database schemas for AI pricing machine project connecting alternative insurance data for insurance companies.",
+        tech: ["Python", "Database Design", "Pandas", "SQL"],
+      },
+    ],
+    articles: [],
   },
 }
 
@@ -142,13 +188,15 @@ function HomeContent() {
     document.documentElement.classList.toggle("dark", isDark)
   }, [isDark])
 
-  // Sync career view from query param ?v=de|swe
+  // Sync career view from query param ?v=de|swe|ml
   useEffect(() => {
     const variant = searchParams.get("v")
     if (variant === "de") {
       setCareerPath("data")
     } else if (variant === "swe") {
       setCareerPath("software")
+    } else if (variant === "ml") {
+      setCareerPath(SHOW_ML ? "ml" : "data")
     }
   }, [searchParams])
 
@@ -162,7 +210,7 @@ function HomeContent() {
     }, 200)
     
     const params = new URLSearchParams(searchParams.toString())
-    params.set("v", next === "data" ? "de" : "swe")
+    params.set("v", next === "data" ? "de" : next === "software" ? "swe" : "ml")
     router.replace(`${pathname}?${params.toString()}`, { scroll: false })
   }
 
@@ -238,12 +286,22 @@ function HomeContent() {
             </button>
             <button
               onClick={() => updateCareerPath("data")}
-              className={`text-sm font-medium rounded-r px-4 py-2 transition-all duration-300 ${
+              className={`text-sm font-medium px-4 py-2 transition-all duration-300 ${
                 careerPath === "data" ? "bg-foreground text-background" : "text-muted-foreground hover:text-foreground"
               }`}
             >
               Data Engineer
             </button>
+            {SHOW_ML && (
+              <button
+                onClick={() => updateCareerPath("ml")}
+                className={`text-sm font-medium rounded-r px-4 py-2 transition-all duration-300 ${
+                  careerPath === "ml" ? "bg-foreground text-background" : "text-muted-foreground hover:text-foreground"
+                }`}
+              >
+                ML Engineer
+              </button>
+            )}
           </div>
         </div>
       </div>
@@ -276,6 +334,16 @@ function HomeContent() {
             >
               DE
             </button>
+            {SHOW_ML && (
+              <button
+                onClick={() => updateCareerPath("ml")}
+                className={`text-xs font-medium rounded px-3 py-1.5 transition-all duration-300 ${
+                  careerPath === "ml" ? "bg-foreground text-background" : "text-muted-foreground hover:text-foreground"
+                }`}
+              >
+                ML
+              </button>
+            )}
           </div>
         </div>
       </div>
@@ -311,15 +379,17 @@ function HomeContent() {
                     <MapPin className="size-4" />
                     Warsaw, Poland
                   </div>
-                  <Link
-                    href="/Joachim%20Hodana%20CV.pdf"
-                    target="_blank"
-                    rel="noopener noreferrer"
-                    className="flex items-center gap-2 px-3 py-1.5 border border-border rounded text-foreground hover:text-muted-foreground hover:border-muted-foreground/50 transition-colors duration-300"
-                  >
-                    <Download className="size-4" />
-                    <span>Download CV</span>
-                  </Link>
+                  {currentCareer.showDownloadCV && (
+                    <Link
+                      href="/Joachim%20Hodana%20CV.pdf"
+                      target="_blank"
+                      rel="noopener noreferrer"
+                      className="flex items-center gap-2 px-3 py-1.5 border border-border rounded text-foreground hover:text-muted-foreground hover:border-muted-foreground/50 transition-colors duration-300"
+                    >
+                      <Download className="size-4" />
+                      <span>Download CV</span>
+                    </Link>
+                  )}
                 </div>
               </div>
             </div>
