@@ -8,13 +8,13 @@ import { useEffect, useRef, useState, Suspense } from "react"
 type CareerPath = "software" | "data" | "ml"
 
 // Toggle to quickly show/hide the ML tab in the UI
-const SHOW_ML = true
+const SHOW_ML = false
 
 const careerData = {
   software: {
     title: "Software Engineer",
     description:
-      "Fullstack developer specializing in building complete web applications, APIs, and SaaS solutions. Working as a freelancer since 2018, delivering projects for clients across Poland, Russia, USA and UK.",
+      "Fullstack developer specializing in building complete web applications, APIs, and SaaS solutions. Working as a freelancer since 2018, delivering projects for clients across Poland, Eastern Europe, USA and UK.",
     currentRole: "Software Engineer",
     currentCompany: "Freelance",
     currentDates: "Aug 2018 — Present",
@@ -60,6 +60,35 @@ const careerData = {
         url: "https://medium.com/@joachimhodana/how-i-managed-to-efficiently-store-google-places-in-my-database-without-blowing-the-budget-7abca28637a8?source=user_profile_page---------2-------------27db4b2773fb----------------------",
       },
     ],
+    projects: [
+      {
+        title: "Harvide",
+        description: "Launch-ready MVPs for founders. We ship complete products in 21 days - from idea to deployed MVP with authentication, billing, and infrastructure.",
+        url: "https://www.harvide.com/",
+        articleUrl: null,
+        thumbnail: null,
+        icon: "https://www.harvide.com/favicon.ico",
+        year: "2024",
+      },
+      {
+        title: "waitset",
+        description: "Smart no-code waitlist builder - build complete waitlist solutions from A to Z.",
+        url: "https://waitset.com",
+        articleUrl: null,
+        thumbnail: null,
+        icon: "https://waitset.com/waitset-logo-bg.png",
+        year: "2024",
+      },
+      {
+        title: "rtTranslator",
+        description: "Simple overlay for Windows that listens for background sound and translates it to text displayed on screen.",
+        url: "https://github.com/joachimhodana/rtTranslator",
+        articleUrl: null,
+        thumbnail: null,
+        icon: null,
+        year: "2024",
+      },
+    ],
   },
   data: {
     title: "Data Engineer",
@@ -74,8 +103,10 @@ const careerData = {
       { name: "AWS", icon: "https://hawatel.com/_next/image/?url=https%3A%2F%2Fhawatel.com%2Fapi%2Fuploads%2FAmazon_Web_Services_Logo_721eb0a90f.png&w=640&q=75" },
       { name: "Snowflake", icon: "https://registry.npmmirror.com/@lobehub/icons-static-png/latest/files/dark/snowflake-color.png" },
       { name: "Apache Airflow", icon: "https://www.apache.org/logos/res/airflow/default.png" },
+      { name: "Apache Spark", icon: "https://www.apache.org/logos/res/spark/default.png" },
       { name: "Dagster", icon: "https://docs.dagster.io/images/dagster-primary-mark.svg" },
       { name: "GCP", icon: "https://cdn.jsdelivr.net/gh/devicons/devicon/icons/googlecloud/googlecloud-original.svg" },
+      { name: "Sifflet", icon: "https://cdn.brandfetch.io/idPxt-fTQE/w/400/h/400/theme/dark/icon.jpeg?c=1bxid64Mup7aczewSAYMX&t=1761785380373" }
     ],
       work: [
         {
@@ -83,7 +114,7 @@ const careerData = {
           role: "Data Engineer",
           company: "Lortech Solutions",
           description:
-            "Built complete data pipelines from scratch using dbt+Airflow and Dagster+dbt. Enhanced existing pipelines and worked as a consultant for enterprise clients. Started as Junior Data Engineer and progressed to Mid level after 1.5 year.",
+            "Built complete data pipelines from scratch using dbt+Airflow and Dagster+dbt. Enhanced existing pipelines and worked as a consultant for enterprise clients.",
           tech: ["Python", "SQL", "dbt", "Apache Airflow", "Dagster", "Snowflake", "ETL"],
         },
         {
@@ -134,6 +165,17 @@ const careerData = {
         url: "https://medium.com/@joachimhodana/the-hidden-cost-of-wide-tables-in-snowflake-ab4757902c57",
       },
     ],
+    projects: [
+      {
+        title: "unstar",
+        description: "Expand SELECT * to explicit columns in dbt projects. A Python tool that analyzes downstream models and replaces SELECT * with explicit column lists.",
+        url: "https://github.com/joachimhodana/unstar",
+        articleUrl: null,
+        thumbnail: null,
+        icon: null,
+        year: "2024",
+      },
+    ],
   },
   ml: {
     title: "Machine Learning",
@@ -156,7 +198,7 @@ const careerData = {
         role: "Data Engineer",
         company: "Lortech Solutions",
         description:
-          "Built complete data pipelines from scratch using dbt+Airflow and Dagster+dbt. Enhanced existing pipelines and worked as a consultant for enterprise clients. Started as Junior Data Engineer and progressed to Mid level after 1.5 year.",
+          "Built complete data pipelines from scratch using dbt+Airflow and Dagster+dbt. Enhanced existing pipelines and worked as a consultant for enterprise clients.",
         tech: ["Python", "SQL", "dbt", "Apache Airflow", "Dagster", "Snowflake", "ETL"],
       },
       {
@@ -243,6 +285,36 @@ function HomeContent() {
     return () => observer.disconnect()
   }, [])
 
+  useEffect(() => {
+    const handleKeyDown = (e: KeyboardEvent) => {
+      // Don't trigger if user is typing in an input, textarea, or contenteditable
+      const target = e.target as HTMLElement
+      if (
+        target.tagName === "INPUT" ||
+        target.tagName === "TEXTAREA" ||
+        target.isContentEditable
+      ) {
+        return
+      }
+
+      // Only trigger if no modifier keys are pressed
+      if (e.ctrlKey || e.metaKey || e.altKey || e.shiftKey) {
+        return
+      }
+
+      if (e.key === "s" || e.key === "S") {
+        e.preventDefault()
+        updateCareerPath("software")
+      } else if (e.key === "d" || e.key === "D") {
+        e.preventDefault()
+        updateCareerPath("data")
+      }
+    }
+
+    window.addEventListener("keydown", handleKeyDown)
+    return () => window.removeEventListener("keydown", handleKeyDown)
+  }, [careerPath])
+
   const toggleTheme = () => {
     setIsDark(!isDark)
   }
@@ -251,7 +323,7 @@ function HomeContent() {
     <div className="min-h-screen bg-background text-foreground relative">
       <nav className="fixed left-8 top-1/2 -translate-y-1/2 z-10 hidden lg:block">
         <div className="flex flex-col gap-4">
-          {["intro", "work", "thoughts", "connect"].map((section) => (
+          {["intro", "work", "projects", "thoughts", "connect"].map((section) => (
             <button
               key={section}
               onClick={() => document.getElementById(section)?.scrollIntoView({ behavior: "smooth" })}
@@ -556,8 +628,87 @@ function HomeContent() {
         </section>
 
         <section
-          id="thoughts"
+          id="projects"
           ref={(el) => { sectionsRef.current[2] = el }}
+          className="min-h-screen py-20 sm:py-32 opacity-0"
+        >
+          <div className="space-y-12 sm:space-y-16">
+            <div className="flex flex-col sm:flex-row sm:items-end sm:justify-between gap-4">
+              <h2 className="text-3xl sm:text-4xl font-light">My Work</h2>
+            </div>
+
+            {"projects" in currentCareer && currentCareer.projects && currentCareer.projects.length > 0 ? (
+              <div className="grid gap-6 sm:gap-8 lg:grid-cols-2">
+                {currentCareer.projects.map((project, index) => {
+                  const linkUrl = project.articleUrl || project.url
+                  return (
+                    <Link
+                      key={index}
+                      href={linkUrl}
+                      target="_blank"
+                      rel="noopener noreferrer"
+                      className="group border border-border rounded-lg hover:border-muted-foreground/50 transition-all duration-500 hover:shadow-lg cursor-pointer overflow-hidden"
+                    >
+                      {project.thumbnail && (
+                        <div className="aspect-video w-full bg-muted/30 overflow-hidden">
+                          <img
+                            src={project.thumbnail}
+                            alt={`${project.title} thumbnail`}
+                            className="w-full h-full object-cover group-hover:scale-105 transition-transform duration-500"
+                          />
+                        </div>
+                      )}
+                      <div className="p-6 sm:p-8 space-y-4">
+                        <div className="flex items-center justify-between">
+                          <div className="flex items-center gap-3">
+                            {project.icon && (
+                              <img
+                                src={project.icon}
+                                alt={`${project.title} icon`}
+                                className="w-6 h-6 object-contain"
+                              />
+                            )}
+                            <h3 className="text-lg sm:text-xl font-medium group-hover:text-muted-foreground transition-colors duration-300">
+                              {project.title}
+                            </h3>
+                          </div>
+                          {project.year && (
+                            <span className="text-xs text-muted-foreground font-mono">{project.year}</span>
+                          )}
+                        </div>
+                        <p className="text-muted-foreground leading-relaxed">{project.description}</p>
+                        <div className="flex items-center gap-2 text-sm text-muted-foreground group-hover:text-foreground transition-colors duration-300">
+                          <span>{project.articleUrl ? "Read article" : "View project"}</span>
+                          <svg
+                            className="w-4 h-4 transform group-hover:translate-x-1 transition-transform duration-300"
+                            fill="none"
+                            stroke="currentColor"
+                            viewBox="0 0 24 24"
+                          >
+                            <path
+                              strokeLinecap="round"
+                              strokeLinejoin="round"
+                              strokeWidth={2}
+                              d="M17 8l4 4m0 0l-4 4m4-4H3"
+                            />
+                          </svg>
+                        </div>
+                      </div>
+                    </Link>
+                  )
+                })}
+              </div>
+            ) : (
+              <div className="text-center py-12">
+                <p className="text-muted-foreground">No projects available yet.</p>
+              </div>
+            )}
+          </div>
+        </section>
+
+        <section
+          id="thoughts"
+          ref={(el) => { sectionsRef.current[3] = el }}
           className="min-h-screen py-20 sm:py-32 opacity-0"
         >
           <div className="space-y-12 sm:space-y-16">
@@ -626,7 +777,7 @@ function HomeContent() {
           </div>
         </section>
 
-        <section id="connect" ref={(el) => { sectionsRef.current[3] = el }} className="py-20 sm:py-32 opacity-0">
+        <section id="connect" ref={(el) => { sectionsRef.current[4] = el }} className="py-20 sm:py-32 opacity-0">
           <div className="grid lg:grid-cols-2 gap-12 sm:gap-16">
             <div className="space-y-6 sm:space-y-8">
               <h2 className="text-3xl sm:text-4xl font-light">Let's Connect</h2>
