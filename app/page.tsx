@@ -168,7 +168,7 @@ const careerData = {
     projects: [
       {
         title: "unstar",
-        description: "Expand SELECT * to explicit columns in dbt projects. A Python tool that analyzes downstream models and replaces SELECT * with explicit column lists.",
+        description: "Expand SELECT * to explicit columns in dbt projects.",
         url: "https://github.com/joachimhodana/unstar",
         articleUrl: null,
         thumbnail: null,
@@ -220,6 +220,7 @@ function HomeContent() {
   const [isScrolled, setIsScrolled] = useState(false)
   const [isTransitioning, setIsTransitioning] = useState(false)
   const sectionsRef = useRef<(HTMLElement | null)[]>([])
+  const canvasRef = useRef<HTMLCanvasElement | null>(null)
   const router = useRouter()
   const pathname = usePathname()
   const searchParams = useSearchParams()
@@ -314,6 +315,177 @@ function HomeContent() {
     window.addEventListener("keydown", handleKeyDown)
     return () => window.removeEventListener("keydown", handleKeyDown)
   }, [careerPath])
+
+  // ASCII background animation
+  useEffect(() => {
+    const canvas = canvasRef.current
+    if (!canvas) return
+
+    const ctx = canvas.getContext("2d")
+    if (!ctx) return
+
+    let width = 0
+    let height = 0
+    let particlesArray: Particle[] = []
+    let animationFrameId: number
+
+    const numberOfParticles = 400
+    const fontSize = 14
+    const fontFamily = "ui-monospace, 'Courier New', monospace"
+    const symbols = "010101{};<>?|/\\+=~[]".split("")
+
+    let mouse = {
+      x: null as number | null,
+      y: null as number | null,
+      radius: 150,
+    }
+
+    const handleMouseMove = (e: MouseEvent) => {
+      mouse.x = e.x
+      mouse.y = e.y
+    }
+
+    window.addEventListener("mousemove", handleMouseMove)
+
+    function getFlowFieldAngle(x: number, y: number, time: number) {
+      const scale = 0.005
+      return (Math.cos(x * scale) + Math.sin(y * scale + time)) * Math.PI
+    }
+
+    class Particle {
+      x: number = 0
+      y: number = 0
+      size: number = 10
+      speedX: number = 0
+      speedY: number = 0
+      char: string = "0"
+      opacity: number = 0
+      fadeIn: boolean = true
+      color: string = "rgb(100, 100, 100)"
+      life: number = 0
+
+      constructor() {
+        this.reset()
+        this.life = Math.random() * 100
+      }
+
+      reset() {
+        this.x = Math.random() * width
+        this.y = Math.random() * height
+        this.size = Math.floor(Math.random() * fontSize + 10)
+        this.speedX = 0
+        this.speedY = 0
+        this.char = symbols[Math.floor(Math.random() * symbols.length)]
+        this.opacity = 0
+        this.fadeIn = true
+
+        const shade = Math.floor(Math.random() * 55 + 50)
+        this.color = `rgb(${shade}, ${shade}, ${shade})`
+      }
+
+      update(time: number) {
+        const angle = getFlowFieldAngle(this.x, this.y, time)
+
+        this.speedX += Math.cos(angle) * 0.1
+        this.speedY += Math.sin(angle) * 0.1
+
+        if (mouse.x != null && mouse.y != null) {
+          const dx = mouse.x - this.x
+          const dy = mouse.y - this.y
+          const distance = Math.sqrt(dx * dx + dy * dy)
+          if (distance < mouse.radius) {
+            const forceDirectionX = dx / distance
+            const forceDirectionY = dy / distance
+            const force = (mouse.radius - distance) / mouse.radius
+            this.speedX -= forceDirectionX * force * 2
+            this.speedY -= forceDirectionY * force * 2
+
+            if (Math.random() > 0.9) {
+              this.char = symbols[Math.floor(Math.random() * symbols.length)]
+              this.color = "rgb(255, 255, 255)"
+            }
+          }
+        }
+
+        this.speedX *= 0.95
+        this.speedY *= 0.95
+
+        this.x += this.speedX + 1
+        this.y += this.speedY
+
+        if (this.fadeIn) {
+          this.opacity += 0.02
+          if (this.opacity >= 0.3) this.fadeIn = false
+        } else {
+          this.opacity -= 0.003
+        }
+
+        if (this.opacity <= 0 || this.x > width || this.x < 0 || this.y > height || this.y < 0) {
+          if (Math.random() > 0.5) {
+            this.reset()
+            this.x = -20
+          } else {
+            this.reset()
+          }
+        }
+      }
+
+      draw(context: CanvasRenderingContext2D) {
+        context.fillStyle = this.color
+        context.globalAlpha = this.opacity
+        context.font = `${this.size}px ${fontFamily}`
+        context.fillText(this.char, this.x, this.y)
+        context.globalAlpha = 1
+      }
+    }
+
+    function init() {
+      if (!canvas || !ctx) return
+
+      width = canvas.width = window.innerWidth
+      height = canvas.height = window.innerHeight
+
+      particlesArray = []
+      for (let i = 0; i < numberOfParticles; i++) {
+        particlesArray.push(new Particle())
+      }
+    }
+
+    function animate() {
+      if (!ctx) return
+      
+      // No background fill - fully transparent
+      ctx.clearRect(0, 0, width, height)
+
+      const time = Date.now() * 0.0005
+
+      particlesArray.forEach((particle) => {
+        particle.update(time)
+        particle.draw(ctx)
+      })
+
+      animationFrameId = requestAnimationFrame(animate)
+    }
+
+    function handleResize() {
+      if (!canvas) return
+      width = canvas.width = window.innerWidth
+      height = canvas.height = window.innerHeight
+      init()
+    }
+
+    window.addEventListener("resize", handleResize)
+    init()
+    animate()
+
+    return () => {
+      window.removeEventListener("mousemove", handleMouseMove)
+      window.removeEventListener("resize", handleResize)
+      if (animationFrameId) {
+        cancelAnimationFrame(animationFrameId)
+      }
+    }
+  }, [isDark])
 
   const toggleTheme = () => {
     setIsDark(!isDark)
@@ -420,7 +592,12 @@ function HomeContent() {
         </div>
       </div>
 
-      <main className="max-w-4xl mx-auto px-6 sm:px-8 lg:px-16">
+      <canvas
+        ref={canvasRef}
+        className="fixed inset-0 w-full h-full pointer-events-none opacity-30"
+        style={{ zIndex: 0 }}
+      />
+      <main className="max-w-4xl mx-auto px-6 sm:px-8 lg:px-16 relative z-10">
         <header
           id="intro"
           ref={(el) => { sectionsRef.current[0] = el }}
