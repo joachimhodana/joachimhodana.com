@@ -35,7 +35,7 @@ const careerData = {
     ],
     work: [
       {
-        year: "2018",
+        year: "2018 - now",
         role: "Fullstack Developer",
         company: "Freelance",
         description: "Delivered dozens of projects for international clients across various domains including Web3, financial applications and SaaS applications.",
@@ -63,7 +63,7 @@ const careerData = {
     projects: [
       {
         title: "Harvide",
-        description: "Launch-ready MVPs for founders. We ship complete products in 21 days - from idea to deployed MVP with authentication, billing, and infrastructure.",
+        description: "Launch-ready MVPs for founders. We ship complete products in 21 days.",
         url: "https://www.harvide.com/",
         articleUrl: null,
         thumbnail: null,
@@ -77,15 +77,6 @@ const careerData = {
         articleUrl: null,
         thumbnail: null,
         icon: "https://waitset.com/waitset-logo-bg.png",
-        year: "2024",
-      },
-      {
-        title: "rtTranslator",
-        description: "Simple overlay for Windows that listens for background sound and translates it to text displayed on screen.",
-        url: "https://github.com/joachimhodana/rtTranslator",
-        articleUrl: null,
-        thumbnail: null,
-        icon: null,
         year: "2024",
       },
     ],
@@ -110,17 +101,19 @@ const careerData = {
     ],
       work: [
         {
-          year: "2024-2025",
+          year: "2024-now",
           role: "Data Engineer",
           company: "Lortech Solutions",
+          icon: "https://www.lortechsolutions.com/_next/static/media/symbol.117f3a47.svg",
           description:
-            "Built complete data pipelines from scratch using dbt+Airflow and Dagster+dbt. Enhanced existing pipelines and worked as a consultant for enterprise clients.",
+            "Worked on multiple enterprise data projects across fintech, retail, and SaaS. Built and maintained analytics pipelines using dbt with Airflow or Dagster as orchestrators. Implemented new transformation layers, refactored legacy models, and fixed data quality issues in existing warehouses. Regularly collaborated with business and analytics teams to translate reporting requirements into dbt models and production-ready workflows.",
           tech: ["Python", "SQL", "dbt", "Apache Airflow", "Dagster", "Snowflake", "ETL"],
         },
         {
           year: "2022-2023",
           role: "Python Developer",
           company: "Decision Sciences Company",
+          icon: "https://decisionsciences.ai/favicon.ico",
           description: "Developed scripts and database schemas for AI pricing machine project connecting alternative insurance data for insurance companies.",
           tech: ["Python", "Database Design", "Pandas", "SQL"],
         },
@@ -167,12 +160,21 @@ const careerData = {
     ],
     projects: [
       {
+        title: "moneysense-data",
+        description: "Streaming Polymarket market data platform for trading bots backtesting.",
+        url: "https://github.com/joachimhodana/moneysense-data",
+        articleUrl: null,
+        thumbnail: null,
+        icon: "https://upload.wikimedia.org/wikipedia/commons/thumb/9/91/Octicons-mark-github.svg/1200px-Octicons-mark-github.svg.png",
+        year: "2024",
+      },
+      {
         title: "unstar",
         description: "Expand SELECT * to explicit columns in dbt projects.",
         url: "https://github.com/joachimhodana/unstar",
         articleUrl: null,
         thumbnail: null,
-        icon: null,
+        icon: "https://upload.wikimedia.org/wikipedia/commons/thumb/9/91/Octicons-mark-github.svg/1200px-Octicons-mark-github.svg.png",
         year: "2024",
       },
     ],
@@ -194,17 +196,19 @@ const careerData = {
     ],
     work: [
       {
-        year: "2024-2025",
+        year: "2024-now",
         role: "Data Engineer",
         company: "Lortech Solutions",
+        icon: "https://www.lortechsolutions.com/_next/static/media/symbol.117f3a47.svg",
         description:
-          "Built complete data pipelines from scratch using dbt+Airflow and Dagster+dbt. Enhanced existing pipelines and worked as a consultant for enterprise clients.",
+          "Worked on multiple enterprise data projects across fintech, retail, and SaaS. Built and maintained analytics pipelines using dbt with Airflow or Dagster as orchestrators. Implemented new transformation layers, refactored legacy models, and fixed data quality issues in existing warehouses. Regularly collaborated with business and analytics teams to translate reporting requirements into dbt models and production-ready workflows.",
         tech: ["Python", "SQL", "dbt", "Apache Airflow", "Dagster", "Snowflake", "ETL"],
       },
       {
         year: "2022-2023",
         role: "Python Developer",
         company: "Decision Sciences Company",
+        icon: "https://decisionsciences.ai/favicon.ico",
         description: "Developed scripts and database schemas for AI pricing machine project connecting alternative insurance data for insurance companies.",
         tech: ["Python", "Database Design", "Pandas", "SQL"],
       },
@@ -606,7 +610,7 @@ function HomeContent() {
           <div className="grid lg:grid-cols-5 gap-12 sm:gap-16 w-full">
             <div className="lg:col-span-3 space-y-6 sm:space-y-8">
               <div className="space-y-3 sm:space-y-2">
-                <div className="text-sm text-muted-foreground font-mono tracking-wider">PORTFOLIO / 2025</div>
+                <div className="text-sm text-muted-foreground font-mono tracking-wider">PORTF0LI0 / 2025</div>
                 <h1 className="text-5xl sm:text-6xl lg:text-7xl font-light tracking-tight">
                   Joachim
                   <br />
@@ -704,7 +708,19 @@ function HomeContent() {
                   <div className="lg:col-span-6 space-y-3">
                     <div>
                       <h3 className="text-lg sm:text-xl font-medium">{job.role}</h3>
-                      <div className="text-muted-foreground">{job.company}</div>
+                      <div className="flex items-center gap-2 text-muted-foreground">
+                        {"icon" in job && job.icon && (
+                          <img
+                            src={job.icon}
+                            alt={`${job.company} icon`}
+                            className="w-5 h-5 object-contain"
+                            onError={(e) => {
+                              e.currentTarget.style.display = 'none'
+                            }}
+                          />
+                        )}
+                        <span>{job.company}</span>
+                      </div>
                     </div>
                     <p className="text-muted-foreground leading-relaxed max-w-lg">{job.description}</p>
                   </div>
@@ -824,7 +840,7 @@ function HomeContent() {
                       href={linkUrl}
                       target="_blank"
                       rel="noopener noreferrer"
-                      className="group border border-border rounded-lg hover:border-muted-foreground/50 transition-all duration-500 hover:shadow-lg cursor-pointer overflow-hidden"
+                      className="group border border-border rounded-lg hover:border-muted-foreground/50 transition-all duration-500 hover:shadow-lg cursor-pointer overflow-hidden flex flex-col"
                     >
                       {project.thumbnail && (
                         <div className="aspect-video w-full bg-muted/30 overflow-hidden">
@@ -835,26 +851,21 @@ function HomeContent() {
                           />
                         </div>
                       )}
-                      <div className="p-6 sm:p-8 space-y-4">
-                        <div className="flex items-center justify-between">
-                          <div className="flex items-center gap-3">
-                            {project.icon && (
-                              <img
-                                src={project.icon}
-                                alt={`${project.title} icon`}
-                                className="w-6 h-6 object-contain"
-                              />
-                            )}
-                            <h3 className="text-lg sm:text-xl font-medium group-hover:text-muted-foreground transition-colors duration-300">
-                              {project.title}
-                            </h3>
-                          </div>
-                          {project.year && (
-                            <span className="text-xs text-muted-foreground font-mono">{project.year}</span>
+                      <div className="p-6 sm:p-8 flex flex-col h-full">
+                        <div className="flex items-center gap-3 mb-4">
+                          {project.icon && (
+                            <img
+                              src={project.icon}
+                              alt={`${project.title} icon`}
+                              className="w-6 h-6 object-contain"
+                            />
                           )}
+                          <h3 className="text-lg sm:text-xl font-medium group-hover:text-muted-foreground transition-colors duration-300">
+                            {project.title}
+                          </h3>
                         </div>
-                        <p className="text-muted-foreground leading-relaxed">{project.description}</p>
-                        <div className="flex items-center gap-2 text-sm text-muted-foreground group-hover:text-foreground transition-colors duration-300">
+                        <p className="text-muted-foreground leading-relaxed flex-grow mb-4">{project.description}</p>
+                        <div className="flex items-center gap-2 text-sm text-muted-foreground group-hover:text-foreground transition-colors duration-300 mt-auto">
                           <span>{project.articleUrl ? "Read article" : "View project"}</span>
                           <svg
                             className="w-4 h-4 transform group-hover:translate-x-1 transition-transform duration-300"
