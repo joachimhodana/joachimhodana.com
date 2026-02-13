@@ -59,6 +59,13 @@ const careerData = {
         readTime: "4 min",
         url: "https://medium.com/@joachimhodana/how-i-managed-to-efficiently-store-google-places-in-my-database-without-blowing-the-budget-7abca28637a8?source=user_profile_page---------2-------------27db4b2773fb----------------------",
       },
+      {
+        title: "Empowering your AI app with Claude Skills using the Vercel AI SDK",
+        excerpt: "How to replace giant prompts with modular, production-ready knowledge loading using Claude Skills and the Vercel AI SDK.",
+        date: "Feb 2026",
+        readTime: "7 min",
+        url: "https://medium.com/@joachimhodana/empowering-your-ai-app-with-claude-skills-using-the-vercel-ai-sdk-38585e4f378f",
+      },
     ],
     projects: [
       {
