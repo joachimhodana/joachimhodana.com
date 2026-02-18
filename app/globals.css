@@ -35,6 +35,15 @@
   --sidebar-accent-foreground: oklch(0.205 0 0);
   --sidebar-border: oklch(0.922 0 0);
   --sidebar-ring: oklch(0.708 0 0);
+  
+  /* Torph-inspired variables */
+  --font-primary: var(--font-geist-sans);
+  --font-secondary: var(--font-geist-sans);
+  --font-code: var(--font-geist-pixel-grid);
+  --selection-color: #000;
+  --selection-bg: rgba(0, 0, 0, 0.15);
+  --focus-color: rgba(0, 122, 255, 0.5);
+  --hr-color: rgba(0, 0, 0, 0.1);
 }
 
 .dark {
@@ -70,6 +79,10 @@
   --sidebar-accent-foreground: oklch(0.985 0 0);
   --sidebar-border: oklch(0.269 0 0);
   --sidebar-ring: oklch(0.439 0 0);
+  
+  /* Dark mode selection colors */
+  --selection-color: #fff;
+  --selection-bg: rgba(255, 255, 255, 0.15);
 }
 
 @theme inline {
@@ -109,14 +122,321 @@
   --color-sidebar-accent-foreground: var(--sidebar-accent-foreground);
   --color-sidebar-border: var(--sidebar-border);
   --color-sidebar-ring: var(--sidebar-ring);
+
+  /* Fonts (Tailwind `font-sans` / `font-mono`) */
+  --font-sans: var(--font-geist-sans);
+  --font-mono: var(--font-geist-pixel-grid);
 }
 
 @layer base {
   * {
     @apply border-border outline-ring/50;
+    backface-visibility: hidden;
   }
+  
+  *::-webkit-scrollbar {
+    width: 6px;
+    height: 6px;
+  }
+  
+  *::-webkit-scrollbar-track {
+    background: transparent;
+  }
+  
+  *::-webkit-scrollbar-thumb {
+    background: rgba(255, 255, 255, 0);
+    border-radius: 100px;
+  }
+  
+  *:hover::-webkit-scrollbar-thumb {
+    background: rgba(255, 255, 255, 0.15);
+  }
+  
+  *::-webkit-scrollbar-thumb:hover {
+    background: rgba(255, 255, 255, 0.25);
+  }
+  
+  ::selection {
+    color: var(--selection-color);
+    background: var(--selection-bg);
+  }
+  
+  ::-moz-selection {
+    color: var(--selection-color);
+    background: var(--selection-bg);
+  }
+  
+  :focus-visible {
+    outline: 2px solid var(--focus-color);
+    outline-offset: 2px;
+  }
+  
   body {
     @apply bg-background text-foreground;
+    font-family: var(--font-primary);
+    font-weight: 300;
+    font-size: 16px;
+    line-height: 1.6;
+    text-rendering: optimizeLegibility;
+    -webkit-font-smoothing: antialiased;
+    -moz-osx-font-smoothing: grayscale;
+    -webkit-tap-highlight-color: rgba(0, 0, 0, 0);
+    -webkit-text-size-adjust: none;
+    text-size-adjust: none;
+    overflow-y: scroll;
+  }
+  
+  html,
+  html body {
+    min-height: 100%;
+  }
+  
+  input[type="text"],
+  input,
+  input[type="button"],
+  button,
+  textarea,
+  select {
+    appearance: none;
+    -moz-appearance: none;
+    -webkit-appearance: none;
+    font-family: inherit;
+  }
+  
+  button {
+    cursor: pointer;
+    background: none;
+  }
+  
+  button:disabled {
+    pointer-events: none;
+    cursor: not-allowed;
+  }
+  
+  img,
+  svg {
+    display: inline-block;
+    max-width: 100%;
+    height: auto;
+  }
+  
+  a {
+    color: inherit;
+    text-decoration: none;
+  }
+  
+  /* Codeblock styling - Torph inspired */
+  code,
+  pre {
+    font-family: var(--font-code);
+  }
+  
+  code {
+    position: relative;
+    display: inline-block;
+    font-size: 1rem;
+    line-height: 1;
+    padding: 1rem;
+    user-select: all;
+  }
+  
+  code::before {
+    pointer-events: none;
+    content: "";
+    position: absolute;
+    inset: 0;
+    border-radius: 0.75rem;
+    background: rgba(0, 0, 0, 0.06);
+  }
+  
+  .dark code::before {
+    background: rgba(255, 255, 255, 0.06);
+  }
+  
+  /* Typography improvements */
+  p,
+  li {
+    font-size: 0.875rem;
+    font-weight: 400;
+    line-height: 1.25rem;
+    letter-spacing: -0.00563rem;
+  }
+  
+  p a,
+  li a {
+    position: relative;
+    display: inline-block;
+    color: inherit;
+    font-weight: inherit;
+    line-height: inherit;
+    transition: all 200ms ease;
+  }
+  
+  p a::before,
+  li a::before {
+    pointer-events: none;
+    content: "";
+    position: absolute;
+    bottom: 0;
+    left: 0;
+    right: 0;
+    height: 1px;
+    border-radius: 2px;
+    background: currentColor;
+    opacity: 0.4;
+    transition: inherit;
+  }
+  
+  p a:hover::before,
+  li a:hover::before {
+    opacity: 1;
+  }
+  
+  p a:focus-visible,
+  li a:focus-visible {
+    border-radius: 2px;
+    padding: 0 2px;
+    margin: 0 -2px;
+    transition: none;
+    outline: 2px solid var(--focus-color);
+  }
+  
+  h1,
+  h2,
+  h3,
+  h4,
+  h5,
+  h6 {
+    font-size: 1rem;
+    line-height: 1.5rem;
+    font-weight: 400;
+    letter-spacing: -0.01em;
+  }
+  
+  blockquote {
+    font-size: 0.8125rem;
+    font-style: italic;
+    font-weight: 460;
+    line-height: 140%;
+    letter-spacing: -0.0025rem;
+    padding-top: 1rem;
+  }
+  
+  blockquote p {
+    display: block;
+    position: relative;
+    padding: 0 0 0 1rem;
+  }
+  
+  blockquote p::before {
+    content: "";
+    position: absolute;
+    left: 0;
+    top: 0;
+    bottom: 0;
+    width: 0.125rem;
+    border-radius: 0.3125rem;
+    background: #e6e6e6;
+  }
+  
+  .dark blockquote p::before {
+    background: rgba(255, 255, 255, 0.2);
+  }
+  
+  blockquote p + p {
+    padding-top: 0.75rem;
+  }
+  
+  blockquote cite {
+    display: block;
+    padding: 1rem 0 0 1rem;
+  }
+  
+  blockquote cite::before {
+    content: "- ";
+  }
+  
+  /* List styling */
+  main ul,
+  main ol {
+    list-style: none;
+    display: block;
+    position: relative;
+    padding: 0.5rem 0 1rem 1.25rem;
+  }
+  
+  main ul ul,
+  main ul ol,
+  main ol ul,
+  main ol ol {
+    list-style: none;
+    padding: 0.5rem 0 0 0.25rem;
+  }
+  
+  main ul ul > li:last-child,
+  main ul ol > li:last-child,
+  main ol ul > li:last-child,
+  main ol ol > li:last-child {
+    padding-bottom: 0;
+  }
+  
+  main ul li,
+  main ol li {
+    position: relative;
+    padding: 0 0 0.5rem 0.75rem;
+    font-size: 0.875rem;
+    font-weight: 460;
+    line-height: 1.25rem;
+    letter-spacing: -0.00563rem;
+  }
+  
+  main ul li::before {
+    content: "";
+    position: absolute;
+    right: 100%;
+    top: 0.65em;
+    width: 0.25rem;
+    height: 0.25rem;
+    border-radius: 50%;
+    background: #b3b3b3;
+  }
+  
+  .dark main ul li::before {
+    background: rgba(255, 255, 255, 0.4);
+  }
+  
+  main ul ul li::before {
+    background: #fff;
+    box-shadow: inset 0 0 0 1px #b3b3b3;
+  }
+  
+  .dark main ul ul li::before {
+    background: rgba(255, 255, 255, 0.1);
+    box-shadow: inset 0 0 0 1px rgba(255, 255, 255, 0.3);
+  }
+  
+  main ol {
+    counter-reset: list;
+    padding-left: 1rem;
+  }
+  
+  main ol li {
+    padding-left: 1rem;
+    counter-increment: list;
+  }
+  
+  main ol li::before {
+    content: counter(list) ".";
+    position: absolute;
+    right: 100%;
+    top: 0;
+    width: 0.25rem;
+    height: 0.25rem;
+    color: rgba(0, 0, 0, 0.4);
+  }
+  
+  .dark main ol li::before {
+    color: rgba(255, 255, 255, 0.4);
   }
 }
 
