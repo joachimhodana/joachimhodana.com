@@ -477,7 +477,7 @@ function HomeContent() {
                   </div>
                   {currentCareer.showDownloadCV && (
                     <Link
-                      href="/Joachim%20Hodana%20CV.pdf"
+                      href="/Joachim_Hodana_Data_Engineer_CV.pdf"
                       target="_blank"
                       rel="noopener noreferrer"
                       className="flex items-center gap-2 px-3 py-1.5 border border-border rounded text-foreground hover:text-muted-foreground hover:border-muted-foreground/50 transition-colors duration-300"

@@ -3,7 +3,7 @@ set -e
 REPO_ROOT="$(cd "$(dirname "$0")/.." && pwd)"
 CV_DIR="$REPO_ROOT/cv"
 OUT_DIR="$REPO_ROOT/public"
-PDF_NAME="Joachim Hodana CV.pdf"
+PDF_NAME="Joachim_Hodana_Data_Engineer_CV.pdf"
 
 build_with_pdflatex() {
   cd "$CV_DIR"
