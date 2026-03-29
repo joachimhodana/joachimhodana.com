@@ -14,7 +14,7 @@ const careerData = {
   software: {
     title: "Software Engineer",
     description:
-      "Fullstack developer specializing in building complete web applications, APIs, and SaaS solutions. Working as a freelancer since 2018, delivering projects for clients across Poland, Eastern Europe, USA and UK.",
+      "Fullstack developer specializing in building complete web applications, APIs, and SaaS solutions. Working as a freelancer since 2018, delivering projects for clients across Poland, Eastern Europe, US and UK.",
     currentRole: "Software Engineer",
     currentCompany: "Freelance",
     currentDates: "Aug 2018 — Present",
@@ -70,22 +70,60 @@ const careerData = {
     ],
     projects: [
       {
-        title: "Harvide",
-        description: "Launch-ready MVPs for founders. We ship complete products in 21 days.",
-        url: "https://www.harvide.com/",
+        title: "Latio",
+        description: "AutoML platform for revenue decision intelligence.",
+        url: "/projects/latio-wip.png",
         articleUrl: null,
-        thumbnail: null,
-        icon: "https://www.harvide.com/favicon.ico",
-        year: "2024",
+        thumbnail: "/projects/latio-wip.png",
+        icon: null,
+        hideProjectLink: true,
+        year: "2026",
       },
       {
         title: "waitset",
         description: "Smart no-code waitlist builder - build complete waitlist solutions from A to Z.",
         url: "https://waitset.com",
         articleUrl: null,
-        thumbnail: null,
+        thumbnail: "/projects/waitset-screenshot.png",
         icon: "https://waitset.com/waitset-logo-bg.png",
         year: "2024",
+      },
+      {
+        title: "Harvide",
+        description: "Launch-ready MVPs for founders. We ship complete products in 21 days.",
+        url: "https://harvide.joachimhodana.com",
+        articleUrl: null,
+        thumbnail: null,
+        icon: "https://harvide.joachimhodana.com/favicon.ico",
+        year: "2024",
+      },
+      {
+        title: "vvvv",
+        description: "A modern, web-based network protocol analyzer - think Wireshark in your browser.",
+        url: "https://vvvv.joachimhodana.com",
+        articleUrl: "https://github.com/joachimhodana/vvvv",
+        thumbnail: "/projects/vvvv-screenshot.png",
+        icon: "https://vvvv.joachimhodana.com/favicon.ico",
+        badge: "OSS",
+        year: "2026",
+      },
+      {
+        title: "587.agency",
+        description: "Cold outbound agency for B2B SaaS: infrastructure, lead sourcing, campaign ops, and reply handling for predictable pipeline growth.",
+        url: "https://587.agency",
+        articleUrl: null,
+        thumbnail: "/projects/587-agency-screenshot.png",
+        icon: "https://www.google.com/s2/favicons?sz=128&domain=587.agency",
+        year: "2025",
+      },
+      {
+        title: "data.587.agency",
+        description: "B2B SaaS leads database with advanced filtering, CSV/JSON exports, and API access, built for outbound and growth teams.",
+        url: "https://data.587.agency",
+        articleUrl: null,
+        thumbnail: "/projects/data-587-screenshot.png",
+        icon: "https://www.google.com/s2/favicons?sz=128&domain=data.587.agency",
+        year: "2025",
       },
     ],
   },
@@ -453,7 +491,7 @@ function HomeContent() {
           <div className="grid lg:grid-cols-5 gap-12 sm:gap-16 w-full">
             <div className="lg:col-span-3 space-y-6 sm:space-y-8">
               <div className="space-y-3 sm:space-y-2">
-                <div className="text-sm text-muted-foreground font-mono tracking-wider">PORTF0LI0 / 2025</div>
+                <div className="text-sm text-muted-foreground font-mono tracking-wider">PORTF0LI0 / {new Date().getFullYear()}</div>
                 <h1 className="text-5xl sm:text-6xl lg:text-7xl font-light tracking-tight">
                   Joachim
                   <br />
@@ -687,17 +725,14 @@ function HomeContent() {
             {"projects" in currentCareer && currentCareer.projects && currentCareer.projects.length > 0 ? (
               <div className="grid gap-6 sm:gap-8 lg:grid-cols-2">
                 {currentCareer.projects.map((project, index) => {
-                  const linkUrl = project.articleUrl || project.url
+                  const linkUrl = project.url
                   return (
-                    <Link
+                    <article
                       key={index}
-                      href={linkUrl}
-                      target="_blank"
-                      rel="noopener noreferrer"
-                      className="group border border-border rounded-lg hover:border-muted-foreground/50 transition-all duration-500 hover:shadow-lg cursor-pointer overflow-hidden flex flex-col"
+                      className="group border border-border rounded-lg hover:border-muted-foreground/50 transition-all duration-500 hover:shadow-lg overflow-hidden flex flex-col"
                     >
                       {project.thumbnail && (
-                        <div className="aspect-video w-full bg-muted/30 overflow-hidden">
+                        <div className="aspect-[4/3] w-full bg-muted/30 overflow-hidden">
                           <img
                             src={project.thumbnail}
                             alt={`${project.title} thumbnail`}
@@ -714,29 +749,55 @@ function HomeContent() {
                               className="w-6 h-6 object-contain"
                             />
                           )}
-                          <h3 className="text-lg sm:text-xl font-medium group-hover:text-muted-foreground transition-colors duration-300">
-                            {project.title}
-                          </h3>
+                          <div className="flex items-center gap-2">
+                            <h3 className="text-lg sm:text-xl font-medium group-hover:text-muted-foreground transition-colors duration-300">
+                              {project.title}
+                            </h3>
+                            {"badge" in project && project.badge && (
+                              <span className="px-2 py-0.5 text-[10px] font-mono tracking-wide border border-border rounded text-muted-foreground">
+                                {project.badge}
+                              </span>
+                            )}
+                          </div>
                         </div>
-                        <p className="text-muted-foreground leading-relaxed flex-grow mb-4">{project.description}</p>
-                        <div className="flex items-center gap-2 text-sm text-muted-foreground group-hover:text-foreground transition-colors duration-300 mt-auto">
-                          <span>{project.articleUrl ? "Read article" : "View project"}</span>
-                          <svg
-                            className="w-4 h-4 transform group-hover:translate-x-1 transition-transform duration-300"
-                            fill="none"
-                            stroke="currentColor"
-                            viewBox="0 0 24 24"
-                          >
-                            <path
-                              strokeLinecap="round"
-                              strokeLinejoin="round"
-                              strokeWidth={2}
-                              d="M17 8l4 4m0 0l-4 4m4-4H3"
-                            />
-                          </svg>
+                        <p className="text-sm text-muted-foreground leading-relaxed mb-3">{project.description}</p>
+                        <div className={`flex items-center gap-4 mt-auto ${"hideProjectLink" in project && project.hideProjectLink ? "justify-end" : "justify-between"}`}>
+                          {(!("hideProjectLink" in project) || !project.hideProjectLink) && (
+                            <Link
+                              href={linkUrl}
+                              target="_blank"
+                              rel="noopener noreferrer"
+                              className="flex items-center gap-2 text-sm text-muted-foreground group-hover:text-foreground transition-colors duration-300"
+                            >
+                              <span>View project</span>
+                              <svg
+                                className="w-4 h-4 transform group-hover:translate-x-1 transition-transform duration-300"
+                                fill="none"
+                                stroke="currentColor"
+                                viewBox="0 0 24 24"
+                              >
+                                <path
+                                  strokeLinecap="round"
+                                  strokeLinejoin="round"
+                                  strokeWidth={2}
+                                  d="M17 8l4 4m0 0l-4 4m4-4H3"
+                                />
+                              </svg>
+                            </Link>
+                          )}
+                          {project.articleUrl && (
+                            <Link
+                              href={project.articleUrl}
+                              target="_blank"
+                              rel="noopener noreferrer"
+                              className="text-xs text-muted-foreground hover:text-foreground underline underline-offset-4 transition-colors duration-300"
+                            >
+                              View repo
+                            </Link>
+                          )}
                         </div>
                       </div>
-                    </Link>
+                    </article>
                   )
                 })}
               </div>
