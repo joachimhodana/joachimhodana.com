@@ -5,6 +5,8 @@
   "scripts": {
     "build": "next build",
     "build:cv": "bash scripts/build-cv.sh",
+    "build:cv:python": "CV_TEX=Joachim-Hodana-CV-Python-Software-Engineer.tex CV_PDF=Joachim_Hodana_Python_Software_Engineer_CV.pdf bash scripts/build-cv.sh",
+    "build:cv:fullstack": "CV_TEX=Joachim-Hodana-CV-Fullstack-Software-Engineer.tex CV_PDF=Joachim_Hodana_Fullstack_Software_Engineer_CV.pdf bash scripts/build-cv.sh",
     "dev": "next dev",
     "lint": "next lint",
     "start": "next start"
