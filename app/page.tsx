@@ -4,6 +4,7 @@ import { MapPin, Download } from "lucide-react"
 import Link from "next/link"
 import { usePathname, useRouter, useSearchParams } from "next/navigation"
 import { useEffect, useRef, useState, Suspense } from "react"
+import { PortfolioLoader } from "@/components/portfolio-loader"
 
 type CareerPath = "software" | "data" | "ml"
 
@@ -1013,7 +1014,7 @@ function HomeContent() {
 
 export default function Home() {
   return (
-    <Suspense fallback={<div>Loading...</div>}>
+    <Suspense fallback={<PortfolioLoader />}>
       <HomeContent />
     </Suspense>
   )
