@@ -14,12 +14,12 @@ export async function generateStaticParams() {
 }
 
 type PageProps = {
-  params: Promise<{ slug: string }>
+  params: { slug: string }
 }
 
 export default async function CarouselPage({ params }: PageProps) {
   if (!isWorkbenchEnabled) notFound()
-  const { slug } = await params
+  const { slug } = params
   const carousel = await loadCarousel(slug)
   if (!carousel) notFound()
 

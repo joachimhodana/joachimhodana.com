@@ -20,12 +20,12 @@ export async function generateStaticParams() {
 }
 
 type PageProps = {
-  params: Promise<{ slug: string; index: string }>
+  params: { slug: string; index: string }
 }
 
 export default async function SlidePage({ params }: PageProps) {
   if (!isWorkbenchEnabled) notFound()
-  const { slug, index: indexRaw } = await params
+  const { slug, index: indexRaw } = params
   const index = Number(indexRaw)
   const carousel = await loadCarousel(slug)
   if (!carousel) notFound()

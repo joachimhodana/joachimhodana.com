@@ -5,12 +5,14 @@ import type { AnyCarousel } from "../templates"
 const CAROUSELS_DIR = path.join(process.cwd(), "workbench", "carousels")
 
 /**
- * Workbench is a local dev tool — we don't want the routes leaking into the
- * static export that gets deployed. Set WORKBENCH=1 to force-enable (e.g. for
- * a local `next build` when you specifically want to test the build).
+ * Workbench is primarily a local dev tool, but this repo uses `output: 'export'`.
+ * Static export requires dynamic routes to provide `generateStaticParams()`,
+ * so we keep workbench routes buildable by default.
+ *
+ * If you ever want to exclude workbench from a build, set `WORKBENCH=0` and
+ * avoid `output: 'export'` (static export cannot truly omit filesystem routes).
  */
-export const isWorkbenchEnabled =
-  process.env.NODE_ENV !== "production" || process.env.WORKBENCH === "1"
+export const isWorkbenchEnabled = process.env.WORKBENCH !== "0"
 
 export type CarouselSummary = {
   slug: string
