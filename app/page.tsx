@@ -152,7 +152,7 @@ const careerData = {
           role: "Data Engineer",
           company: "Lortech Solutions",
           companyUrl: "https://www.lortechsolutions.com",
-          icon: "https://www.lortechsolutions.com/_next/static/media/symbol.117f3a47.svg",
+          icon: "/logos/lortech-solutions-symbol.svg",
           description:
             "Worked on multiple enterprise data projects across fintech, retail, and SaaS. Built and maintained analytics pipelines using dbt with Airflow or Dagster as orchestrators. Implemented new transformation layers, refactored legacy models, and fixed data quality issues in existing warehouses. Regularly collaborated with business and analytics teams to translate reporting requirements into dbt models and production-ready workflows.",
           tech: ["Python", "SQL", "dbt", "Apache Airflow", "Dagster", "Snowflake", "ETL"],
@@ -391,7 +391,7 @@ function HomeContent() {
               key={section}
               onClick={() => document.getElementById(section)?.scrollIntoView({ behavior: "smooth" })}
               className={`w-2 h-8 rounded-full transition-all duration-500 ${
-                activeSection === section ? "bg-foreground" : "bg-muted-foreground/30 hover:bg-muted-foreground/60"
+                activeSection === section ? "bg-brand" : "bg-muted-foreground/30 hover:bg-muted-foreground/60"
               }`}
               aria-label={`Navigate to ${section}`}
             />
@@ -413,7 +413,7 @@ function HomeContent() {
               onClick={() => updateCareerPath("software")}
               className={`text-sm font-medium rounded-l px-4 py-2 transition-all duration-300 ${
                 careerPath === "software"
-                  ? "bg-foreground text-background"
+                  ? "bg-brand text-white"
                   : "text-muted-foreground hover:text-foreground"
               }`}
             >
@@ -422,7 +422,7 @@ function HomeContent() {
             <button
               onClick={() => updateCareerPath("data")}
               className={`text-sm font-medium px-4 py-2 transition-all duration-300 ${
-                careerPath === "data" ? "bg-foreground text-background" : "text-muted-foreground hover:text-foreground"
+                careerPath === "data" ? "bg-brand text-white" : "text-muted-foreground hover:text-foreground"
               }`}
             >
               Data Engineer
@@ -431,7 +431,7 @@ function HomeContent() {
               <button
                 onClick={() => updateCareerPath("ml")}
                 className={`text-sm font-medium rounded-r px-4 py-2 transition-all duration-300 ${
-                  careerPath === "ml" ? "bg-foreground text-background" : "text-muted-foreground hover:text-foreground"
+                  careerPath === "ml" ? "bg-brand text-white" : "text-muted-foreground hover:text-foreground"
                 }`}
               >
                 ML Engineer
@@ -455,7 +455,7 @@ function HomeContent() {
               onClick={() => updateCareerPath("software")}
               className={`text-xs font-medium rounded px-3 py-1.5 transition-all duration-300 ${
                 careerPath === "software"
-                  ? "bg-foreground text-background"
+                  ? "bg-brand text-white"
                   : "text-muted-foreground hover:text-foreground"
               }`}
             >
@@ -464,7 +464,7 @@ function HomeContent() {
             <button
               onClick={() => updateCareerPath("data")}
               className={`text-xs font-medium rounded px-3 py-1.5 transition-all duration-300 ${
-                careerPath === "data" ? "bg-foreground text-background" : "text-muted-foreground hover:text-foreground"
+                careerPath === "data" ? "bg-brand text-white" : "text-muted-foreground hover:text-foreground"
               }`}
             >
               DE
@@ -473,7 +473,7 @@ function HomeContent() {
               <button
                 onClick={() => updateCareerPath("ml")}
                 className={`text-xs font-medium rounded px-3 py-1.5 transition-all duration-300 ${
-                  careerPath === "ml" ? "bg-foreground text-background" : "text-muted-foreground hover:text-foreground"
+                  careerPath === "ml" ? "bg-brand text-white" : "text-muted-foreground hover:text-foreground"
                 }`}
               >
                 ML
@@ -497,6 +497,7 @@ function HomeContent() {
                   Joachim
                   <br />
                   <span className="text-muted-foreground">Hodana</span>
+                  <span className="text-brand">.</span>
                 </h1>
               </div>
 
