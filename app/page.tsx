@@ -200,6 +200,30 @@ const careerData = {
         url: "https://medium.com/lortech-solutions-technical-blog/no-idea-where-your-data-warehouse-spend-goes-7d600666993e",
       },
       {
+        title: "Why Data Engineers Should Care About Pydantic",
+        excerpt:
+          "Pydantic is a clean way to define, validate, and move structured data through pipeline code. Models turn implicit contracts into explicit ones at boundaries: settings, API payloads, XComs, and validation errors.",
+        date: "Mar 2026",
+        readTime: "7 min",
+        url: "https://medium.com/data-engineer-things/why-data-engineers-should-care-about-pydantic-821eb0f6c892",
+      },
+      {
+        title: "Telemetry in dbt pipelines",
+        excerpt:
+          "How to build observability on top of dbt: source freshness, audit logs, exposures, parsing run_results.json, and lightweight anomaly detection for row counts and runtimes.",
+        date: "Apr 2026",
+        readTime: "6 min",
+        url: "https://medium.com/data-engineer-things/telemetry-in-dbt-pipelines-d853b65816e2",
+      },
+      {
+        title: "How we made AI analytics work smoothly?",
+        excerpt:
+          "A real-world fix for inconsistent AI analytics: simplify and standardize dbt models, naming and semantics, reduce overlap, and regain reliable answers while lowering warehouse costs.",
+        date: "Mar 2026",
+        readTime: "3 min",
+        url: "https://medium.com/lortech-solutions-technical-blog/how-we-made-ai-analytics-work-smoothly-64c7adce93aa",
+      },
+      {
         title: "Automating Salesforce dbt Models: Dynamic Metadata-Driven Modeling",
         excerpt: "Learn how to build automated, metadata-driven dbt models for Salesforce data that scale with your organization's growth.",
         date: "Oct 2025",
