@@ -30,7 +30,17 @@ lerna-debug.log*
 .env.test.local
 .env.production.local
 
+# TypeScript incremental build
+tsconfig.tsbuildinfo
+
 # vercel
 .vercel
+
+# carousel workbench — commit only scripts/templates, not generated content
+/workbench/out/*
+!/workbench/out/.gitkeep
+/workbench/carousels/*.tsx
+!/workbench/carousels/_lab-example.tsx
+!/workbench/carousels/.gitkeep
 
 
