@@ -755,9 +755,9 @@ function HomeContent() {
         <section
           id="projects"
           ref={(el) => { sectionsRef.current[2] = el }}
-          className="min-h-screen py-20 sm:py-32 opacity-0"
+          className="py-14 sm:py-24 lg:min-h-screen lg:py-32 opacity-0"
         >
-          <div className="space-y-12 sm:space-y-16">
+          <div className="space-y-10 sm:space-y-14 lg:space-y-16">
             <div className="flex flex-col sm:flex-row sm:items-end sm:justify-between gap-4">
               <h2 className="text-3xl sm:text-4xl font-light">My Work</h2>
             </div>
@@ -852,9 +852,9 @@ function HomeContent() {
         <section
           id="thoughts"
           ref={(el) => { sectionsRef.current[3] = el }}
-          className="min-h-screen py-20 sm:py-32 opacity-0"
+          className="py-14 sm:py-24 lg:min-h-screen lg:py-32 opacity-0"
         >
-          <div className="space-y-12 sm:space-y-16">
+          <div className="space-y-10 sm:space-y-14 lg:space-y-16">
             <div className="flex flex-col sm:flex-row sm:items-end sm:justify-between gap-4">
               <h2 className="text-3xl sm:text-4xl font-light">Recent Thoughts</h2>
               <Link
