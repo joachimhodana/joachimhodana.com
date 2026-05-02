@@ -245,7 +245,7 @@ const careerData = {
         url: "https://github.com/joachimhodana/moneysense-data",
         articleUrl: null,
         thumbnail: null,
-        icon: "https://upload.wikimedia.org/wikipedia/commons/thumb/9/91/Octicons-mark-github.svg/1200px-Octicons-mark-github.svg.png",
+        icon: "/icons/github.svg",
         year: "2024",
       },
       {
@@ -254,7 +254,7 @@ const careerData = {
         url: "https://github.com/joachimhodana/unstar",
         articleUrl: null,
         thumbnail: null,
-        icon: "https://upload.wikimedia.org/wikipedia/commons/thumb/9/91/Octicons-mark-github.svg/1200px-Octicons-mark-github.svg.png",
+        icon: "/icons/github.svg",
         year: "2024",
       },
     ],
@@ -304,6 +304,7 @@ function HomeContent() {
   const [activeSection, setActiveSection] = useState("")
   const [careerPath, setCareerPath] = useState<CareerPath>("data")
   const [isScrolled, setIsScrolled] = useState(false)
+  const [isLgViewport, setIsLgViewport] = useState(false)
   const [isTransitioning, setIsTransitioning] = useState(false)
   const sectionsRef = useRef<(HTMLElement | null)[]>([])
   const router = useRouter()
@@ -349,6 +350,14 @@ function HomeContent() {
 
     window.addEventListener("scroll", handleScroll)
     return () => window.removeEventListener("scroll", handleScroll)
+  }, [])
+
+  useEffect(() => {
+    const mq = window.matchMedia("(min-width: 1024px)")
+    const sync = () => setIsLgViewport(mq.matches)
+    sync()
+    mq.addEventListener("change", sync)
+    return () => mq.removeEventListener("change", sync)
   }, [])
 
   useEffect(() => {
@@ -423,9 +432,9 @@ function HomeContent() {
         </div>
       </nav>
 
-      {/* Centered version (initial) */}
+      {/* Centered version (desktop, initial hero) */}
       <div
-        className={`fixed top-8 left-1/2 -translate-x-1/2 z-20 transition-all duration-500 ease-out ${
+        className={`hidden lg:flex fixed top-8 left-1/2 -translate-x-1/2 z-20 transition-all duration-500 ease-out ${
           isScrolled ? "opacity-0 scale-95 pointer-events-none" : "opacity-100 scale-100"
         }`}
         aria-hidden={isScrolled}
@@ -434,6 +443,7 @@ function HomeContent() {
           <div className="text-sm text-muted-foreground font-mono tracking-wider">VIEW MY EXPERIENCE AS</div>
           <div className="flex items-center p-1 bg-background/80 backdrop-blur-sm border border-border rounded shadow-lg">
             <button
+              type="button"
               onClick={() => updateCareerPath("software")}
               className={`text-sm font-medium rounded-l px-4 py-2 transition-all duration-300 ${
                 careerPath === "software"
@@ -444,6 +454,7 @@ function HomeContent() {
               Software Engineer
             </button>
             <button
+              type="button"
               onClick={() => updateCareerPath("data")}
               className={`text-sm font-medium px-4 py-2 transition-all duration-300 ${
                 careerPath === "data" ? "bg-brand text-white" : "text-muted-foreground hover:text-foreground"
@@ -453,6 +464,7 @@ function HomeContent() {
             </button>
             {SHOW_ML && (
               <button
+                type="button"
                 onClick={() => updateCareerPath("ml")}
                 className={`text-sm font-medium rounded-r px-4 py-2 transition-all duration-300 ${
                   careerPath === "ml" ? "bg-brand text-white" : "text-muted-foreground hover:text-foreground"
@@ -465,12 +477,14 @@ function HomeContent() {
         </div>
       </div>
 
-      {/* Top-right version (on scroll) */}
+      {/* Top-right compact (<lg: always; lg+: fades in after scroll — same UI as before) */}
       <div
-        className={`fixed top-6 right-6 z-20 transition-all duration-500 ease-out ${
-          isScrolled ? "opacity-100 scale-100" : "opacity-0 scale-95 pointer-events-none"
+        className={`flex fixed top-[max(1.5rem,env(safe-area-inset-top,0px))] right-4 z-20 sm:top-6 sm:right-6 transition-all duration-500 ease-out ${
+          isScrolled
+            ? "opacity-100 scale-100"
+            : "opacity-100 scale-100 lg:opacity-0 lg:scale-95 lg:pointer-events-none"
         }`}
-        aria-hidden={!isScrolled}
+        aria-hidden={isLgViewport && !isScrolled}
       >
         <div className="flex items-center gap-3 flex-row">
           <div className="text-xs text-muted-foreground font-mono tracking-wider">VIEW AS</div>
@@ -945,19 +959,19 @@ function HomeContent() {
                     name: "GitHub",
                     handle: "@joachimhodana",
                     url: "https://github.com/joachimhodana",
-                    icon: "https://upload.wikimedia.org/wikipedia/commons/thumb/9/91/Octicons-mark-github.svg/1200px-Octicons-mark-github.svg.png",
+                    icon: "/icons/github.svg",
                   },
                   {
                     name: "LinkedIn",
                     handle: "Joachim Hodana",
                     url: "https://www.linkedin.com/in/joachim-hodana/",
-                    icon: "https://upload.wikimedia.org/wikipedia/commons/thumb/8/81/LinkedIn_icon.svg/2048px-LinkedIn_icon.svg.png",
+                    icon: "/icons/linkedin.svg",
                   },
                   {
                     name: "X",
                     handle: "@joachimhodana",
                     url: "https://x.com/joachimhodana",
-                    icon: "https://upload.wikimedia.org/wikipedia/commons/thumb/c/cc/X_icon.svg/2048px-X_icon.svg.png",
+                    icon: "/icons/x.svg",
                   },
                   {
                     name: "Medium",
