@@ -588,7 +588,7 @@ function HomeContent() {
                   {currentCareer.skills.map((skill) => (
                     <span
                       key={skill.name}
-                      className="flex items-center gap-2 px-3 py-1 text-xs border border-border rounded hover:border-muted-foreground/50 transition-colors duration-300"
+                      className="flex items-center gap-2 px-3 py-1 text-xs border border-border rounded"
                     >
                       <img
                         src={skill.icon}
@@ -618,12 +618,10 @@ function HomeContent() {
               {currentCareer.work.map((job, index) => (
                 <div
                   key={index}
-                  className="group grid lg:grid-cols-12 gap-4 sm:gap-8 py-6 sm:py-8 border-b border-border/50 hover:border-border transition-colors duration-500"
+                  className="grid lg:grid-cols-12 gap-4 sm:gap-8 py-6 sm:py-8 border-b border-border/50"
                 >
                   <div className="lg:col-span-2">
-                    <div className="text-xl sm:text-2xl font-light text-muted-foreground group-hover:text-foreground transition-colors duration-500">
-                      {job.year}
-                    </div>
+                    <div className="text-xl sm:text-2xl font-light text-muted-foreground">{job.year}</div>
                   </div>
 
                   <div className="lg:col-span-6 space-y-3">
@@ -659,10 +657,7 @@ function HomeContent() {
 
                   <div className="lg:col-span-4 flex flex-wrap gap-2 lg:justify-end mt-2 lg:mt-0">
                     {job.tech.map((tech) => (
-                      <span
-                        key={tech}
-                        className="px-2 py-1 text-xs text-muted-foreground rounded group-hover:border-muted-foreground/50 transition-colors duration-500"
-                      >
+                      <span key={tech} className="px-2 py-1 text-xs text-muted-foreground rounded">
                         {tech}
                       </span>
                     ))}
@@ -678,12 +673,10 @@ function HomeContent() {
                   {currentCareer.awards.map((award, index) => (
                     <div
                       key={index}
-                      className="group grid lg:grid-cols-12 gap-4 sm:gap-8 py-4 sm:py-6 border-b border-border/30 hover:border-border transition-colors duration-500"
+                      className="grid lg:grid-cols-12 gap-4 sm:gap-8 py-4 sm:py-6 border-b border-border/30"
                     >
                       <div className="lg:col-span-2">
-                        <div className="text-xl sm:text-2xl font-light text-muted-foreground group-hover:text-foreground transition-colors duration-500">
-                          {award.year}
-                        </div>
+                        <div className="text-xl sm:text-2xl font-light text-muted-foreground">{award.year}</div>
                       </div>
 
                       <div className="lg:col-span-10 space-y-2">
@@ -766,17 +759,23 @@ function HomeContent() {
               <div className="grid gap-6 sm:gap-8 lg:grid-cols-2">
                 {currentCareer.projects.map((project, index) => {
                   const linkUrl = project.url
-                  return (
-                    <article
-                      key={index}
-                      className="group border border-border rounded-lg hover:border-muted-foreground/50 transition-all duration-500 hover:shadow-lg overflow-hidden flex flex-col"
-                    >
+                  const hideProjectLink = "hideProjectLink" in project && project.hideProjectLink
+                  /** Whole-card hover only when there is exactly one outbound target (nested links stay valid HTML). */
+                  const cardIsSingleLink =
+                    Boolean(linkUrl) && !hideProjectLink && project.articleUrl == null
+
+                  const cardBody = (
+                    <>
                       {project.thumbnail && (
                         <div className="aspect-[4/3] w-full bg-muted/30 overflow-hidden">
                           <img
                             src={project.thumbnail}
                             alt={`${project.title} thumbnail`}
-                            className="w-full h-full object-cover group-hover:scale-105 transition-transform duration-500"
+                            className={
+                              cardIsSingleLink
+                                ? "w-full h-full object-cover transition-transform duration-500 group-hover:scale-105"
+                                : "w-full h-full object-cover"
+                            }
                           />
                         </div>
                       )}
@@ -790,7 +789,13 @@ function HomeContent() {
                             />
                           )}
                           <div className="flex items-center gap-2">
-                            <h3 className="text-lg sm:text-xl font-medium group-hover:text-muted-foreground transition-colors duration-300">
+                            <h3
+                              className={
+                                cardIsSingleLink
+                                  ? "text-lg sm:text-xl font-medium transition-colors duration-300 group-hover:text-muted-foreground"
+                                  : "text-lg sm:text-xl font-medium"
+                              }
+                            >
                               {project.title}
                             </h3>
                             {"badge" in project && project.badge && (
@@ -801,29 +806,51 @@ function HomeContent() {
                           </div>
                         </div>
                         <p className="text-sm text-muted-foreground leading-relaxed mb-3">{project.description}</p>
-                        <div className={`flex items-center gap-4 mt-auto ${"hideProjectLink" in project && project.hideProjectLink ? "justify-end" : "justify-between"}`}>
-                          {(!("hideProjectLink" in project) || !project.hideProjectLink) && (
-                            <Link
-                              href={linkUrl}
-                              target="_blank"
-                              rel="noopener noreferrer"
-                              className="flex items-center gap-2 text-sm text-muted-foreground group-hover:text-foreground transition-colors duration-300"
-                            >
-                              <span>View project</span>
-                              <svg
-                                className="w-4 h-4 transform group-hover:translate-x-1 transition-transform duration-300"
-                                fill="none"
-                                stroke="currentColor"
-                                viewBox="0 0 24 24"
+                        <div
+                          className={`flex items-center gap-4 mt-auto ${hideProjectLink ? "justify-end" : "justify-between"}`}
+                        >
+                          {!hideProjectLink && (
+                            cardIsSingleLink ? (
+                              <div className="flex items-center gap-2 text-sm text-muted-foreground transition-colors duration-300 group-hover:text-foreground pointer-events-none">
+                                <span>View project</span>
+                                <svg
+                                  className="w-4 h-4 transform transition-transform duration-300 group-hover:translate-x-1"
+                                  fill="none"
+                                  stroke="currentColor"
+                                  viewBox="0 0 24 24"
+                                  aria-hidden
+                                >
+                                  <path
+                                    strokeLinecap="round"
+                                    strokeLinejoin="round"
+                                    strokeWidth={2}
+                                    d="M17 8l4 4m0 0l-4 4m4-4H3"
+                                  />
+                                </svg>
+                              </div>
+                            ) : (
+                              <Link
+                                href={linkUrl}
+                                target="_blank"
+                                rel="noopener noreferrer"
+                                className="group/projectlink flex items-center gap-2 text-sm text-muted-foreground hover:text-foreground transition-colors duration-300"
                               >
-                                <path
-                                  strokeLinecap="round"
-                                  strokeLinejoin="round"
-                                  strokeWidth={2}
-                                  d="M17 8l4 4m0 0l-4 4m4-4H3"
-                                />
-                              </svg>
-                            </Link>
+                                <span>View project</span>
+                                <svg
+                                  className="w-4 h-4 transform transition-transform duration-300 group-hover/projectlink:translate-x-1"
+                                  fill="none"
+                                  stroke="currentColor"
+                                  viewBox="0 0 24 24"
+                                >
+                                  <path
+                                    strokeLinecap="round"
+                                    strokeLinejoin="round"
+                                    strokeWidth={2}
+                                    d="M17 8l4 4m0 0l-4 4m4-4H3"
+                                  />
+                                </svg>
+                              </Link>
+                            )
                           )}
                           {project.articleUrl && (
                             <Link
@@ -837,6 +864,29 @@ function HomeContent() {
                           )}
                         </div>
                       </div>
+                    </>
+                  )
+
+                  const cardShellClass =
+                    "overflow-hidden flex flex-col border border-border rounded-lg"
+
+                  if (cardIsSingleLink) {
+                    return (
+                      <Link
+                        key={index}
+                        href={linkUrl}
+                        target="_blank"
+                        rel="noopener noreferrer"
+                        className={`group ${cardShellClass} transition-all duration-500 hover:border-muted-foreground/50 hover:shadow-lg focus-visible:outline-hidden focus-visible:ring-2 focus-visible:ring-ring focus-visible:ring-offset-2 focus-visible:ring-offset-background`}
+                      >
+                        {cardBody}
+                      </Link>
+                    )
+                  }
+
+                  return (
+                    <article key={index} className={cardShellClass}>
+                      {cardBody}
                     </article>
                   )
                 })}
