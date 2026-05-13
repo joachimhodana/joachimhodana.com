@@ -1,31 +1,43 @@
 \documentclass[10pt,a4paper]{article}
 
-\usepackage[margin=0.7in]{geometry}
+\usepackage[margin=0.65in]{geometry}
+\usepackage{graphicx}
 \usepackage[hidelinks]{hyperref}
 \usepackage{enumitem}
+\usepackage{multicol}
 
-\setlist[itemize]{leftmargin=*, itemsep=2pt, topsep=2pt}
+\newcommand{\icon}[1]{\raisebox{-0.15em}{\includegraphics[height=0.9em]{#1}}}
+
+\setlist[itemize]{leftmargin=*, itemsep=1pt, topsep=1pt}
 \setlength{\parindent}{0pt}
 \pagestyle{empty}
 
 \begin{document}
 
-{\LARGE \textbf{Joachim Hodana}} \\
+{\LARGE \textbf{Joachim Hodana}} \hfill {\large DATA ENGINEER}
 
-Warsaw, Poland \quad
-\href{mailto:me@joachimhodana.com}{me@joachimhodana.com} \quad
-\href{https://joachimhodana.com}{joachimhodana.com} \quad
-\href{https://linkedin.com/in/joachimhodana}{LinkedIn} \quad
-\href{https://github.com/joachimhodana}{GitHub}
+\vspace{4pt}
+
+\icon{icons/email.pdf} \ \href{mailto:me@joachimhodana.com}{me@joachimhodana.com}
+\quad
+\icon{icons/globe.pdf} \ \href{https://joachimhodana.com}{joachimhodana.com}
+\quad
+\icon{icons/linkedin.pdf} \ \href{https://linkedin.com/in/joachimhodana}{joachim-hodana}
+\quad
+\icon{icons/github.pdf} \ \href{https://github.com/joachimhodana}{joachimhodana}
+
+\vspace{2pt}
+
+\icon{icons/location.pdf} \ Warsaw, Poland
+\quad
+\icon{icons/phone.pdf} \ \href{tel:+48573918052}{+48 573 918 052}
 
 \vspace{4pt}
 \rule{\textwidth}{0.5pt}
 
 \textbf{SUMMARY}
 
-Data Engineer focused on analytics infrastructure, orchestration systems, and warehouse optimization. Experience designing metadata-driven dbt architectures, multi-tenant Airflow workflows, and large-scale ELT pipelines across Snowflake and BigQuery environments.
-
-Published technical articles on Snowflake optimization, analytics engineering, and scalable data platform design.
+Data Engineer experienced in building large-scale ETL/ELT pipelines, orchestration workflows, and analytics infrastructure across Snowflake and BigQuery environments for private equity, SaaS, retail and fintech clients.
 
 \vspace{4pt}
 \rule{\textwidth}{0.5pt}
@@ -36,19 +48,17 @@ Published technical articles on Snowflake optimization, analytics engineering, a
 
 \begin{itemize}
 
-\item Architected and maintained enterprise analytics engineering workflows spanning 1000+ dbt models, 100+ orchestration DAGs, and multi-terabyte daily processing workloads across Snowflake and BigQuery environments
+\item Architected and maintained analytics engineering pipelines spanning 1000+ dbt models, 100+ orchestration DAGs, and multi-terabyte daily workloads across Snowflake and BigQuery environments
 
-\item Owned end-to-end development of a business-critical investor relations data platform consisting of 350+ dbt models, 350+ tests, and orchestrated Airflow pipelines integrating Outlook, Salesforce, Box, FTP, REST and SOAP APIs
+\item Owned end-to-end development of a business-critical investor relations platform consisting of 350+ dbt models, 350+ tests, and orchestrated Airflow pipelines integrating Outlook, Salesforce, Box, FTP, REST and SOAP APIs
 
 \item Reduced execution time of high-cost Snowflake workloads from 55 minutes to 30 seconds through warehouse optimization, query redesign, and wide-table refactoring
 
-\item Designed metadata-driven dbt generation frameworks, reusable macros, YAML automation tooling, and CI/CD validation workflows for analytics engineering pipelines
+\item Designed frameworks for dbt model generation, validation, reusable macros, and CI/CD workflows
 
-\item Built Airflow monitoring and alerting systems for multi-tenant environments, including automated pipeline health checks, SLA validation, and Slack/email incident reporting
+\item Designed observability and SLA validation workflows for multi-tenant Airflow environments, including automated health checks and Slack/email incident reporting
 
-\item Contributed to analytics platform architecture decisions including repository structure, orchestration semantics, deployment workflows, Kubernetes-based Airflow execution, and Docker/ECR CI pipelines
-
-\item Collaborated directly with business stakeholders across finance, SaaS, and retail projects to implement reconciliation logic, reporting workflows, and warehouse integrations
+\item Standardized orchestration and deployment workflows for Kubernetes-based Airflow environments using Docker and ECR CI pipelines
 
 \end{itemize}
 
@@ -56,34 +66,28 @@ Published technical articles on Snowflake optimization, analytics engineering, a
 
 \begin{itemize}
 
-\item Designed backend systems, scraping workflows, and data extraction pipelines for clients across Poland, Eastern Europe, UK, and US markets
+\item Designed backend systems, scraping workflows, and data extraction pipelines for clients across EU and US markets
 
-\item Developed browser automation and API reverse-engineering workflows for large-scale data ingestion and normalization
-
-\item Built event-driven and real-time systems using Python, TypeScript, PostgreSQL, Redis, and message-based architectures
+\item Built event-driven and real-time systems using Python, PostgreSQL, Redis, browser automation, and API reverse engineering workflows
 
 \end{itemize}
 
-\textbf{Python Developer} -- Decision Sciences Company (remote) \hfill 11/2022--05/2023
+\textbf{Python Developer} -- Decision Sciences Company \hfill 11/2022--05/2023
 
 \begin{itemize}
-
 \item Developed Python automation workflows and API integrations for production data systems
-
 \end{itemize}
 
 \vspace{4pt}
 \rule{\textwidth}{0.5pt}
 
-\textbf{PROJECTS}
+\textbf{TECHNICAL PROJECTS}
 
 \textbf{moneysense-data} -- \href{https://github.com/joachimhodana/moneysense-data}{GitHub}
 
 \begin{itemize}
 
-\item Designed event-driven analytics platform using Kafka-compatible streaming, ClickHouse analytics, object storage, and Parquet-based cold archives
-
-\item Implemented scalable ingestion and querying workflows for historical backtesting and analytical workloads
+\item Designed event-driven cryptocurrency analytics platform for Polymarket market data ingestion using Kafka, ClickHouse, Minio object storage, and Parquet-based cold archives
 
 \end{itemize}
 
@@ -91,26 +95,7 @@ Published technical articles on Snowflake optimization, analytics engineering, a
 
 \begin{itemize}
 
-\item Built multi-source automotive data ingestion pipelines aggregating and deduplicating listings from heterogeneous external platforms
-
-\item Implemented scraping workflows combining browser automation, API reverse engineering, and structured normalization pipelines
-
-\end{itemize}
-
-\vspace{4pt}
-\rule{\textwidth}{0.5pt}
-
-\textbf{PUBLICATIONS}
-
-\begin{itemize}
-
-\item \href{https://medium.com/lortech-solutions-technical-blog/the-hidden-cost-of-wide-tables-in-snowflake-ab4757902c57}{The Hidden Cost of Wide Tables in Snowflake}
-
-\item \href{https://medium.com/lortech-solutions-technical-blog/how-we-made-ai-analytics-work-smoothly-64c7adce93aa}{How We Made AI Analytics Work Smoothly}
-
-\item \href{https://medium.com/lortech-solutions-technical-blog/automating-salesforce-dbt-models-dynamic-metadata-driven-modeling-df3fe2498da2}{Automating Salesforce \textrightarrow{} dbt Models}
-
-\item \href{https://medium.com/lortech-solutions-technical-blog/no-idea-where-your-data-warehouse-spend-goes-7d600666993e}{Data Warehouse Cost Attribution}
+\item Built multi-source automotive data ingestion pipelines aggregating and deduplicating listings from heterogeneous external platforms using browser automation and API reverse engineering
 
 \end{itemize}
 
@@ -119,7 +104,7 @@ Published technical articles on Snowflake optimization, analytics engineering, a
 
 \textbf{SKILLS}
 
-\textbf{Data Engineering:} dbt, Apache Airflow, Snowflake, ELT/ETL, Data Modeling
+\textbf{Data Engineering:} dbt, Apache Airflow, Snowflake, ELT/ETL, Data Modeling, Data Quality, Observability
 
 \textbf{Programming:} Python, SQL, Go, TypeScript
 
@@ -128,20 +113,42 @@ Published technical articles on Snowflake optimization, analytics engineering, a
 \vspace{4pt}
 \rule{\textwidth}{0.5pt}
 
+\begin{multicols}{3}
+
 \textbf{EDUCATION}
 
-Polish-Japanese Academy of Information Technology (PJATK) \\
-B.Eng. Computer Science \hfill 2024--2028
+Polish-Japanese Academy of Information Technology (PJATK)
 
-\vspace{4pt}
-\rule{\textwidth}{0.5pt}
+B.Sc. Computer Science
+
+2024--2028
+
+\columnbreak
 
 \textbf{CERTIFICATIONS}
 
-SnowPro Core (Snowflake) \hfill 08/2025--08/2027 \\
+SnowPro Core (Snowflake)
+
 \href{https://achieve.snowflake.com/31ea4326-9e88-4148-a8b5-20326f786e50}{Credential ID: 156908869}
 
-dbt Developer (dbt Labs) \hfill 02/2025--02/2027 \\
+\vspace{4pt}
+
+dbt Developer (dbt Labs)
+
 \href{https://credentials.getdbt.com/75e67339-1260-4bb4-bb4e-efbb9c0bc774}{Credential ID: 135541190}
+
+\columnbreak
+
+\textbf{PUBLICATIONS}
+
+\href{https://medium.com/lortech-solutions-technical-blog/the-hidden-cost-of-wide-tables-in-snowflake-ab4757902c57}{Wide Tables in Snowflake}
+
+\href{https://medium.com/lortech-solutions-technical-blog/how-we-made-ai-analytics-work-smoothly-64c7adce93aa}{AI Analytics Workflows}
+
+\href{https://medium.com/lortech-solutions-technical-blog/automating-salesforce-dbt-models-dynamic-metadata-driven-modeling-df3fe2498da2}{Salesforce dbt Automation}
+
+\href{https://medium.com/lortech-solutions-technical-blog/no-idea-where-your-data-warehouse-spend-goes-7d600666993e}{Warehouse Cost Attribution}
+
+\end{multicols}
 
 \end{document}
