@@ -1,14 +1,15 @@
 \documentclass[10pt,a4paper]{article}
 
-\usepackage[margin=0.65in]{geometry}
+\usepackage[margin=0.55in]{geometry}
 \usepackage{graphicx}
 \usepackage[hidelinks]{hyperref}
 \usepackage{enumitem}
 \usepackage{multicol}
 
 \newcommand{\icon}[1]{\raisebox{-0.15em}{\includegraphics[height=0.9em]{#1}}}
+\newcommand{\hi}[1]{\textbf{#1}}
 
-\setlist[itemize]{leftmargin=*, itemsep=1pt, topsep=1pt}
+\setlist[itemize]{leftmargin=*, itemsep=0pt, topsep=1pt, parsep=0pt}
 \setlength{\parindent}{0pt}
 \pagestyle{empty}
 
@@ -16,7 +17,7 @@
 
 {\LARGE \textbf{Joachim Hodana}} \hfill {\large DATA ENGINEER}
 
-\vspace{4pt}
+\vspace{3pt}
 
 \icon{icons/email.pdf} \ \href{mailto:me@joachimhodana.com}{me@joachimhodana.com}
 \quad
@@ -32,14 +33,14 @@
 \quad
 \icon{icons/phone.pdf} \ \href{tel:+48573918052}{+48 573 918 052}
 
-\vspace{4pt}
+\vspace{3pt}
 \rule{\textwidth}{0.5pt}
 
 \textbf{SUMMARY}
 
-Data Engineer building production ELT platforms, warehouse models, and orchestration workflows across Snowflake and BigQuery. Experienced with dbt, Apache Airflow, Python, SQL, Docker, Kubernetes, AWS, and GCP in client environments spanning private equity, SaaS, retail, and fintech. Focused on warehouse performance, cost reduction, data quality, API ingestion, and maintainable analytics engineering systems.
+Data Engineer building production ELT platforms, warehouse models, and orchestration workflows across \hi{Snowflake} and \hi{BigQuery}. Experienced with \hi{dbt}, \hi{Apache Airflow}, Python, SQL, Docker, Kubernetes, AWS, and GCP in client environments spanning private equity, SaaS, retail, and fintech. Focused on \hi{warehouse performance}, \hi{cost reduction}, \hi{data quality}, API ingestion, and maintainable analytics engineering systems.
 
-\vspace{4pt}
+\vspace{3pt}
 \rule{\textwidth}{0.5pt}
 
 \textbf{EXPERIENCE}
@@ -48,21 +49,17 @@ Data Engineer building production ELT platforms, warehouse models, and orchestra
 
 \begin{itemize}
 
-\item Built and maintained analytics engineering systems across 7+ client projects in private equity, SaaS, retail, and fintech, covering 1000+ dbt models, 100+ orchestration DAGs, and multi-terabyte daily workloads across Snowflake and BigQuery
+\item Built and maintained analytics engineering systems across \hi{7+ client projects} in private equity, SaaS, retail, and fintech, covering \hi{1000+ dbt models}, \hi{100+ orchestration DAGs}, and \hi{multi-terabyte} daily workloads across Snowflake and BigQuery
 
-\item Owned end-to-end development of a business-critical investor relations data platform with 350+ dbt models, 350+ dbt tests, and Airflow pipelines integrating Outlook, Salesforce, Box, FTP, REST APIs, and SOAP APIs
+\item Owned end-to-end development of a business-critical investor relations data platform with \hi{350+ dbt models}, \hi{350+ dbt tests}, and Airflow pipelines integrating Outlook, Salesforce, Box, FTP, REST APIs, and SOAP APIs
 
-\item Reduced execution time of high-cost Snowflake workloads from 55 minutes to 30 seconds through SQL redesign, warehouse tuning, dbt materialization changes, and wide-table refactoring
+\item Reduced high-cost Snowflake runtimes from \hi{55 minutes to 30 seconds} and BigQuery spend by \hi{35\%} through SQL redesign, warehouse tuning, dbt materialization changes, partition usage, and model refactoring
 
-\item Reduced BigQuery costs by 35% for a client by optimizing query patterns, warehouse model structure, partition usage, and redundant transformation logic
+\item Designed reusable \hi{dbt model generation and validation} workflows, including macros, metadata-driven templates, model tests, and \hi{CI/CD} checks for large analytics codebases
 
-\item Designed reusable dbt model generation and validation workflows, including macros, metadata-driven templates, model tests, and CI/CD checks for large analytics codebases
+\item Built \hi{observability and SLA validation} workflows for multi-tenant Airflow environments, including automated health checks, source validation, and Slack/email incident reporting
 
-\item Built observability and SLA validation workflows for multi-tenant Airflow environments, including automated health checks, source validation, and Slack/email incident reporting
-
-\item Standardized orchestration and deployment workflows for Kubernetes-based Airflow environments using Docker images, AWS ECR, and CI pipelines
-
-\item Translated stakeholder reporting requirements into tested warehouse models, source definitions, transformation logic, and production DAGs
+\item Standardized orchestration and deployment workflows for \hi{Kubernetes}-based Airflow environments using Docker images, \hi{AWS ECR}, and CI pipelines
 
 \end{itemize}
 
@@ -70,63 +67,46 @@ Data Engineer building production ELT platforms, warehouse models, and orchestra
 
 \begin{itemize}
 
-\item Delivered backend systems, scraping workflows, data extraction pipelines, and automation tools for clients across EU and US markets
+\item Delivered backend systems, scraping workflows, data extraction pipelines, and automation tools for clients across \hi{EU and US} markets
 
-\item Built ingestion and processing systems using Python, PostgreSQL, Redis, browser automation, API reverse engineering, scheduled workers, and structured persistence
-
-\item Designed data collection workflows for unstable external sources, including deduplication, retry handling, schema normalization, and change-resistant extraction logic
+\item Built ingestion and processing systems using \hi{Python}, \hi{PostgreSQL}, Redis, browser automation, and API reverse engineering, including deduplication, retry handling, and schema normalization for unstable external sources
 
 \end{itemize}
 
 \textbf{Python Developer} -- Decision Sciences Company \hfill 11/2022--05/2023
 
-\begin{itemize}
+Python automation, API integrations, and internal data processing scripts for production data systems.
 
-\item Developed Python automation workflows, API integrations, and internal data processing scripts for production data systems
-
-\end{itemize}
-
-\vspace{4pt}
+\vspace{3pt}
 \rule{\textwidth}{0.5pt}
 
 \textbf{TECHNICAL PROJECTS}
 
-\textbf{dbt-doctor} -- \href{https://github.com/joachimhodana/dbt-doctor}{GitHub}
+\textbf{dbt-doctor} -- \href{https://github.com/joachimhodana/dbt-doctor}{GitHub} \\
+Open-source dbt productivity and validation tool with \hi{700+ downloads} and \hi{16 GitHub stars}, focused on project maintainability, model quality, and developer workflow.
 
-\begin{itemize}
+\vspace{2pt}
 
-\item Built an open-source dbt productivity and validation tool with 700+ downloads and 16 GitHub stars, focused on improving dbt project maintainability, model quality, and developer workflow
+\textbf{moneysense-data} -- \href{https://github.com/joachimhodana/moneysense-data}{GitHub} \\
+Event-driven cryptocurrency analytics platform for Polymarket market data ingestion using \hi{Kafka}, \hi{ClickHouse}, MinIO object storage, and Parquet-based cold archives.
 
-\end{itemize}
+\vspace{2pt}
 
-\textbf{moneysense-data} -- \href{https://github.com/joachimhodana/moneysense-data}{GitHub}
+\textbf{Dealscan} \\
+Multi-source automotive data ingestion pipelines aggregating and deduplicating listings from heterogeneous external platforms using browser automation, API reverse engineering, and PostgreSQL.
 
-\begin{itemize}
-
-\item Designed an event-driven cryptocurrency analytics platform for Polymarket market data ingestion using Kafka, ClickHouse, MinIO object storage, and Parquet-based cold archives
-
-\end{itemize}
-
-\textbf{Dealscan}
-
-\begin{itemize}
-
-\item Built multi-source automotive data ingestion pipelines aggregating and deduplicating listings from heterogeneous external platforms using browser automation, API reverse engineering, and PostgreSQL
-
-\end{itemize}
-
-\vspace{4pt}
+\vspace{3pt}
 \rule{\textwidth}{0.5pt}
 
 \textbf{SKILLS}
 
-\textbf{Data Engineering:} dbt, Apache Airflow, Snowflake, BigQuery, ELT/ETL, Data Modeling, Data Quality, Observability, Cost Optimization
+\textbf{Data Engineering:} \hi{dbt}, \hi{Apache Airflow}, \hi{Snowflake}, \hi{BigQuery}, ELT/ETL, Data Modeling, Data Quality, Observability, Cost Optimization
 
-\textbf{Programming:} Python, SQL, Go, TypeScript
+\textbf{Programming:} \hi{Python}, \hi{SQL}, Go, TypeScript
 
-\textbf{Infrastructure:} AWS, GCP, Docker, Kubernetes, CI/CD, PostgreSQL, ClickHouse, Kafka, MinIO, Parquet
+\textbf{Infrastructure:} \hi{AWS}, \hi{GCP}, \hi{Docker}, \hi{Kubernetes}, CI/CD, PostgreSQL, ClickHouse, Kafka, MinIO, Parquet
 
-\vspace{4pt}
+\vspace{3pt}
 \rule{\textwidth}{0.5pt}
 
 \begin{multicols}{3}
@@ -143,13 +123,13 @@ B.Sc. Computer Science
 
 \textbf{CERTIFICATIONS}
 
-SnowPro Core (Snowflake)
+\hi{SnowPro Core} (Snowflake)
 
 \href{https://achieve.snowflake.com/31ea4326-9e88-4148-a8b5-20326f786e50}{Credential ID: 156908869}
 
-\vspace{4pt}
+\vspace{2pt}
 
-dbt Developer (dbt Labs)
+\hi{dbt Developer} (dbt Labs)
 
 \href{https://credentials.getdbt.com/75e67339-1260-4bb4-bb4e-efbb9c0bc774}{Credential ID: 135541190}
 
