@@ -90,13 +90,13 @@ const careerData = {
         year: "2024",
       },
       {
-        title: "Harvide",
-        description: "Launch-ready MVPs for founders. We ship complete products in 21 days.",
-        url: "https://harvide.joachimhodana.com",
+        title: "dbt-doctor",
+        description: "CLI that diagnoses dbt project health — scans SQL models, schema YAML, and project config for naming, documentation, testing, and architecture issues, then outputs a 0–100 score with actionable diagnostics.",
+        url: "https://dbt-doctor.joachimhodana.com",
         articleUrl: null,
         thumbnail: null,
-        icon: "https://harvide.joachimhodana.com/favicon.ico",
-        year: "2024",
+        icon: "https://assets.streamlinehq.com/image/private/w_300,h_300,ar_1/f_auto/v1/icons/3/dbt-icon-sefw4nnptjlk5lk13atgvm.png/dbt-icon-2yxlz1fvy25mvn5scgnlw.png?_a=DATAg1AAZAA0",
+        year: "2026",
       },
       {
         title: "vvvv",
@@ -193,6 +193,22 @@ const careerData = {
     ],
     articles: [
       {
+        title: "5 dbt Mistakes I See in Every Startup",
+        excerpt:
+          "The slow way dbt projects fail: full CI rebuilds, missing data contracts, incremental models without on_schema_change, ref() vs source() confusion, and shared dev/prod schemas — plus how to fix each.",
+        date: "Jun 2026",
+        readTime: "7 min",
+        url: "https://medium.com/data-engineer-things/5-dbt-mistakes-i-see-in-every-startup-c638ed24b95d",
+      },
+      {
+        title: "DuckDB for Data Engineers",
+        excerpt:
+          "Too small for Spark, too slow for Pandas, too annoying for a warehouse: using DuckDB for local file processing, querying DataFrames with SQL, testing dbt locally, and lightweight data quality checks.",
+        date: "May 2026",
+        readTime: "6 min",
+        url: "https://medium.com/data-engineer-things/duckdb-for-data-engineers-8e885367fcd1",
+      },
+      {
         title: "No Idea Where Your Data Warehouse Spend Goes?",
         excerpt: "Understanding and tracking your data warehouse costs can be challenging. Learn practical strategies to identify and optimize your spending.",
         date: "Jan 2026",
@@ -239,6 +255,15 @@ const careerData = {
       },
     ],
     projects: [
+      {
+        title: "dbt-doctor",
+        description: "CLI that diagnoses dbt project health — scans SQL models, schema YAML, and project config for naming, documentation, testing, and architecture issues, then outputs a 0–100 score with actionable diagnostics.",
+        url: "https://dbt-doctor.joachimhodana.com",
+        articleUrl: "https://github.com/joachimhodana/dbt-doctor",
+        thumbnail: null,
+        icon: "https://assets.streamlinehq.com/image/private/w_300,h_300,ar_1/f_auto/v1/icons/3/dbt-icon-sefw4nnptjlk5lk13atgvm.png/dbt-icon-2yxlz1fvy25mvn5scgnlw.png?_a=DATAg1AAZAA0",
+        year: "2026",
+      },
       {
         title: "moneysense-data",
         description: "Streaming Polymarket market data platform for trading bots backtesting.",
@@ -530,7 +555,7 @@ function HomeContent() {
           <div className="grid lg:grid-cols-5 gap-12 sm:gap-16 w-full">
             <div className="lg:col-span-3 space-y-6 sm:space-y-8">
               <div className="space-y-3 sm:space-y-2">
-                <div className="text-sm text-muted-foreground font-mono tracking-wider">PORTF0LI0 / {new Date().getFullYear()}</div>
+                <div className="text-sm text-muted-foreground font-mono tracking-wider">PORTFOLIO / {new Date().getFullYear()}</div>
                 <h1 className="text-5xl sm:text-6xl lg:text-7xl font-light tracking-tight">
                   Joachim
                   <br />
@@ -756,6 +781,7 @@ function HomeContent() {
             </div>
 
             {"projects" in currentCareer && currentCareer.projects && currentCareer.projects.length > 0 ? (
+              <>
               <div className="grid gap-6 sm:gap-8 lg:grid-cols-2">
                 {currentCareer.projects.map((project, index) => {
                   const linkUrl = project.url
@@ -891,6 +917,25 @@ function HomeContent() {
                   )
                 })}
               </div>
+              <div className="flex justify-center pt-2">
+                <Link
+                  href="https://github.com/joachimhodana"
+                  target="_blank"
+                  rel="noopener noreferrer"
+                  className="group inline-flex items-center gap-2 px-5 py-2.5 border border-border rounded text-sm text-muted-foreground hover:text-foreground hover:border-muted-foreground/50 transition-all duration-300"
+                >
+                  <span>See more</span>
+                  <svg
+                    className="w-4 h-4 transform group-hover:translate-x-1 transition-transform duration-300"
+                    fill="none"
+                    stroke="currentColor"
+                    viewBox="0 0 24 24"
+                  >
+                    <path strokeLinecap="round" strokeLinejoin="round" strokeWidth={2} d="M17 8l4 4m0 0l-4 4m4-4H3" />
+                  </svg>
+                </Link>
+              </div>
+              </>
             ) : (
               <div className="text-center py-12">
                 <p className="text-muted-foreground">No projects available yet.</p>
@@ -921,6 +966,7 @@ function HomeContent() {
             </div>
 
             {currentCareer.articles && currentCareer.articles.length > 0 ? (
+              <>
               <div className="grid gap-6 sm:gap-8 lg:grid-cols-2">
                 {currentCareer.articles.map((post, index) => (
                   <Link
@@ -962,6 +1008,25 @@ function HomeContent() {
                   </Link>
                 ))}
               </div>
+              <div className="flex justify-center pt-2">
+                <Link
+                  href="https://medium.com/@joachimhodana"
+                  target="_blank"
+                  rel="noopener noreferrer"
+                  className="group inline-flex items-center gap-2 px-5 py-2.5 border border-border rounded text-sm text-muted-foreground hover:text-foreground hover:border-muted-foreground/50 transition-all duration-300"
+                >
+                  <span>See more</span>
+                  <svg
+                    className="w-4 h-4 transform group-hover:translate-x-1 transition-transform duration-300"
+                    fill="none"
+                    stroke="currentColor"
+                    viewBox="0 0 24 24"
+                  >
+                    <path strokeLinecap="round" strokeLinejoin="round" strokeWidth={2} d="M17 8l4 4m0 0l-4 4m4-4H3" />
+                  </svg>
+                </Link>
+              </div>
+              </>
             ) : (
               <div className="text-center py-12">
                 <p className="text-muted-foreground">No articles available yet.</p>
