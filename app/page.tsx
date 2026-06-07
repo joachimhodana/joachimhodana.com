@@ -385,8 +385,8 @@ function HomeContent() {
     pendingCareerPathRef.current = next
     isCareerTransitionRef.current = true
 
-    const COVER_MS = 500
-    const REVEAL_MS = 500
+    const COVER_MS = 1000
+    const REVEAL_MS = 1000
 
     // Ensure the curtain paints above the viewport before sliding down.
     requestAnimationFrame(() => {
@@ -501,7 +501,7 @@ function HomeContent() {
       <div
         aria-hidden
         className={`fixed inset-0 z-[60] bg-background pointer-events-none will-change-transform ${
-          skipCurtainTransition ? "transition-none" : "transition-transform duration-500 ease-in-out"
+          skipCurtainTransition ? "transition-none" : "transition-transform duration-1000 ease-in-out"
         } ${
           transitionPhase === "covering"
             ? "translate-y-0"
