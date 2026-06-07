@@ -43,4 +43,6 @@ tsconfig.tsbuildinfo
 !/workbench/carousels/_lab-example.tsx
 !/workbench/carousels/.gitkeep
 
+# local LinkedIn content workspace (AI prompts + draft slides + assets)
+/linkedin-data-content/
 
