@@ -330,42 +330,97 @@ function HomeContent() {
   const [careerPath, setCareerPath] = useState<CareerPath>("data")
   const [isScrolled, setIsScrolled] = useState(false)
   const [isLgViewport, setIsLgViewport] = useState(false)
-  const [isTransitioning, setIsTransitioning] = useState(false)
+  const [transitionPhase, setTransitionPhase] = useState<"idle" | "covering" | "revealing">("idle")
+  const [cvRevealed, setCvRevealed] = useState(false)
   const sectionsRef = useRef<(HTMLElement | null)[]>([])
+  const pendingCareerPathRef = useRef<CareerPath | null>(null)
+  const isCareerTransitionRef = useRef(false)
+  const transitionTimersRef = useRef<number[]>([])
+  const [skipCurtainTransition, setSkipCurtainTransition] = useState(false)
   const router = useRouter()
   const pathname = usePathname()
   const searchParams = useSearchParams()
 
+  const clearTransitionTimers = () => {
+    transitionTimersRef.current.forEach((id) => window.clearTimeout(id))
+    transitionTimersRef.current = []
+  }
+
+  const scheduleTransitionStep = (fn: () => void, delayMs: number) => {
+    const id = window.setTimeout(fn, delayMs)
+    transitionTimersRef.current.push(id)
+  }
+
   const currentCareer = careerData[careerPath]
+
+  useEffect(() => () => clearTransitionTimers(), [])
 
   useEffect(() => {
     document.documentElement.classList.toggle("dark", isDark)
   }, [isDark])
 
-  // Sync career view from query param ?v=de|swe|ml
+  // Download CV starts dimmed, then eases into its normal look after 3s.
   useEffect(() => {
-    const variant = searchParams.get("v")
-    if (variant === "de") {
-      setCareerPath("data")
-    } else if (variant === "swe") {
-      setCareerPath("software")
-    } else if (variant === "ml") {
-      setCareerPath(SHOW_ML ? "ml" : "data")
-    }
+    const timer = setTimeout(() => setCvRevealed(true), 3000)
+    return () => clearTimeout(timer)
+  }, [])
+
+  const careerPathFromVariant = (variant: string | null): CareerPath => {
+    if (variant === "de") return "data"
+    if (variant === "swe") return "software"
+    if (variant === "ml") return SHOW_ML ? "ml" : "data"
+    return "data"
+  }
+
+  // Sync career view from query param ?v=de|swe|ml (skip while curtain animation runs).
+  useEffect(() => {
+    if (isCareerTransitionRef.current) return
+    setCareerPath(careerPathFromVariant(searchParams.get("v")))
   }, [searchParams])
 
   const updateCareerPath = (next: CareerPath) => {
-    if (next === careerPath) return
-    
-    setIsTransitioning(true)
-    setTimeout(() => {
-      setCareerPath(next)
-      setTimeout(() => setIsTransitioning(false), 50)
-    }, 200)
-    
-    const params = new URLSearchParams(searchParams.toString())
-    params.set("v", next === "data" ? "de" : next === "software" ? "swe" : "ml")
-    router.replace(`${pathname}?${params.toString()}`, { scroll: false })
+    if (next === careerPath || transitionPhase !== "idle") return
+
+    clearTransitionTimers()
+    pendingCareerPathRef.current = next
+    isCareerTransitionRef.current = true
+
+    const COVER_MS = 500
+    const REVEAL_MS = 500
+
+    // Ensure the curtain paints above the viewport before sliding down.
+    requestAnimationFrame(() => {
+      setTransitionPhase("covering")
+
+      scheduleTransitionStep(() => {
+        const target = pendingCareerPathRef.current
+        if (!target) return
+
+        // Swap content while fully covered.
+        setCareerPath(target)
+        window.scrollTo({ top: 0, behavior: "auto" })
+
+        // Force a frame at full cover before sliding off.
+        requestAnimationFrame(() => {
+          setTransitionPhase("revealing")
+
+          scheduleTransitionStep(() => {
+            setSkipCurtainTransition(true)
+            setTransitionPhase("idle")
+            isCareerTransitionRef.current = false
+            pendingCareerPathRef.current = null
+
+            const params = new URLSearchParams(searchParams.toString())
+            params.set("v", target === "data" ? "de" : target === "software" ? "swe" : "ml")
+            router.replace(`${pathname}?${params.toString()}`, { scroll: false })
+
+            requestAnimationFrame(() => {
+              requestAnimationFrame(() => setSkipCurtainTransition(false))
+            })
+          }, REVEAL_MS)
+        })
+      }, COVER_MS)
+    })
   }
 
   useEffect(() => {
@@ -442,6 +497,20 @@ function HomeContent() {
 
   return (
     <div className="min-h-screen bg-background text-foreground relative">
+      {/* Career-switch curtain: cover screen first, swap content under it, then slide off. */}
+      <div
+        aria-hidden
+        className={`fixed inset-0 z-[60] bg-background pointer-events-none will-change-transform ${
+          skipCurtainTransition ? "transition-none" : "transition-transform duration-500 ease-in-out"
+        } ${
+          transitionPhase === "covering"
+            ? "translate-y-0"
+            : transitionPhase === "revealing"
+              ? "translate-y-full"
+              : "-translate-y-full"
+        }`}
+      />
+
       <nav className="fixed left-8 top-1/2 -translate-y-1/2 z-10 hidden lg:block">
         <div className="flex flex-col gap-4">
           {["intro", "work", "projects", "thoughts", "connect"].map((section) => (
@@ -565,9 +634,7 @@ function HomeContent() {
               </div>
 
               <div className="space-y-6 max-w-md">
-                <p className={`text-lg sm:text-xl text-muted-foreground leading-relaxed transition-opacity duration-200 ${
-                  isTransitioning ? "opacity-0" : "opacity-100"
-                }`}>{currentCareer.description}</p>
+                <p className="text-lg sm:text-xl text-muted-foreground leading-relaxed">{currentCareer.description}</p>
 
                 <div className="flex flex-col sm:flex-row sm:items-center gap-3 sm:gap-4 text-sm text-muted-foreground">
                   {/* <div className="flex items-center gap-2">
@@ -583,7 +650,11 @@ function HomeContent() {
                       href="/Joachim_Hodana_Data_Engineer_CV.pdf"
                       target="_blank"
                       rel="noopener noreferrer"
-                      className="flex items-center gap-2 px-3 py-1.5 border border-border rounded text-foreground hover:text-muted-foreground hover:border-muted-foreground/50 transition-colors duration-300"
+                      className={`flex items-center gap-2 px-3 py-1.5 border rounded transition-all duration-1000 ease-out ${
+                        cvRevealed
+                          ? "border-border text-foreground opacity-100 blur-0 hover:text-muted-foreground hover:border-muted-foreground/50"
+                          : "border-border/40 text-muted-foreground opacity-40 blur-[1px]"
+                      }`}
                     >
                       <Download className="size-4" />
                       <span>Download CV</span>
@@ -596,9 +667,7 @@ function HomeContent() {
             <div className="lg:col-span-2 flex flex-col justify-end space-y-6 sm:space-y-8 mt-8 lg:mt-0">
               <div className="space-y-4">
                 <div className="text-sm text-muted-foreground font-mono">CURRENTLY</div>
-                <div className={`space-y-2 transition-opacity duration-200 ${
-                  isTransitioning ? "opacity-0" : "opacity-100"
-                }`}>
+                <div className="space-y-2">
                   <div className="text-foreground">{currentCareer.currentRole}</div>
                   <div className="text-muted-foreground">@ {currentCareer.currentCompany}</div>
                   <div className="text-xs text-muted-foreground">{currentCareer.currentDates}</div>
@@ -607,9 +676,7 @@ function HomeContent() {
 
               <div className="space-y-4">
                 <div className="text-sm text-muted-foreground font-mono">FOCUS</div>
-                <div className={`flex flex-wrap gap-2 transition-opacity duration-200 ${
-                  isTransitioning ? "opacity-0" : "opacity-100"
-                }`}>
+                <div className="flex flex-wrap gap-2">
                   {currentCareer.skills.map((skill) => (
                     <span
                       key={skill.name}
