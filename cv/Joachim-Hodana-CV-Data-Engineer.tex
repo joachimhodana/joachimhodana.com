@@ -1,17 +1,26 @@
 \documentclass[10pt,a4paper]{article}
 
-\usepackage[margin=0.55in]{geometry}
-\usepackage{graphicx}
+\usepackage[top=0.46in,bottom=0.42in,left=0.52in,right=0.52in]{geometry}
 \usepackage[hidelinks]{hyperref}
 \usepackage{enumitem}
 \usepackage{multicol}
+\usepackage[T1]{fontenc}
 
-\newcommand{\icon}[1]{\raisebox{-0.15em}{\includegraphics[height=0.9em]{#1}}}
 \newcommand{\hi}[1]{\textbf{#1}}
+\newcommand{\sectionline}[1]{%
+  \par\vspace{2pt}%
+  \noindent\rule{\textwidth}{0.5pt}\par%
+  \vspace{0pt}%
+  \noindent\textbf{#1}\par%
+}
 
-\setlist[itemize]{leftmargin=*, itemsep=0pt, topsep=1pt, parsep=0pt}
+\setlist[itemize]{leftmargin=*, itemsep=0pt, topsep=1pt, parsep=0pt, partopsep=0pt}
 \setlength{\parindent}{0pt}
+\setlength{\columnsep}{0.18in}
+\linespread{0.96}
 \pagestyle{empty}
+\raggedbottom
+\urlstyle{same}
 
 \begin{document}
 
@@ -19,105 +28,98 @@
 
 \vspace{3pt}
 
-\icon{icons/email.pdf} \ \href{mailto:me@joachimhodana.com}{me@joachimhodana.com}
-\quad
-\icon{icons/globe.pdf} \ \href{https://joachimhodana.com}{joachimhodana.com}
-\quad
-\icon{icons/linkedin.pdf} \ \href{https://linkedin.com/in/joachimhodana}{joachim-hodana}
-\quad
-\icon{icons/github.pdf} \ \href{https://github.com/joachimhodana}{joachimhodana}
+{\small
+\href{mailto:me@joachimhodana.com}{me@joachimhodana.com}
+\enspace\textbullet\enspace
+\href{https://joachimhodana.com}{joachimhodana.com}
+\enspace\textbullet\enspace
+\href{https://linkedin.com/in/joachim-hodana}{linkedin.com/in/joachim-hodana}
+\enspace\textbullet\enspace
+\href{https://github.com/joachimhodana}{github.com/joachimhodana}
+
+\vspace{1pt}
+
+Warsaw, Poland
+\enspace\textbullet\enspace
+\href{tel:+48573918052}{+48 573 918 052}
+}
+
+\sectionline{SUMMARY}
 
 \vspace{2pt}
 
-\icon{icons/location.pdf} \ Warsaw, Poland
-\quad
-\icon{icons/phone.pdf} \ \href{tel:+48573918052}{+48 573 918 052}
+Senior Data Engineer with eight years of experience building production software and data systems, including more than two years focused on enterprise analytics platforms. Delivered end-to-end ELT pipelines, warehouse models, and orchestration workflows across \hi{Snowflake} and \hi{BigQuery} for clients in private equity, SaaS, retail, and fintech. Hands-on with \hi{dbt}, \hi{Apache Airflow}, Python, SQL, Docker, Kubernetes, AWS, and GCP, with a focus on performance and cost optimization, data quality, observability, API ingestion, and maintainable delivery.
 
-\vspace{3pt}
-\rule{\textwidth}{0.5pt}
+\sectionline{EXPERIENCE}
 
-\textbf{SUMMARY}
+\vspace{2pt}
 
-Data engineer with eight years in production systems, the last three spent full-time on the modern data stack. Mostly dbt and Airflow on Snowflake and BigQuery, building for enterprise clients in private equity, retail, fintech and SaaS - raw ingestion through to the models their BI tools sit on. Happy owning a platform end to end, including the parts nobody volunteers for: test coverage, warehouse cost, and documentation the next engineer will actually open.
-
-\vspace{3pt}
-\rule{\textwidth}{0.5pt}
-
-\textbf{EXPERIENCE}
-
-\textbf{Senior Data Engineer} -- ECCO (contract) \hfill 07/2026--Present
+\textbf{Senior Data Engineer} -- ECCO \hfill 07/2026--Present
 
 \begin{itemize}
-
-\item Data engineering for the group's retail and supply chain analytics, building dbt models and the Power BI datasets the business reports on
-
+\item Building a data platform for HR analytics and reporting, working directly with IT and HR stakeholders to translate business requirements into reliable datasets and reporting foundations
 \end{itemize}
 
 \textbf{Data Engineer} -- Lortech Solutions \hfill 08/2024--07/2026
 
 \begin{itemize}
+\item Delivered analytics engineering systems across \hi{7+ client projects} in private equity, SaaS, retail, and fintech, covering \hi{1000+ dbt models}, \hi{100+ orchestration DAGs}, and multi-terabyte daily workloads across Snowflake and BigQuery
 
-\item Delivered data platforms for seven enterprise clients across private equity, retail, fintech and SaaS, from raw ingestion up to the semantic layer their BI tools read
+\item Owned end-to-end development of a business-critical investor relations platform with \hi{350+ dbt models}, \hi{350+ tests}, and Airflow pipelines integrating Salesforce, Outlook, Box, FTP, REST APIs, and SOAP services
 
-\item Owned an investor relations platform end to end: around 350 dbt models with matching test coverage, fed by Airflow pipelines pulling from Salesforce, Outlook, Box, FTP and a pair of legacy SOAP services
+\item Reduced one high-cost Snowflake workload from \hi{55 minutes to 30 seconds} and lowered BigQuery spend by \hi{35\%} through SQL redesign, warehouse tuning, partitioning, materialization changes, and model refactoring
 
-\item Cut one Snowflake workload from 55 minutes to 30 seconds by rewriting the query and resizing the warehouse behind it, and took 35\% off a client's BigQuery bill through partitioning and materialization changes
+\item Built metadata-driven dbt model generation and validation workflows using reusable macros, YAML templates, model tests, and CI/CD checks, reducing repetitive SQL and standardizing new source onboarding
 
-\item Wrote a metadata-driven generator for dbt models, so onboarding a new Salesforce object became a YAML edit instead of a few hundred hand-written lines of SQL
+\item Added observability and SLA validation to multi-tenant Airflow environments, including freshness checks, source availability monitoring, run-duration tracking, and Slack/email incident reporting
 
-\item Added freshness, source availability and run-duration monitoring to a multi-tenant Airflow estate, reporting into Slack so failures surfaced before the client noticed them
-
-\item Moved Airflow onto Kubernetes with versioned Docker images in ECR and CI to promote them, replacing instances that had been configured by hand
-
+\item Standardized deployment workflows for Kubernetes-based Airflow environments using versioned Docker images, AWS ECR, and CI pipelines
 \end{itemize}
 
-\textbf{Independent Software \& Data Consultant} -- Self-employed \hfill 11/2018--07/2026
+\textbf{Independent Software \& Data Consultant} -- Self-employed \hfill 11/2018--04/2025
 
 \begin{itemize}
+\item Delivered backend systems, scraping workflows, data extraction pipelines, and automation tools for clients across EU and US markets
 
-\item Scoped, priced and delivered projects for clients in Poland, the EU, US and UK, usually as the only engineer on the work
-
-\item Backend systems, APIs and automation in Python, Go and TypeScript, on PostgreSQL and Redis; more recently RAG pipelines and LLM tooling for clients automating research and support
-
-\item Data extraction for clients who needed data no vendor exposed: scraping, browser automation and reverse-engineered APIs, which meant handling deduplication, retries and schema drift as a matter of course
-
+\item Built ingestion and processing systems using Python, PostgreSQL, Redis, browser automation, and reverse-engineered APIs, including deduplication, retry handling, and schema normalization for unstable external sources
 \end{itemize}
 
 \textbf{Python Developer} -- Decision Sciences Company \hfill 11/2022--05/2023
 
-Python data workflows, API integrations and automation for an insurance AI product.
+\begin{itemize}
+\item Developed Python data workflows, API integrations, and automation for a production AI pricing product in the insurance domain
+\end{itemize}
 
-\vspace{3pt}
-\rule{\textwidth}{0.5pt}
+\sectionline{TECHNICAL PROJECTS}
 
-\textbf{TECHNICAL PROJECTS}
+\vspace{2pt}
 
 \textbf{dbt-doctor} -- \href{https://github.com/joachimhodana/dbt-doctor}{GitHub} \\
-Open-source CLI that scores a dbt project and flags what passes \texttt{dbt test} but breaks in production: broken refs, missing sources, incremental models without a unique key. Runs as a GitHub Action. Around 700 downloads.
+Open-source CLI for dbt project validation, detecting broken refs, missing sources, untested models, and unsafe incremental configurations. Runs locally and in GitHub Actions; \hi{700+ downloads}.
 
 \vspace{2pt}
 
 \textbf{moneysense-data} -- \href{https://github.com/joachimhodana/moneysense-data}{GitHub} \\
-Event-driven pipeline for Polymarket market data. Kafka into ClickHouse for the hot path, Parquet on MinIO for the cold archive.
+Event-driven pipeline for Polymarket market data, using Kafka and ClickHouse for the hot path and Parquet on MinIO for the cold archive.
 
 \vspace{2pt}
 
 \textbf{Dealscan} \\
-Aggregates car listings from a dozen sources that each define a listing differently. Browser automation and reverse-engineered APIs in, deduplicated PostgreSQL out.
+Multi-source automotive ingestion system using browser automation and reverse-engineered APIs to normalize and deduplicate heterogeneous listings in PostgreSQL.
 
-\vspace{3pt}
-\rule{\textwidth}{0.5pt}
+\sectionline{SKILLS}
 
-\textbf{SKILLS}
+\vspace{2pt}
 
-\textbf{Data Engineering:} \hi{dbt}, \hi{Apache Airflow}, \hi{Snowflake}, \hi{BigQuery}, ELT/ETL, dimensional modeling, data quality \& testing, observability, warehouse cost optimization, Power BI
+\textbf{Data Engineering:} \hi{dbt}, \hi{Apache Airflow}, \hi{Snowflake}, \hi{BigQuery}, ELT/ETL, dimensional modeling, data quality and testing, observability, warehouse cost optimization, Power BI
 
 \textbf{Programming:} \hi{Python}, \hi{SQL}, Go, TypeScript
 
 \textbf{Infrastructure:} \hi{AWS}, \hi{GCP}, \hi{Docker}, \hi{Kubernetes}, CI/CD, PostgreSQL, ClickHouse, Kafka, MinIO, Parquet
 
-\vspace{3pt}
-\rule{\textwidth}{0.5pt}
+\par\vspace{3pt}
+\noindent\rule{\textwidth}{0.5pt}
+\vspace{-5pt}
 
 \begin{multicols}{3}
 
