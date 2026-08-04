@@ -7,11 +7,11 @@ import "./globals.css"
 export const metadata: Metadata = {
   metadataBase: new URL("https://joachimhodana.com"),
   title: {
-    default: "Joachim Hodana — Software & Data Engineer",
-    template: "%s — Joachim Hodana",
+    default: "Joachim Hodana - Senior Data Engineer",
+    template: "%s - Joachim Hodana",
   },
   description:
-    "Software and Data Engineer specializing in Python, TypeScript, React, and data pipelines. Available for collaborations and opportunities.",
+    "Senior Data Engineer specializing in dbt, Airflow, Snowflake, and BigQuery. Available for collaborations and opportunities.",
   applicationName: "joachimhodana.com",
   authors: [{ name: "Joachim Hodana", url: "https://joachimhodana.com" }],
   creator: "Joachim Hodana",
@@ -33,9 +33,9 @@ export const metadata: Metadata = {
   openGraph: {
     type: "website",
     url: "https://joachimhodana.com/",
-    title: "Joachim Hodana — Software & Data Engineer",
+    title: "Joachim Hodana - Senior Data Engineer",
     description:
-      "Software and Data Engineer specializing in Python, TypeScript, React, and data pipelines.",
+      "Senior Data Engineer specializing in dbt, Airflow, Snowflake, and BigQuery.",
     siteName: "joachimhodana.com",
     images: [
       {
@@ -51,9 +51,9 @@ export const metadata: Metadata = {
     card: "summary_large_image",
     site: "@joachimhodana",
     creator: "@joachimhodana",
-    title: "Joachim Hodana — Software & Data Engineer",
+    title: "Joachim Hodana - Senior Data Engineer",
     description:
-      "Software and Data Engineer specializing in Python, TypeScript, React, and data pipelines.",
+      "Senior Data Engineer specializing in dbt, Airflow, Snowflake, and BigQuery.",
     images: ["/placeholder.jpg"],
   },
   icons: {

@@ -6,23 +6,6 @@ type CvItem = {
   fileName: string
   href: string
   title: string
-  subtitle?: string
-}
-
-function titleFromFileName(fileName: string) {
-  const base = fileName.replace(/\.pdf$/i, "")
-  return base
-    .replace(/_/g, " ")
-    .replace(/\s+/g, " ")
-    .trim()
-}
-
-function deriveSubtitle(title: string) {
-  const t = title.toLowerCase()
-  if (t.includes("data engineer")) return "Data Engineer"
-  if (t.includes("python")) return "Python Software Engineer"
-  if (t.includes("fullstack")) return "Fullstack Software Engineer"
-  return undefined
 }
 
 async function getCvs(): Promise<CvItem[]> {
@@ -37,15 +20,11 @@ async function getCvs(): Promise<CvItem[]> {
   return entries
     .filter((f) => /\.pdf$/i.test(f))
     .sort((a, b) => a.localeCompare(b))
-    .map((fileName) => {
-      const title = titleFromFileName(fileName)
-      return {
-        fileName,
-        href: `/${fileName}`,
-        title,
-        subtitle: deriveSubtitle(title),
-      }
-    })
+    .map((fileName) => ({
+      fileName,
+      href: `/${fileName}`,
+      title: "Senior Data Engineer",
+    }))
 }
 
 export default async function CvIndexPage() {
@@ -55,10 +34,10 @@ export default async function CvIndexPage() {
     <div className="min-h-screen bg-background text-foreground">
       <main className="max-w-3xl mx-auto px-6 sm:px-8 lg:px-16 py-16 sm:py-24">
         <div className="space-y-3">
-          <div className="text-sm text-muted-foreground font-mono tracking-wider">CV ARCHIVE</div>
-          <h1 className="text-3xl sm:text-4xl font-light tracking-tight">Download my CVs</h1>
+          <div className="text-sm text-muted-foreground font-mono tracking-wider">CV</div>
+          <h1 className="text-3xl sm:text-4xl font-light tracking-tight">Download my CV</h1>
           <p className="text-muted-foreground max-w-xl">
-            Role-specific versions.
+            Senior Data Engineer.
           </p>
         </div>
 
@@ -80,13 +59,11 @@ export default async function CvIndexPage() {
                   <div className="space-y-1">
                     <div className="flex items-center gap-3">
                       <div className="text-base sm:text-lg font-medium group-hover:text-muted-foreground transition-colors duration-300">
-                        {cv.subtitle ?? cv.title}
+                        {cv.title}
                       </div>
-                      {cv.subtitle && (
-                        <span className="px-2 py-0.5 text-[10px] font-mono tracking-wide border border-border rounded text-muted-foreground">
-                          PDF
-                        </span>
-                      )}
+                      <span className="px-2 py-0.5 text-[10px] font-mono tracking-wide border border-border rounded text-muted-foreground">
+                        PDF
+                      </span>
                     </div>
                     <div className="text-xs text-muted-foreground font-mono break-all">{cv.fileName}</div>
                   </div>
@@ -111,4 +88,3 @@ export default async function CvIndexPage() {
     </div>
   )
 }
-
