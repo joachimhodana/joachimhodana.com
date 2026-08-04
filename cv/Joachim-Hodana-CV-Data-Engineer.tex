@@ -15,7 +15,7 @@
 
 \begin{document}
 
-{\LARGE \textbf{Joachim Hodana}} \hfill {\large DATA ENGINEER}
+{\LARGE \textbf{Joachim Hodana}} \hfill {\large SENIOR DATA ENGINEER}
 
 \vspace{3pt}
 
@@ -38,44 +38,54 @@
 
 \textbf{SUMMARY}
 
-Data Engineer building production ELT platforms, warehouse models, and orchestration workflows across \hi{Snowflake} and \hi{BigQuery}. Experienced with \hi{dbt}, \hi{Apache Airflow}, Python, SQL, Docker, Kubernetes, AWS, and GCP in client environments spanning private equity, SaaS, retail, and fintech. Focused on \hi{warehouse performance}, \hi{cost reduction}, \hi{data quality}, API ingestion, and maintainable analytics engineering systems.
+Data engineer with eight years in production systems, the last three spent full-time on the modern data stack. Mostly dbt and Airflow on Snowflake and BigQuery, building for enterprise clients in private equity, retail, fintech and SaaS - raw ingestion through to the models their BI tools sit on. Happy owning a platform end to end, including the parts nobody volunteers for: test coverage, warehouse cost, and documentation the next engineer will actually open.
 
 \vspace{3pt}
 \rule{\textwidth}{0.5pt}
 
 \textbf{EXPERIENCE}
 
-\textbf{Data Engineer Consultant} -- Lortech Solutions \hfill 08/2024--Present
+\textbf{Senior Data Engineer} -- ECCO (contract) \hfill 07/2026--Present
 
 \begin{itemize}
 
-\item Built and maintained analytics engineering systems across \hi{7+ client projects} in private equity, SaaS, retail, and fintech, covering \hi{1000+ dbt models}, \hi{100+ orchestration DAGs}, and \hi{multi-terabyte} daily workloads across Snowflake and BigQuery
-
-\item Owned end-to-end development of a business-critical investor relations data platform with \hi{350+ dbt models}, \hi{350+ dbt tests}, and Airflow pipelines integrating Outlook, Salesforce, Box, FTP, REST APIs, and SOAP APIs
-
-\item Reduced high-cost Snowflake runtimes from \hi{55 minutes to 30 seconds} and BigQuery spend by \hi{35\%} through SQL redesign, warehouse tuning, dbt materialization changes, partition usage, and model refactoring
-
-\item Designed reusable \hi{dbt model generation and validation} workflows, including macros, metadata-driven templates, model tests, and \hi{CI/CD} checks for large analytics codebases
-
-\item Built \hi{observability and SLA validation} workflows for multi-tenant Airflow environments, including automated health checks, source validation, and Slack/email incident reporting
-
-\item Standardized orchestration and deployment workflows for \hi{Kubernetes}-based Airflow environments using Docker images, \hi{AWS ECR}, and CI pipelines
+\item Data engineering for the group's retail and supply chain analytics, building dbt models and the Power BI datasets the business reports on
 
 \end{itemize}
 
-\textbf{Freelance Software Engineer} -- Self-employed \hfill 11/2018--04/2025
+\textbf{Data Engineer} -- Lortech Solutions \hfill 08/2024--07/2026
 
 \begin{itemize}
 
-\item Delivered backend systems, scraping workflows, data extraction pipelines, and automation tools for clients across \hi{EU and US} markets
+\item Delivered data platforms for seven enterprise clients across private equity, retail, fintech and SaaS, from raw ingestion up to the semantic layer their BI tools read
 
-\item Built ingestion and processing systems using \hi{Python}, \hi{PostgreSQL}, Redis, browser automation, and API reverse engineering, including deduplication, retry handling, and schema normalization for unstable external sources
+\item Owned an investor relations platform end to end: around 350 dbt models with matching test coverage, fed by Airflow pipelines pulling from Salesforce, Outlook, Box, FTP and a pair of legacy SOAP services
+
+\item Cut one Snowflake workload from 55 minutes to 30 seconds by rewriting the query and resizing the warehouse behind it, and took 35\% off a client's BigQuery bill through partitioning and materialization changes
+
+\item Wrote a metadata-driven generator for dbt models, so onboarding a new Salesforce object became a YAML edit instead of a few hundred hand-written lines of SQL
+
+\item Added freshness, source availability and run-duration monitoring to a multi-tenant Airflow estate, reporting into Slack so failures surfaced before the client noticed them
+
+\item Moved Airflow onto Kubernetes with versioned Docker images in ECR and CI to promote them, replacing instances that had been configured by hand
+
+\end{itemize}
+
+\textbf{Independent Software \& Data Consultant} -- Self-employed \hfill 11/2018--07/2026
+
+\begin{itemize}
+
+\item Scoped, priced and delivered projects for clients in Poland, the EU, US and UK, usually as the only engineer on the work
+
+\item Backend systems, APIs and automation in Python, Go and TypeScript, on PostgreSQL and Redis; more recently RAG pipelines and LLM tooling for clients automating research and support
+
+\item Data extraction for clients who needed data no vendor exposed: scraping, browser automation and reverse-engineered APIs, which meant handling deduplication, retries and schema drift as a matter of course
 
 \end{itemize}
 
 \textbf{Python Developer} -- Decision Sciences Company \hfill 11/2022--05/2023
 
-Python automation, API integrations, and internal data processing scripts for production data systems.
+Python data workflows, API integrations and automation for an insurance AI product.
 
 \vspace{3pt}
 \rule{\textwidth}{0.5pt}
@@ -83,24 +93,24 @@ Python automation, API integrations, and internal data processing scripts for pr
 \textbf{TECHNICAL PROJECTS}
 
 \textbf{dbt-doctor} -- \href{https://github.com/joachimhodana/dbt-doctor}{GitHub} \\
-Open-source dbt productivity and validation tool with \hi{700+ downloads} and \hi{16 GitHub stars}, focused on project maintainability, model quality, and developer workflow.
+Open-source CLI that scores a dbt project and flags what passes \texttt{dbt test} but breaks in production: broken refs, missing sources, incremental models without a unique key. Runs as a GitHub Action. Around 700 downloads.
 
 \vspace{2pt}
 
 \textbf{moneysense-data} -- \href{https://github.com/joachimhodana/moneysense-data}{GitHub} \\
-Event-driven cryptocurrency analytics platform for Polymarket market data ingestion using \hi{Kafka}, \hi{ClickHouse}, MinIO object storage, and Parquet-based cold archives.
+Event-driven pipeline for Polymarket market data. Kafka into ClickHouse for the hot path, Parquet on MinIO for the cold archive.
 
 \vspace{2pt}
 
 \textbf{Dealscan} \\
-Multi-source automotive data ingestion pipelines aggregating and deduplicating listings from heterogeneous external platforms using browser automation, API reverse engineering, and PostgreSQL.
+Aggregates car listings from a dozen sources that each define a listing differently. Browser automation and reverse-engineered APIs in, deduplicated PostgreSQL out.
 
 \vspace{3pt}
 \rule{\textwidth}{0.5pt}
 
 \textbf{SKILLS}
 
-\textbf{Data Engineering:} \hi{dbt}, \hi{Apache Airflow}, \hi{Snowflake}, \hi{BigQuery}, ELT/ETL, Data Modeling, Data Quality, Observability, Cost Optimization
+\textbf{Data Engineering:} \hi{dbt}, \hi{Apache Airflow}, \hi{Snowflake}, \hi{BigQuery}, ELT/ETL, dimensional modeling, data quality \& testing, observability, warehouse cost optimization, Power BI
 
 \textbf{Programming:} \hi{Python}, \hi{SQL}, Go, TypeScript
 
