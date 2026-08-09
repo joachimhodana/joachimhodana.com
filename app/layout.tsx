@@ -12,11 +12,21 @@ export const metadata: Metadata = {
     template: "%s - Joachim Hodana",
   },
   description:
-    "Senior Data Engineer specializing in dbt, Airflow, Snowflake, and BigQuery. Available for collaborations and opportunities.",
+    "Senior Data Engineer building production data platforms with dbt, Airflow, Snowflake, and BigQuery for enterprise clients across private equity, retail, fintech, and SaaS.",
   applicationName: "joachimhodana.com",
   authors: [{ name: "Joachim Hodana", url: "https://joachimhodana.com" }],
   creator: "Joachim Hodana",
   publisher: "Joachim Hodana",
+  keywords: [
+    "Senior Data Engineer",
+    "Data Engineer",
+    "dbt",
+    "Apache Airflow",
+    "Snowflake",
+    "BigQuery",
+    "data platforms",
+    "analytics engineering",
+  ],
   alternates: {
     canonical: "/",
   },
@@ -36,14 +46,14 @@ export const metadata: Metadata = {
     url: "https://joachimhodana.com/",
     title: "Joachim Hodana - Senior Data Engineer",
     description:
-      "Senior Data Engineer specializing in dbt, Airflow, Snowflake, and BigQuery.",
+      "Senior Data Engineer building production data platforms with dbt, Airflow, Snowflake, and BigQuery.",
     siteName: "joachimhodana.com",
     images: [
       {
         url: "/placeholder.jpg",
         width: 1200,
         height: 630,
-        alt: "Joachim Hodana Portfolio",
+        alt: "Joachim Hodana - Senior Data Engineer",
       },
     ],
     locale: "en_US",
@@ -54,7 +64,7 @@ export const metadata: Metadata = {
     creator: "@joachimhodana",
     title: "Joachim Hodana - Senior Data Engineer",
     description:
-      "Senior Data Engineer specializing in dbt, Airflow, Snowflake, and BigQuery.",
+      "Senior Data Engineer building production data platforms with dbt, Airflow, Snowflake, and BigQuery.",
     images: ["/placeholder.jpg"],
   },
   icons: {
