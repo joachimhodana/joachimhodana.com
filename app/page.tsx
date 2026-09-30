@@ -63,7 +63,7 @@ const projects = [
   {
     title: "dbt-doctor",
     line: "CLI that scores dbt project health and catches production footguns.",
-    url: "https://dbt-doctor.joachimhodana.com",
+    url: "https://dbt-doctor.northgraindata.com",
     icon: "https://assets.streamlinehq.com/image/private/w_300,h_300,ar_1/f_auto/v1/icons/3/dbt-icon-sefw4nnptjlk5lk13atgvm.png/dbt-icon-2yxlz1fvy25mvn5scgnlw.png?_a=DATAg1AAZAA0",
   },
   {
