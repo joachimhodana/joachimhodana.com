@@ -23,7 +23,7 @@ async function getCvs(): Promise<CvItem[]> {
     .map((fileName) => ({
       fileName,
       href: `/${fileName}`,
-      title: "Senior Data Engineer",
+      title: "Data Engineer",
     }))
 }
 
@@ -37,7 +37,7 @@ export default async function CvIndexPage() {
           <div className="text-sm text-muted-foreground font-mono tracking-wider">CV</div>
           <h1 className="text-3xl sm:text-4xl font-light tracking-tight">Download my CV</h1>
           <p className="text-muted-foreground max-w-xl">
-            Senior Data Engineer.
+            Data Engineer.
           </p>
         </div>
 

@@ -8,17 +8,17 @@ import "./globals.css"
 export const metadata: Metadata = {
   metadataBase: new URL("https://joachimhodana.com"),
   title: {
-    default: "Joachim Hodana - Senior Data Engineer",
+    default: "Joachim Hodana - Data Engineer",
     template: "%s - Joachim Hodana",
   },
   description:
-    "Senior Data Engineer building production data platforms with dbt, Airflow, Snowflake, and BigQuery for enterprise clients across private equity, retail, fintech, and SaaS.",
+    "Data Engineer building production data platforms with dbt, Airflow, Snowflake, and BigQuery for enterprise clients across private equity, retail, fintech, and SaaS.",
   applicationName: "joachimhodana.com",
   authors: [{ name: "Joachim Hodana", url: "https://joachimhodana.com" }],
   creator: "Joachim Hodana",
   publisher: "Joachim Hodana",
   keywords: [
-    "Senior Data Engineer",
+    "Data Engineer",
     "Data Engineer",
     "dbt",
     "Apache Airflow",
@@ -44,16 +44,16 @@ export const metadata: Metadata = {
   openGraph: {
     type: "website",
     url: "https://joachimhodana.com/",
-    title: "Joachim Hodana - Senior Data Engineer",
+    title: "Joachim Hodana - Data Engineer",
     description:
-      "Senior Data Engineer building production data platforms with dbt, Airflow, Snowflake, and BigQuery.",
+      "Data Engineer building production data platforms with dbt, Airflow, Snowflake, and BigQuery.",
     siteName: "joachimhodana.com",
     images: [
       {
         url: "/placeholder.jpg",
         width: 1200,
         height: 630,
-        alt: "Joachim Hodana - Senior Data Engineer",
+        alt: "Joachim Hodana - Data Engineer",
       },
     ],
     locale: "en_US",
@@ -62,9 +62,9 @@ export const metadata: Metadata = {
     card: "summary_large_image",
     site: "@joachimhodana",
     creator: "@joachimhodana",
-    title: "Joachim Hodana - Senior Data Engineer",
+    title: "Joachim Hodana - Data Engineer",
     description:
-      "Senior Data Engineer building production data platforms with dbt, Airflow, Snowflake, and BigQuery.",
+      "Data Engineer building production data platforms with dbt, Airflow, Snowflake, and BigQuery.",
     images: ["/placeholder.jpg"],
   },
   icons: {

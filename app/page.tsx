@@ -7,6 +7,8 @@ import { useEffect, useState } from "react"
 
 const skills = [
   { name: "dbt", icon: "https://assets.streamlinehq.com/image/private/w_300,h_300,ar_1/f_auto/v1/icons/3/dbt-icon-sefw4nnptjlk5lk13atgvm.png/dbt-icon-2yxlz1fvy25mvn5scgnlw.png?_a=DATAg1AAZAA0" },
+  { name: "Databricks", icon: "https://cdn.simpleicons.org/databricks" },
+  { name: "Apache Spark", icon: "https://cdn.jsdelivr.net/gh/devicons/devicon/icons/apachespark/apachespark-original.svg" },
   { name: "Python", icon: "https://cdn.jsdelivr.net/gh/devicons/devicon/icons/python/python-original.svg" },
   { name: "AWS", icon: "https://hawatel.com/_next/image/?url=https%3A%2F%2Fhawatel.com%2Fapi%2Fuploads%2FAmazon_Web_Services_Logo_721eb0a90f.png&w=640&q=75" },
   { name: "Snowflake", icon: "https://registry.npmmirror.com/@lobehub/icons-static-png/latest/files/dark/snowflake-color.png" },
@@ -21,7 +23,7 @@ const skills = [
 const work = [
   {
     year: "2026-now",
-    role: "Senior Data Engineer",
+    role: "Data Engineer",
     company: "ECCO",
     companyUrl: "https://www.ecco.com",
     line: "Building a data platform for HR analytics and reporting with IT and HR stakeholders.",
@@ -185,8 +187,9 @@ function Home() {
           </div>
 
           <p className="text-sm text-muted-foreground leading-snug max-w-2xl">
-            Senior Data Engineer building production data platforms - dbt, Airflow, Snowflake and
-            BigQuery - for enterprise clients across private equity, retail, fintech and SaaS.
+            Data Engineer building production data platforms - dbt, Airflow, Snowflake,
+            BigQuery, Spark and Databricks - for enterprise clients across private equity, retail,
+            fintech and SaaS.
           </p>
 
           <div className="flex flex-wrap gap-x-3 gap-y-1.5 pt-1">

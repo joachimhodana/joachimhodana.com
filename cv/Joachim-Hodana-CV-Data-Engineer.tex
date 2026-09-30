@@ -14,7 +14,14 @@
   \noindent\textbf{#1}\par%
 }
 
-\setlist[itemize]{leftmargin=*, itemsep=0pt, topsep=1pt, parsep=0pt, partopsep=0pt}
+\setlist[itemize]{
+  leftmargin=*,
+  itemsep=0pt,
+  topsep=1pt,
+  parsep=0pt,
+  partopsep=0pt
+}
+
 \setlength{\parindent}{0pt}
 \setlength{\columnsep}{0.18in}
 \linespread{0.96}
@@ -24,7 +31,9 @@
 
 \begin{document}
 
-{\LARGE \textbf{Joachim Hodana}} \hfill {\large SENIOR DATA ENGINEER}
+{\LARGE \textbf{Joachim Hodana}}
+\hfill
+{\large DATA ENGINEER}
 
 \vspace{3pt}
 
@@ -48,74 +57,102 @@ Warsaw, Poland
 
 \vspace{2pt}
 
-Senior Data Engineer with eight years of experience building production software and data systems, including more than two years focused on enterprise analytics platforms. Delivered end-to-end ELT pipelines, warehouse models, and orchestration workflows across \hi{Snowflake} and \hi{BigQuery} for clients in private equity, SaaS, retail, and fintech. Hands-on with \hi{dbt}, \hi{Apache Airflow}, Python, SQL, Docker, Kubernetes, AWS, and GCP, with a focus on performance and cost optimization, data quality, observability, API ingestion, and maintainable delivery.
+Data Engineer with a software engineering background and 3+ years focused on data engineering and analytics platforms.
+Experienced building production systems with \hi{dbt}, \hi{Snowflake}, \hi{BigQuery},
+\hi{Apache Airflow}, Python, and SQL across private equity, SaaS, retail, and fintech.
+Focused on end-to-end platform ownership, warehouse performance, data quality, orchestration,
+and analytics engineering.
 
 \sectionline{EXPERIENCE}
 
 \vspace{2pt}
 
-\textbf{Senior Data Engineer} -- ECCO \hfill 07/2026--Present
+\textbf{Data Engineer} -- ECCO
+\hfill 07/2026--Present
 
 \begin{itemize}
-\item Building a data platform for HR analytics and reporting, working directly with IT and HR stakeholders to translate business requirements into reliable datasets and reporting foundations
+
+\item Leading end-to-end discovery and design of a centralized HR data platform spanning European business units, translating requirements from HR and IT stakeholders across multiple countries into data ownership, integration, and reporting requirements
+
+\item Designing Airflow-orchestrated ingestion and \hi{dbt} silver/gold layers for workforce data across European operations, providing standardized datasets for analytics and Power BI reporting
+
+\item Prototyping a governed AI and semantic layer with \hi{Snowflake Cortex}, Semantic Views, Cortex Agents, and Cortex Search for natural-language analytics and RAG over internal documents stored in object storage
+
 \end{itemize}
 
-\textbf{Data Engineer} -- Lortech Solutions \hfill 08/2024--07/2026
+\textbf{Data Engineer} -- Lortech Solutions
+\hfill 08/2024--07/2026
 
 \begin{itemize}
-\item Delivered analytics engineering systems across \hi{7+ client projects} in private equity, SaaS, retail, and fintech, covering \hi{1000+ dbt models}, \hi{100+ orchestration DAGs}, and multi-terabyte daily workloads across Snowflake and BigQuery
 
-\item Owned end-to-end development of a business-critical investor relations platform with \hi{350+ dbt models}, \hi{350+ tests}, and Airflow pipelines integrating Salesforce, Outlook, Box, FTP, REST APIs, and SOAP services
+\item Delivered data and analytics platforms across \hi{7 client engagements} in private equity, SaaS, retail, and fintech, processing multi-terabyte daily workloads across Snowflake and BigQuery
 
-\item Reduced one high-cost Snowflake workload from \hi{55 minutes to 30 seconds} and lowered BigQuery spend by \hi{35\%} through SQL redesign, warehouse tuning, partitioning, materialization changes, and model refactoring
+\item Built and owned a business-critical investor relations platform with \hi{350+ dbt models} and \hi{350+ automated tests}, integrating Salesforce, Outlook, Box, FTP, REST APIs, and SOAP services through Airflow
 
-\item Built metadata-driven dbt model generation and validation workflows using reusable macros, YAML templates, model tests, and CI/CD checks, reducing repetitive SQL and standardizing new source onboarding
+\item Reduced a high-cost Snowflake workload from \hi{55 minutes to 30 seconds} and lowered BigQuery spend by \hi{35\%} through SQL redesign, warehouse tuning, partitioning, materialization changes, and model refactoring
 
-\item Added observability and SLA validation to multi-tenant Airflow environments, including freshness checks, source availability monitoring, run-duration tracking, and Slack/email incident reporting
+\item Standardized source onboarding through metadata-driven dbt model generation, reusable macros, YAML templates, automated validation, and CI/CD checks
 
-\item Standardized deployment workflows for Kubernetes-based Airflow environments using versioned Docker images, AWS ECR, and CI pipelines
+\item Improved reliability of multi-tenant Airflow environments through freshness and source-availability checks, run-duration monitoring, SLA validation, and automated Slack/email incident reporting
+
+\item Standardized deployments for Kubernetes-based Airflow environments using versioned Docker images, AWS ECR, and CI pipelines
+
 \end{itemize}
 
-\textbf{Independent Software \& Data Consultant} -- Self-employed \hfill 11/2018--04/2025
+\textbf{Independent Software \& Data Consultant} -- Self-employed
+\hfill 11/2018--04/2025
 
 \begin{itemize}
-\item Delivered backend systems, scraping workflows, data extraction pipelines, and automation tools for clients across EU and US markets
 
-\item Built ingestion and processing systems using Python, PostgreSQL, Redis, browser automation, and reverse-engineered APIs, including deduplication, retry handling, and schema normalization for unstable external sources
+\item Delivered backend systems, scraping workflows, data extraction pipelines, and automation tools for clients across European and US markets
+
+\item Built ingestion and processing systems with Python, PostgreSQL, Redis, browser automation, and reverse-engineered APIs, including deduplication, retry handling, and schema normalization for unstable external sources
+
 \end{itemize}
 
-\textbf{Python Developer} -- Decision Sciences Company \hfill 11/2022--05/2023
+\textbf{Python Developer} -- Decision Sciences Company
+\hfill 11/2022--05/2023
 
 \begin{itemize}
-\item Developed Python data workflows, API integrations, and automation for a production AI pricing product in the insurance domain
+
+\item Developed Python data workflows, API integrations, and automation for a production AI pricing platform in the insurance domain
+
 \end{itemize}
 
 \sectionline{TECHNICAL PROJECTS}
 
 \vspace{2pt}
 
-\textbf{dbt-doctor} -- \href{https://github.com/joachimhodana/dbt-doctor}{GitHub} \\
-Open-source CLI for dbt project validation, detecting broken refs, missing sources, untested models, and unsafe incremental configurations. Runs locally and in GitHub Actions; \hi{700+ downloads}.
+\textbf{dbt-doctor} --
+\href{https://github.com/joachimhodana/dbt-doctor}{GitHub}
+\\
+Open-source CLI for dbt project validation, detecting broken refs, missing sources,
+untested models, and unsafe incremental configurations. Runs locally and in GitHub Actions;
+\hi{65+ stars}.
 
 \vspace{2pt}
 
-\textbf{moneysense-data} -- \href{https://github.com/joachimhodana/moneysense-data}{GitHub} \\
-Event-driven pipeline for Polymarket market data, using Kafka and ClickHouse for the hot path and Parquet on MinIO for the cold archive.
-
-\vspace{2pt}
-
-\textbf{Dealscan} \\
-Multi-source automotive ingestion system using browser automation and reverse-engineered APIs to normalize and deduplicate heterogeneous listings in PostgreSQL.
+\textbf{moneysense-data} --
+\href{https://github.com/joachimhodana/moneysense-data}{GitHub}
+\\
+Event-driven pipeline for Polymarket market data using Kafka and ClickHouse for the hot path
+and Parquet on MinIO for the cold archive.
 
 \sectionline{SKILLS}
 
 \vspace{2pt}
 
-\textbf{Data Engineering:} \hi{dbt}, \hi{Apache Airflow}, \hi{Snowflake}, \hi{BigQuery}, ELT/ETL, dimensional modeling, data quality and testing, observability, warehouse cost optimization, Power BI
+\textbf{Data Engineering:}
+\hi{dbt}, \hi{Apache Airflow}, \hi{Snowflake}, \hi{BigQuery},
+\hi{Databricks}, \hi{Apache Spark}, ELT/ETL, dimensional modeling,
+data quality, observability, warehouse performance and cost optimization, Power BI
 
-\textbf{Programming:} \hi{Python}, \hi{SQL}, Go, TypeScript
+\textbf{Programming:}
+\hi{Python}, \hi{SQL}, Go, TypeScript
 
-\textbf{Infrastructure:} \hi{AWS}, \hi{GCP}, \hi{Docker}, \hi{Kubernetes}, CI/CD, PostgreSQL, ClickHouse, Kafka, MinIO, Parquet
+\textbf{Infrastructure:}
+\hi{AWS}, \hi{GCP}, \hi{Docker}, \hi{Kubernetes},
+Kafka, PostgreSQL, ClickHouse, MinIO, Parquet, Iceberg, Trino, CI/CD
 
 \par\vspace{3pt}
 \noindent\rule{\textwidth}{0.5pt}
@@ -137,25 +174,31 @@ B.Sc. Computer Science
 
 \hi{SnowPro Core} (Snowflake)
 
-\href{https://achieve.snowflake.com/31ea4326-9e88-4148-a8b5-20326f786e50}{Credential ID: 156908869}
+\href{https://achieve.snowflake.com/31ea4326-9e88-4148-a8b5-20326f786e50}
+{Credential ID: 156908869}
 
 \vspace{2pt}
 
 \hi{dbt Developer} (dbt Labs)
 
-\href{https://credentials.getdbt.com/75e67339-1260-4bb4-bb4e-efbb9c0bc774}{Credential ID: 135541190}
+\href{https://credentials.getdbt.com/75e67339-1260-4bb4-bb4e-efbb9c0bc774}
+{Credential ID: 135541190}
 
 \columnbreak
 
 \textbf{PUBLICATIONS}
 
-\href{https://medium.com/lortech-solutions-technical-blog/the-hidden-cost-of-wide-tables-in-snowflake-ab4757902c57}{Wide Tables in Snowflake}
+\href{https://medium.com/lortech-solutions-technical-blog/the-hidden-cost-of-wide-tables-in-snowflake-ab4757902c57}
+{Wide Tables in Snowflake}
 
-\href{https://medium.com/lortech-solutions-technical-blog/how-we-made-ai-analytics-work-smoothly-64c7adce93aa}{AI Analytics Workflows}
+\href{https://medium.com/lortech-solutions-technical-blog/how-we-made-ai-analytics-work-smoothly-64c7adce93aa}
+{AI Analytics Workflows}
 
-\href{https://medium.com/lortech-solutions-technical-blog/automating-salesforce-dbt-models-dynamic-metadata-driven-modeling-df3fe2498da2}{Salesforce dbt Automation}
+\href{https://medium.com/lortech-solutions-technical-blog/automating-salesforce-dbt-models-dynamic-metadata-driven-modeling-df3fe2498da2}
+{Salesforce dbt Automation}
 
-\href{https://medium.com/lortech-solutions-technical-blog/no-idea-where-your-data-warehouse-spend-goes-7d600666993e}{Warehouse Cost Attribution}
+\href{https://medium.com/lortech-solutions-technical-blog/no-idea-where-your-data-warehouse-spend-goes-7d600666993e}
+{Warehouse Cost Attribution}
 
 \end{multicols}
 
