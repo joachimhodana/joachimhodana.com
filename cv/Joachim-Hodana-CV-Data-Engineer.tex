@@ -1,29 +1,31 @@
 \documentclass[11pt,a4paper]{article}
 
-\usepackage[top=0.46in,bottom=0.42in,left=0.52in,right=0.52in]{geometry}
+\usepackage[top=0.42in,bottom=0.40in,left=0.48in,right=0.48in]{geometry}
 \usepackage[hidelinks]{hyperref}
 \usepackage{enumitem}
 \usepackage{multicol}
 \usepackage[T1]{fontenc}
 \usepackage{XCharter}
+\usepackage{microtype}
 
 \newcommand{\sectionline}[1]{%
-  \par\vspace{2pt}%
+  \par\vspace{1pt}%
   \noindent\rule{\textwidth}{0.5pt}\par%
-  \vspace{1pt}%
+  \vspace{0pt}%
   \noindent\textbf{#1}\par%
 }
 
 \setlist[itemize]{
   leftmargin=*,
-  itemsep=1pt,
-  topsep=2pt,
+  itemsep=0pt,
+  topsep=0pt,
   parsep=0pt,
   partopsep=0pt
 }
 
 \setlength{\parindent}{0pt}
-\setlength{\columnsep}{0.18in}
+\setlength{\parskip}{0pt}
+\setlength{\columnsep}{0.16in}
 \linespread{1.07}
 \pagestyle{empty}
 \raggedbottom
@@ -35,9 +37,8 @@
 \hfill
 {\large DATA ENGINEER}
 
-\vspace{3pt}
+\vspace{2pt}
 
-{\small
 \href{mailto:me@joachimhodana.com}{me@joachimhodana.com}
 \enspace\textbullet\enspace
 \href{https://joachimhodana.com}{joachimhodana.com}
@@ -46,96 +47,65 @@
 \enspace\textbullet\enspace
 \href{https://github.com/joachimhodana}{github.com/joachimhodana}
 
-\vspace{1pt}
-
 Warsaw, Poland
 \enspace\textbullet\enspace
 \href{tel:+48573918052}{+48 573 918 052}
-}
 
 \sectionline{SUMMARY}
 
-\vspace{2pt}
-
-Data Engineer with \textbf{8 years} of software engineering experience and \textbf{3+ years} focused on data engineering and analytics platforms. Experienced building production systems with dbt, Snowflake, BigQuery, Apache Airflow, Python, and SQL across private equity, SaaS, retail, and fintech. Focused on end-to-end platform ownership, warehouse performance, data quality, and orchestration.
+Data Engineer with \textbf{8 years} of software engineering experience and \textbf{3+ years} focused on data engineering. Built production systems with dbt, Snowflake, BigQuery, Apache Airflow, Python, and SQL across private equity, SaaS, retail, and fintech, with a focus on platform ownership, performance, data quality, and orchestration.
 
 \sectionline{EXPERIENCE}
-
-\vspace{2pt}
 
 \textbf{Data Engineer} -- ECCO
 \hfill 07/2026--Present
 
 \begin{itemize}
+\item Leading end-to-end discovery and design of a centralized HR data platform spanning European business units, translating stakeholder needs into data ownership, integration, and reporting requirements
 
-\item Leading end-to-end discovery and design of a centralized HR data platform spanning European business units, translating HR and IT stakeholder requirements into data ownership, integration, and reporting requirements
+\item Designing Airflow-orchestrated ingestion and dbt silver/gold layers for workforce data, providing standardized datasets for analytics and Power BI reporting
 
-\item Designing Airflow-orchestrated ingestion and dbt silver/gold layers for workforce data across European operations, providing standardized datasets for analytics and Power BI reporting
-
-\item Prototyping a governed AI and semantic layer with Snowflake Cortex, Semantic Views, Cortex Agents, and Cortex Search for natural-language analytics and RAG over internal documents
-
+\item Prototyping a governed AI and semantic layer with Snowflake Cortex, Semantic Views, Cortex Agents, and Cortex Search for natural-language analytics and document RAG
 \end{itemize}
 
 \textbf{Data Engineer} -- Lortech Solutions
 \hfill 08/2024--07/2026
 
 \begin{itemize}
-
 \item Delivered data and analytics systems across 7 client engagements in private equity, SaaS, retail, and fintech, supporting multi-terabyte daily workloads across Snowflake and BigQuery
 
 \item Built and owned a business-critical investor relations platform with 350+ dbt models and 350+ automated tests, integrating Salesforce, Outlook, Box, FTP, REST APIs, and SOAP services through Airflow
 
 \item Reduced a high-cost Snowflake workload from 55 minutes to 30 seconds and lowered BigQuery spend by 35\% through SQL redesign, warehouse tuning, partitioning, materialization changes, and model refactoring
 
-\item Standardized source onboarding through metadata-driven dbt model generation, reusable macros, YAML templates, automated validation, and CI/CD checks
+\item Standardized source onboarding through metadata-driven dbt generation, reusable macros, YAML templates, automated validation, and CI/CD checks
 
-\item Improved reliability of multi-tenant Airflow environments through freshness and source-availability checks, run-duration monitoring, SLA validation, and automated Slack/email incident reporting
-
-\item Automated deployments for Kubernetes-based Airflow environments using versioned Docker images, AWS ECR, and CI pipelines
-
+\item Improved reliability and delivery of multi-tenant Airflow environments through freshness and SLA monitoring, automated incident reporting, versioned Docker images, AWS ECR, and CI pipelines
 \end{itemize}
 
 \textbf{Independent Software \& Data Consultant} -- Self-employed
 \hfill 11/2018--04/2025
 
 \begin{itemize}
-
-\item Delivered backend systems, scraping workflows, data extraction pipelines, and automation tools for EU and US clients
-
-\item Built ingestion and processing systems with Python, PostgreSQL, Redis, browser automation, and reverse-engineered APIs, including deduplication, retry handling, and schema normalization for unstable external sources
-
+\item Built backend systems, scraping and ingestion pipelines, and automation tools for EU and US clients using Python, PostgreSQL, Redis, browser automation, and reverse-engineered APIs
 \end{itemize}
 
 \textbf{Python Developer} -- Decision Sciences Company
 \hfill 11/2022--05/2023
 
 \begin{itemize}
-
 \item Developed Python data workflows, API integrations, and automation for a production AI pricing platform in the insurance domain
-
 \end{itemize}
 
 \sectionline{PROJECTS}
 
-\vspace{2pt}
-
 \textbf{dbt-doctor} --
 \href{https://github.com/joachimhodana/dbt-doctor}{github.com/joachimhodana/dbt-doctor}
 
-\begin{itemize}
-\item Built an open-source CLI for dbt project validation, detecting broken refs, missing sources, untested models, and unsafe incremental configurations; supports local and GitHub Actions workflows and has 65+ GitHub stars
-\end{itemize}
-
-\textbf{moneysense-data} --
-\href{https://github.com/joachimhodana/moneysense-data}{github.com/joachimhodana/moneysense-data}
-
-\begin{itemize}
-\item Built an event-driven Polymarket data pipeline using Kafka and ClickHouse for the hot path and Parquet on MinIO for the cold archive
-\end{itemize}
+Built an open-source dbt project validation CLI with 65+ GitHub stars.
+\vspace{1pt}
 
 \sectionline{SKILLS}
-
-\vspace{2pt}
 
 \textbf{Data:}
 dbt, Apache Airflow, Snowflake, BigQuery, Databricks, Apache Spark, Apache Iceberg, Trino, Kafka, ClickHouse, Power BI
@@ -146,9 +116,9 @@ Python, SQL, Go, TypeScript
 \textbf{Cloud \& Infrastructure:}
 AWS, GCP, Docker, Kubernetes, PostgreSQL, MinIO, Parquet, CI/CD
 
-\par\vspace{3pt}
+\par\vspace{2pt}
 \noindent\rule{\textwidth}{0.5pt}
-\vspace{-5pt}
+\vspace{-4pt}
 
 \begin{multicols}{3}
 
@@ -156,27 +126,21 @@ AWS, GCP, Docker, Kubernetes, PostgreSQL, MinIO, Parquet, CI/CD
 
 Polish-Japanese Academy of Information Technology (PJATK)
 
-B.Sc. Computer Science
-
-Expected 2028
+B.Sc. Computer Science, Expected 2028
 
 \columnbreak
 
 \textbf{CERTIFICATIONS}
 
 \href{https://achieve.snowflake.com/31ea4326-9e88-4148-a8b5-20326f786e50}
-{\textbf{SnowPro Core}}
-
-Snowflake
+{\textbf{SnowPro Core}} (Snowflake)
 
 Credential ID: 31ea4326-9e88-4148-a8b5-20326f786e50
 
-\vspace{2pt}
+\vspace{1pt}
 
 \href{https://credentials.getdbt.com/75e67339-1260-4bb4-bb4e-efbb9c0bc774}
-{\textbf{dbt Developer}}
-
-dbt Labs
+{\textbf{dbt Developer}} (dbt Labs)
 
 Credential ID: 75e67339-1260-4bb4-bb4e-efbb9c0bc774
 
@@ -184,17 +148,17 @@ Credential ID: 75e67339-1260-4bb4-bb4e-efbb9c0bc774
 
 \textbf{PUBLICATIONS}
 
-\textbf{Wide Tables in Snowflake}\\
-\href{https://medium.com/lortech-solutions-technical-blog/the-hidden-cost-of-wide-tables-in-snowflake-ab4757902c57}{medium.com/lortech-solutions-technical-blog/the-hidden-cost-of-wide-tables-in-snowflake-ab4757902c57}
+\href{https://medium.com/lortech-solutions-technical-blog/the-hidden-cost-of-wide-tables-in-snowflake-ab4757902c57}
+{\textbf{Wide Tables in Snowflake}}
 
-\textbf{AI Analytics Workflows}\\
-\href{https://medium.com/lortech-solutions-technical-blog/how-we-made-ai-analytics-work-smoothly-64c7adce93aa}{medium.com/lortech-solutions-technical-blog/how-we-made-ai-analytics-work-smoothly-64c7adce93aa}
+\href{https://medium.com/lortech-solutions-technical-blog/how-we-made-ai-analytics-work-smoothly-64c7adce93aa}
+{\textbf{AI Analytics Workflows}}
 
-\textbf{Salesforce dbt Automation}\\
-\href{https://medium.com/lortech-solutions-technical-blog/automating-salesforce-dbt-models-dynamic-metadata-driven-modeling-df3fe2498da2}{medium.com/lortech-solutions-technical-blog/automating-salesforce-dbt-models-dynamic-metadata-driven-modeling-df3fe2498da2}
+\href{https://medium.com/lortech-solutions-technical-blog/automating-salesforce-dbt-models-dynamic-metadata-driven-modeling-df3fe2498da2}
+{\textbf{Salesforce dbt Automation}}
 
-\textbf{Warehouse Cost Attribution}\\
-\href{https://medium.com/lortech-solutions-technical-blog/no-idea-where-your-data-warehouse-spend-goes-7d600666993e}{medium.com/lortech-solutions-technical-blog/no-idea-where-your-data-warehouse-spend-goes-7d600666993e}
+\href{https://medium.com/lortech-solutions-technical-blog/no-idea-where-your-data-warehouse-spend-goes-7d600666993e}
+{\textbf{Warehouse Cost Attribution}}
 
 \end{multicols}
 
